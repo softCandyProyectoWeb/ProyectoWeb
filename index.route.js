@@ -14,14 +14,47 @@
           controllerAs: 'homeCtrl'
         })
 
+        $stateProvider
+        .state('admin',{
+          url: '/admin',
+          templateUrl: 'components/admin/admin.view.html',
+          controller: 'adminController',
+          controllerAs: 'adminCtrl'
+        })
 
-      $stateProvider
+        $stateProvider
+        .state('asistente',{
+          url: '/asistente',
+          templateUrl: 'components/asistente/asistente.view.html',
+          controller: 'asistenteController',
+          controllerAs: 'asistenteCtrl'
+        })
+
+        $stateProvider
+        .state('consejo',{
+          url: '/consejo',
+          templateUrl: 'components/consejo/consejo.view.html',
+          controller: 'consejoController',
+          controllerAs: 'consejoCtrl'
+        })
+
+        $stateProvider
         .state('estudiante',{
           url: '/estudiante',
           templateUrl: 'components/estudiante/estudiante.view.html',
           controller: 'estudianteController',
           controllerAs: 'estudianteCtrl'
         })
+
+         $stateProvider
+        .state('profesor',{
+          url: '/profesor',
+          templateUrl: 'components/profesor/profesor.view.html',
+          controller: 'profesorController',
+          controllerAs: 'profesorCtrl'
+        })
+
+
         
 
         $urlRouterProvider.otherwise('/home');
