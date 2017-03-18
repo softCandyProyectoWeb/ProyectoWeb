@@ -1,0 +1,24 @@
+#bs-example-navbar-collapse-1, .container-fluid{
+    background-color: #000000;
+    height: 100px;
+    margin-bottom: 0;
+}
+
+#navPrincipal{
+    margin: 0;
+}
+
+li{
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.navbar-default .navbar-nav > li > a {
+
+    color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+
+    color: #F8D022;
+}

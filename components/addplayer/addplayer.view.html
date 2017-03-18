@@ -1,0 +1,70 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools">
+      <span>Agregar Jugador</span>
+  </h2>
+</md-toolbar>
+
+<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+
+  <md-tab label="Agregar jugadores">
+  <md-content layout-padding>
+    <div>
+      <form name="jugadorForm">
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Codigo</label>
+            <input required ng-model="addCtrl.codigoJugador" name="codigoJugador">
+            <div ng-messages="jugadorForm.codigoJugador.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un codigo de jugador</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre</label>
+            <input required ng-model="addCtrl.nombreJugador" name="nombreJugador">
+            <div ng-messages="jugadorForm.nombreJugador.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un nombre de jugador</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Alias</label>
+            <input required ng-model="addCtrl.aliasJugador" name="aliasJugador">
+            <div ng-messages="jugadorForm.aliasJugador.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un alias de jugador</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Cantidad de Dinero</label>
+            <input required ng-model="addCtrl.dineroJugador" name="dineroJugador" placeholder="1000" ng-init="1000">
+            <div ng-messages="jugadorForm.dineroJugador.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar una cantidad minima de 1000</div>
+            </div>
+          </md-input-container>
+        </div>
+
+       <!--  <div layout-gt-sm="row">
+          <md-input-container class="md-block">
+            <label>Foto del jugador</label>
+            <input type="file"  required id="photo" ng-model="addCtrl.imagenJugador">
+          </md-input-container>
+        </div> -->
+
+        <md-button class="md-fab md-primary" aria-label="Ingresar" ng-click="addCtrl.save()">
+          <md-tooltip md-direction="bottom">Insertar actor</md-tooltip>
+        </md-button>
+
+      </form>
+    </div>
+  </md-content>
+</md-tab>
+           
+</md-tabs>
+

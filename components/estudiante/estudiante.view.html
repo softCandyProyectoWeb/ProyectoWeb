@@ -1,0 +1,138 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools">
+      <span>Cenfotec Software House - Acceso Estudiante</span>
+  </h2>
+</md-toolbar>
+
+<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+
+<md-tab label="Ingreso al sistema estudiante">
+ <section>
+  <md-content layout-padding>
+    <div>
+      <form name="estudianteForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Correo electronico</label>
+            <input required ng-model="estudianteCtrl.correoEstudiante" name="correoElectronico">
+            <div ng-messages="estudianteForm.correoElectrico.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un correo electronico</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Contraseña</label>
+            <input type= "password" required ng-model="estudianteCtrl.contrasena" name="contrasena" type="password">
+            <div ng-messages="estudianteForm.contrasena.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar una contraseña</div>
+            </div>
+          </md-input-container>
+        </div>
+
+
+        <md-button class="md-fab md-primary" aria-label="Ingresar" ng-click="estudianteCtrl.login()">
+          <md-icon md-svg-src="vendor/img/icons/ic_check_white_24px.svg"></md-icon>
+          <md-tooltip md-direction="right">Ingresar</md-tooltip>
+        </md-button>
+            <!--<md-button  ng-disabled="movieForm.$valid"  ng-click="movieForm.$valid && movieCtrl.save()" class="btn1" >Save</md-button>-->
+
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
+<md-tab label="Registro de estudiante">
+ <section>
+  <md-content layout-padding>
+    <div>
+      <form name="estudianteForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre completo</label>
+            <input required ng-model="estudianteCtrl.nombre" name="nombreEstudiante">
+            <div ng-messages="estudianteForm.nombre.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un nombre</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Cédula</label>
+            <input type="number" required ng-model="estudianteCtrl.nombreUsuario" name="cedulaEstudiante" >
+            <div ng-messages="estudianteForm.nombreUsuario.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un número de cédula válido</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Contraseña</label>
+            <input type="password" required ng-model="estudianteCtrl.contrasena" name="contrasena" >
+            <div ng-messages="estudianteForm.nombreUsuario.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar una contraseña</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Correo Electronico</label>
+            <input required ng-model="estudianteCtrl.contrasena" name="contrasena" type="email">
+            <div ng-messages="estudianteForm.contrasena.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un correo electronico válido de la Universidad</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Teléfono</label>
+            <input type="number" required ng-model="estudianteCtrl.telefono" name="telefono">
+            <div ng-messages="estudianteForm.telefono.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un número de teléfono</div>
+            </div>
+          </md-input-container>
+        </div>
+
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Genero</label>
+            <md-select required ng-model="estudianteCtrl.genero" name="genero">
+            <md-option value="Femenino">Femenino</md-option>
+            <md-option value="Masculino">Masculino</md-option>
+            </md-select>
+            <div ng-messages="estudianteForm.year.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un genero
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Fecha de nac.</label>
+            <md-datepicker required ng-model="estudianteCtrl.fechaNacimiento"></md-datepicker>
+        </md-input-container>
+
+        <md-button class="md-fab md-primary" aria-label="Ingresar" ng-click="estudianteCtrl.save()">
+          <md-icon md-svg-src="vendor/img/icons/ic_person_add_white_24px.svg"></md-icon>
+          <md-tooltip md-direction="right">Registrar usuario</md-tooltip>
+        </md-button>
+            <!--<md-button  ng-disabled="movieForm.$valid"  ng-click="movieForm.$valid && movieCtrl.save()" class="btn1" >Save</md-button>-->
+
+      </form>
+    </div>
+  </md-content>
+</section> 
+</md-tab>
+
+</md-tabs>
+
+
