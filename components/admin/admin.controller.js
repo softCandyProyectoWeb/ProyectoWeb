@@ -8,19 +8,29 @@
       adminCtrl.cloudObj = ImageService.getConfiguration();
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
+<<<<<<< HEAD
         adminCtrl.personasList = usuarioService.getProfesor();
+=======
+        // adminCtrl.profesorList = usuarioService.getProfesor();
+>>>>>>> origin/master
         
       }
       init();
 
+<<<<<<< HEAD
       adminCtrl.preSaveProfesor = function(){
         adminCtrl.cloudObj.data.file = document.getElementById("photoProfesor").files[0];
+=======
+      adminCtrl.preSave = function(){
+        adminCtrl.cloudObj.data.file = document.getElementById("photo").files[0];
+>>>>>>> origin/master
         Upload.upload(adminCtrl.cloudObj)
           .success(function(data){
             adminCtrl.saveProfesor(data.url);
           });
       }
 
+<<<<<<< HEAD
       adminCtrl.preSaveAsistente = function(){
         adminCtrl.cloudObj.data.file = document.getElementById("photoAsistente").files[0];
         Upload.upload(adminCtrl.cloudObj)
@@ -37,6 +47,8 @@
           });
       }
 
+=======
+>>>>>>> origin/master
       adminCtrl.saveProfesor= function(pFoto){
         var nuevoProfesor ={
           nombre : adminCtrl.nombreProfesor,
@@ -45,7 +57,11 @@
           direccion : adminCtrl.direccionProfesor,
           correo : adminCtrl.correoProfesor,
           telefono : adminCtrl.numeroTelefonoProfesor,
+<<<<<<< HEAD
           genero: adminCtrl.generoProfesor,
+=======
+          genero: adminCtrl.genero,
+>>>>>>> origin/master
           rol: "Profesor",
           estado: "Activo",
           foto: pFoto
@@ -53,6 +69,7 @@
         }
 
         usuarioService.agregarProfesor(nuevoProfesor);
+<<<<<<< HEAD
 
           adminCtrl.nombreProfesor = null;
           adminCtrl.cedulaProfesor = null;
@@ -130,6 +147,17 @@
                 adminCtrl.rolPersonaEditar = listaPersona[i].rol;
           }
         }
+=======
+
+          adminCtrl.nombreProfesor = null;
+          adminCtrl.cedulaProfesor = null;
+          adminCtrl.fechaNacimientoProfesor = null;
+          adminCtrl.direccionProfesor = null;
+          adminCtrl.correoProfesor = null;
+          adminCtrl.numeroTelefonoProfesor = null;
+          adminCtrl.genero = null;
+          adminCtrl.genero = null;        
+>>>>>>> origin/master
       }
 
     }

@@ -4,6 +4,7 @@
   .service('usuarioService', usuarioService);
 
 function usuarioService(){
+<<<<<<< HEAD
 	var profesor = [],
       asistente = [],
       consejo = [];
@@ -15,6 +16,13 @@ function usuarioService(){
       getProfesor : _getProfesor,
       getAsistente : _getAsistente,
       getConsejo : _getConsejo
+=======
+	var profesor = [];
+
+  var publicAPI = {
+  	  agregarProfesor : _agregarProfesor,
+      getSolicitud : _getSolicitud,
+>>>>>>> origin/master
     };
     return publicAPI;
 
@@ -23,6 +31,7 @@ function usuarioService(){
       profesor.push(pProfesor);
       console.log(pProfesor);
       localStorageProfesor(profesor);
+<<<<<<< HEAD
     }
 
   function _agregarAsistente(pAsistente){
@@ -79,6 +88,22 @@ function usuarioService(){
 
     function localStorageConsejo(pConsejo){
       localStorage.setItem(['localConsejo'], JSON.stringify(pConsejo));
+=======
+    }
+
+    function _getSolicitud(){
+      var listaStored = localStorage.getItem('localProfesor');
+      if (listaStored == null ) {
+        profesor = [];
+      }else {
+        profesor = JSON.parse(listaStored);
+      }
+      return profesor;
+    }
+
+    function localStorageProfesor(pProfesor){
+      localStorage.setItem(['localProfesor'], JSON.stringify(pProfesor));
+>>>>>>> origin/master
     }
 
 }
