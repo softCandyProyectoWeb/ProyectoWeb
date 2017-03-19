@@ -1,38 +1,51 @@
 (function(){
   angular
     .module('myApp')
-    .controller('homeController', homeController);
-    function homeController(homeService, ImageService,Upload){ //se inyecta el service userService en el controlador para que se tenga acceso
+    .controller('adminController', adminController);
+    function adminController(usuarioService, ImageService,Upload){ //se inyecta el service userService en el controlador para que se tenga acceso
       //controlador
-      var homeCtrl = this; //binding del controlador con el html, solo en el controlador
-      homeCtrl.cloudObj = ImageService.getConfiguration();
+      var adminCtrl = this; //binding del controlador con el html, solo en el controlador
+      adminCtrl.cloudObj = ImageService.getConfiguration();
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
-        homeCtrl.solicitudList = homeService.getSolicitud();
+        // adminCtrl.profesorList = usuarioService.getProfesor();
         
       }
       init();
 
-       homeCtrl.save= function(pSolicitud){
-        var newSolicitud ={
-          nombreCompleto : homeCtrl.nombreCompleto,
-          nombreEncargado : homeCtrl.nombreEncargado,
-          cedula : homeCtrl.cedula,
-          industria : homeCtrl.industria,
-          objetivos : homeCtrl.objetivos,
-          capital : homeCtrl.capital
+      adminCtrl.preSave = function(){
+        adminCtrl.cloudObj.data.file = document.getElementById("photo").files[0];
+        Upload.upload(adminCtrl.cloudObj)
+          .success(function(data){
+            adminCtrl.saveProfesor(data.url);
+          });
+      }
+
+      adminCtrl.saveProfesor= function(pFoto){
+        var nuevoProfesor ={
+          nombre : adminCtrl.nombreProfesor,
+          cedula : adminCtrl.cedulaProfesor,
+          fechaNacimiento : adminCtrl.fechaNacimientoProfesor,
+          direccion : adminCtrl.direccionProfesor,
+          correo : adminCtrl.correoProfesor,
+          telefono : adminCtrl.numeroTelefonoProfesor,
+          genero: adminCtrl.genero,
+          rol: "Profesor",
+          estado: "Activo",
+          foto: pFoto
           
         }
 
-        homeService.addSolicitud(newSolicitud);
+        usuarioService.agregarProfesor(nuevoProfesor);
 
-        homeCtrl.nombreCompleto = null;
-        homeCtrl.nombreEncargado = null;
-        homeCtrl.cedula = null;
-        homeCtrl.industria = null;
-        homeCtrl.objetivos = null;
-        homeCtrl.capital = null;
-        
+          adminCtrl.nombreProfesor = null;
+          adminCtrl.cedulaProfesor = null;
+          adminCtrl.fechaNacimientoProfesor = null;
+          adminCtrl.direccionProfesor = null;
+          adminCtrl.correoProfesor = null;
+          adminCtrl.numeroTelefonoProfesor = null;
+          adminCtrl.genero = null;
+          adminCtrl.genero = null;        
       }
 
     }

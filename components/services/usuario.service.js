@@ -1,38 +1,36 @@
 (function(){
   angular
   .module('myApp')
-  .service('homeService', homeService);
+  .service('usuarioService', usuarioService);
 
-function homeService(){
-	var solicitud = [];
+function usuarioService(){
+	var profesor = [];
 
   var publicAPI = {
-  	  addSolicitud : _addSolicitud,
+  	  agregarProfesor : _agregarProfesor,
       getSolicitud : _getSolicitud,
-      setLocal : localStorageSolicitud
     };
     return publicAPI;
 
- function _addSolicitud(pSolicitud){
+ function _agregarProfesor(pProfesor){
   
-      solicitud.push(pSolicitud);
-      console.log(pSolicitud);
-      localStorageSolicitud(solicitud);
-
+      profesor.push(pProfesor);
+      console.log(pProfesor);
+      localStorageProfesor(profesor);
     }
 
     function _getSolicitud(){
-      var listaStored = localStorage.getItem('localsolicitud');
+      var listaStored = localStorage.getItem('localProfesor');
       if (listaStored == null ) {
-        solicitud = [];
+        profesor = [];
       }else {
-        solicitud = JSON.parse(listaStored);
+        profesor = JSON.parse(listaStored);
       }
-      return solicitud;
+      return profesor;
     }
 
-    function localStorageSolicitud(pSolicitud){
-      localStorage.setItem(['localsolicitud'], JSON.stringify(pSolicitud));
+    function localStorageProfesor(pProfesor){
+      localStorage.setItem(['localProfesor'], JSON.stringify(pProfesor));
     }
 
 }

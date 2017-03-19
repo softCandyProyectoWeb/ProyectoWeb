@@ -1,0 +1,281 @@
+<nav class="navbar navbar-default" id="navPrincipal">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="images/logo.png" alt="" width="200px"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Crear perfiles</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+<div class="col-lg-12">
+  <h1>¡Bienvenido!</h1>
+</div>
+
+<div class="col-lg-12">
+<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+
+<md-tab label="Activar / Desactivar perfil estudiante">
+  <section>
+  <md-content layout-padding>
+    <div>
+      <form name="activarEstudianteForm" id="activarEstudianteForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block">
+            <label>Cédula</label>
+            <input required ng-model="adminCtrl.cedulaEstudiante" name="cedulaEstudiante">
+            <div ng-messages="activarEstudianteForm.cedulaEstudiante.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la cedula</div>
+            </div>
+          </md-input-container>
+        <md-button class="md-fab md-mini" aria-label="Buscar estudiante" ng-click="">
+          <md-icon md-svg-src="vendor/img/icons/ic_search.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Buscar estudiante</md-tooltip>
+        </md-button>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre Completo</label>
+            <input ng-model="adminCtrl.nombreCompletoEstudiante" name="nombreCompletoEstudiante" disabled>
+            <div ng-messages="activarEstudianteForm.nombreCompletoEstudiante.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Estado</label>
+            <md-select required ng-model="adminCtrl.estado" name="estado">
+            <md-option value="Activo">Activar</md-option>
+            <md-option value="Inactivo">Inactivar</md-option>
+            </md-select>
+            <div ng-messages="agregarProfesorForm.estado.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un estado
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-primary" aria-label="Activar estudiante" ng-click="">
+          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Activar estudiante</md-tooltip>
+        </md-button>
+
+
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
+<md-tab label="Crear perfil profesor">
+  <section>
+  <md-content layout-padding>
+    <div>
+      <form name="agregarProfesorForm" id="agregarProfesorForm">
+        
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre Completo</label>
+            <input required ng-model="adminCtrl.nombreProfesor" name="nombreProfesor">
+            <div ng-messages="agregarProfesorForm.nombreProfesor.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Cédula</label>
+            <input required ng-model="adminCtrl.cedulaProfesor" name="cedulaProfesor"  maxlength=9>
+            <div ng-messages="agregarProfesorForm.cedulaProfesor.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la cedula</div>
+            </div>
+          </md-input-container>
+        </div>
+
+
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Fecha de nac.</label>
+            <md-datepicker ng-model="adminCtrl.fechaNacimientoProfesor"></md-datepicker>
+        </md-input-container>
+
+         <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Dirección</label>
+            <input required ng-model="adminCtrl.direccionProfesor" name="direccionProfesor">
+            <div ng-messages="agregarProfesorForm.direccionProfesor.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la dirección</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Correo</label>
+            <input required ng-model="adminCtrl.correoProfesor" name="correoProfesor" type="email">
+            <div ng-messages="agregarProfesorForm.correoProfesor.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar el correo electronico</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Teléfono</label>
+            <input required ng-model="adminCtrl.numeroTelefonoProfesor" name="numeroTelefonoProfesor" type="number">
+            <div ng-messages="agregarProfesorForm.numeroTelefonoProfesor.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar el numero</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Genero</label>
+            <md-select required ng-model="adminCtrl.genero" name="genero">
+            <md-option value="Femenino">Femenino</md-option>
+            <md-option value="Masculino">Masculino</md-option>
+            </md-select>
+            <div ng-messages="agregarProfesorForm.genero.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un genero
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block">
+            <label>Fotografia</label>
+            <input type="file"  id="photo" ng-model="adminCtrl.fotoProfesor">
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-primary" aria-label="Agregar Profesor" ng-click="adminCtrl.preSave()">
+          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Agregar profesor</md-tooltip>
+        </md-button>
+
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
+<md-tab label="Crear perfil asistente">
+  <section>
+  <md-content layout-padding>
+    <div>
+      <form name="agregarProfesorForm" id="agregarProfesorForm">
+        
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre Completo</label>
+            <input required ng-model="adminCtrl.nombreProfesor" name="nombreProfesor">
+            <div ng-messages="agregarProfesorForm.nombreProfesor.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Cédula</label>
+            <input required ng-model="adminCtrl.cedulaProfesor" name="cedulaProfesor"  maxlength=9>
+            <div ng-messages="agregarProfesorForm.cedulaProfesor.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la cedula</div>
+            </div>
+          </md-input-container>
+        </div>
+
+
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Fecha de nac.</label>
+            <md-datepicker ng-model="adminCtrl.fechaNacimientoProfesor"></md-datepicker>
+        </md-input-container>
+
+         <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Dirección</label>
+            <input required ng-model="adminCtrl.direccionProfesor" name="direccionProfesor">
+            <div ng-messages="agregarProfesorForm.direccionProfesor.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la dirección</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Correo</label>
+            <input required ng-model="adminCtrl.correoProfesor" name="correoProfesor" type="email">
+            <div ng-messages="agregarProfesorForm.correoProfesor.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar el correo electronico</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Teléfono</label>
+            <input required ng-model="adminCtrl.numeroTelefonoProfesor" name="numeroTelefonoProfesor" type="number">
+            <div ng-messages="agregarProfesorForm.numeroTelefonoProfesor.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar el numero</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Genero</label>
+            <md-select required ng-model="adminCtrl.genero" name="genero">
+            <md-option value="Femenino">Femenino</md-option>
+            <md-option value="Masculino">Masculino</md-option>
+            </md-select>
+            <div ng-messages="agregarProfesorForm.genero.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un genero
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block">
+            <label>Fotografia</label>
+            <input type="file"  id="photo" ng-model="adminCtrl.fotoProfesor">
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-primary" aria-label="Agregar Asistente" ng-click="adminCtrl.preSave()">
+          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Agregar asistente</md-tooltip>
+        </md-button>
+
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
+<md-tab label="Crear perfil consejo">
+</md-tab>
+
+</md-tabs>
+</div>
