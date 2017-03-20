@@ -1,38 +1,84 @@
 (function(){
   angular
   .module('myApp')
-  .service('homeService', homeService);
+  .service('usuarioService', usuarioService);
 
-function homeService(){
-	var solicitud = [];
+function usuarioService(){
+	var profesor = [],
+      asistente = [],
+      consejo = [];
 
   var publicAPI = {
-  	  addSolicitud : _addSolicitud,
-      getSolicitud : _getSolicitud,
-      setLocal : localStorageSolicitud
+  	  agregarProfesor : _agregarProfesor,
+      agregarAsistente : _agregarAsistente,
+      agregarConsejo : _agregarConsejo,
+      getProfesor : _getProfesor,
+      getAsistente : _getAsistente,
+      getConsejo : _getConsejo
     };
     return publicAPI;
 
- function _addSolicitud(pSolicitud){
+ function _agregarProfesor(pProfesor){
   
-      solicitud.push(pSolicitud);
-      console.log(pSolicitud);
-      localStorageSolicitud(solicitud);
-
+      profesor.push(pProfesor);
+      console.log(pProfesor);
+      localStorageProfesor(profesor);
     }
 
-    function _getSolicitud(){
-      var listaStored = localStorage.getItem('localsolicitud');
+  function _agregarAsistente(pAsistente){
+  
+      asistente.push(pAsistente);
+      console.log(pAsistente);
+      localStorageAsistente(asistente);
+    }
+
+  function _agregarConsejo(pConsejo){
+  
+      consejo.push(pConsejo);
+      console.log(pConsejo);
+      localStorageConsejo(consejo);
+    }
+
+    function _getProfesor(){
+      var listaStored = localStorage.getItem('localProfesor');
       if (listaStored == null ) {
-        solicitud = [];
+        profesor = [];
       }else {
-        solicitud = JSON.parse(listaStored);
+        profesor = JSON.parse(listaStored);
       }
-      return solicitud;
+      return profesor;
     }
 
-    function localStorageSolicitud(pSolicitud){
-      localStorage.setItem(['localsolicitud'], JSON.stringify(pSolicitud));
+    function _getAsistente(){
+      var listaStored = localStorage.getItem('localAsistente');
+      if (listaStored == null ) {
+        asistente = [];
+      }else {
+        asistente = JSON.parse(listaStored);
+      }
+      return asistente;
+    }
+
+    function _getConsejo(){
+      var listaStored = localStorage.getItem('localConsejo');
+      if (listaStored == null ) {
+        consejo = [];
+      }else {
+        consejo = JSON.parse(listaStored);
+      }
+      return consejo;
+    }
+
+    function localStorageProfesor(pProfesor){
+      localStorage.setItem(['localProfesor'], JSON.stringify(pProfesor));
+    }
+
+    function localStorageAsistente(pAsistente){
+      localStorage.setItem(['localAsistente'], JSON.stringify(pAsistente));
+    }
+
+    function localStorageConsejo(pConsejo){
+      localStorage.setItem(['localConsejo'], JSON.stringify(pConsejo));
     }
 
 }
