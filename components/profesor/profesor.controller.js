@@ -1,14 +1,14 @@
 (function(){
   angular
     .module('myApp')
-    .controller('homeController', homeController);
-    function homeController(homeService, ImageService,Upload){ //se inyecta el service userService en el controlador para que se tenga acceso
+    .controller('profesorController', profesorController);
+    function profesorController(usuarioService, ImageService,Upload){ //se inyecta el service userService en el controlador para que se tenga acceso
       //controlador
-      var homeCtrl = this; //binding del controlador con el html, solo en el controlador
-      homeCtrl.cloudObj = ImageService.getConfiguration();
+      var profesorCtrl = this; //binding del controlador con el html, solo en el controlador
+      profesorCtrl.cloudObj = ImageService.getConfiguration();
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
-        homeCtrl.solicitudList = homeService.getSolicitud();
+        profesorCtrl.solicitudList = usuarioService.getSolicitud();
         
       }
       init();
