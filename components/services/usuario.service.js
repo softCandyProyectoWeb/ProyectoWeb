@@ -1,38 +1,154 @@
 (function(){
   angular
   .module('myApp')
-  .service('homeService', homeService);
+  .service('usuarioService', usuarioService);
 
-function homeService(){
-	var solicitud = [];
+function usuarioService(){
+	var profesor = [],
+      asistente = [],
+      consejo = [],
+      usuario = [],
+      carrera = [],
+      industria = [];
 
   var publicAPI = {
-  	  addSolicitud : _addSolicitud,
-      getSolicitud : _getSolicitud,
-      setLocal : localStorageSolicitud
+  	  agregarProfesor : _agregarProfesor,
+      agregarAsistente : _agregarAsistente,
+      agregarConsejo : _agregarConsejo,
+      agregarCarrera : _agregarCarrera,
+      agregarIndustria : _agregarIndustria,
+      getProfesor : _getProfesor,
+      getAsistente : _getAsistente,
+      getConsejo : _getConsejo,
+      getUsuario : _getUsuario,
+      getCarrera : _getCarrera,
+      getIndustria : _getIndustria,
+      setLocalIndustria : localStorageIndustria
     };
     return publicAPI;
 
- function _addSolicitud(pSolicitud){
+ function _agregarProfesor(pProfesor){
   
-      solicitud.push(pSolicitud);
-      console.log(pSolicitud);
-      localStorageSolicitud(solicitud);
-
+      profesor.push(pProfesor);
+      usuario.push(pProfesor);
+      console.log(pProfesor);
+      localStorageProfesor(profesor);
+      localStorageUsuario(usuario);
     }
 
-    function _getSolicitud(){
-      var listaStored = localStorage.getItem('localsolicitud');
+  function _agregarAsistente(pAsistente){
+  
+      asistente.push(pAsistente);
+      usuario.push(pAsistente);
+      console.log(pAsistente);
+      localStorageAsistente(asistente);
+      localStorageUsuario(usuario);
+    }
+
+  function _agregarConsejo(pConsejo){
+  
+      consejo.push(pConsejo);
+      usuario.push(pConsejo);
+      console.log(pConsejo);
+      localStorageConsejo(consejo);
+      localStorageUsuario(usuario);
+    }
+
+  function _agregarIndustria(pIndustria){
+    industria.push(pIndustria);
+    console.log(pIndustria);
+    localStorageIndustria(industria);
+  }
+
+  function _agregarCarrera(pCarrera){
+    carrera.push(pCarrera);
+    console.log(pCarrera);
+    localStorageCarrera(carrera);
+  }
+
+    function _getProfesor(){
+      var listaStored = localStorage.getItem('localProfesor');
       if (listaStored == null ) {
-        solicitud = [];
+        profesor = [];
       }else {
-        solicitud = JSON.parse(listaStored);
+        profesor = JSON.parse(listaStored);
       }
-      return solicitud;
+      return profesor;
     }
 
-    function localStorageSolicitud(pSolicitud){
-      localStorage.setItem(['localsolicitud'], JSON.stringify(pSolicitud));
+    function _getAsistente(){
+      var listaStored = localStorage.getItem('localAsistente');
+      if (listaStored == null ) {
+        asistente = [];
+      }else {
+        asistente = JSON.parse(listaStored);
+      }
+      return asistente;
+    }
+
+    function _getConsejo(){
+      var listaStored = localStorage.getItem('localConsejo');
+      if (listaStored == null ) {
+        consejo = [];
+      }else {
+        consejo = JSON.parse(listaStored);
+      }
+      return consejo;
+    }
+
+    function _getUsuario(){
+      var listaStored = localStorage.getItem('localUsuario');
+      if (listaStored == null ) {
+        usuario = [];
+      }else {
+        usuario = JSON.parse(listaStored);
+      }
+      return usuario;
+    }
+
+    function _getIndustria(){
+      var listaStored = localStorage.getItem('localIndustria');
+      if (listaStored == null ) {
+        industria = [];
+      }else {
+        industria = JSON.parse(listaStored);
+      }
+      return industria;
+    }
+
+
+    function _getCarrera(){
+      var listaStored = localStorage.getItem('localCarrera');
+      if (listaStored == null ) {
+        carrera = [];
+      }else {
+        carrera = JSON.parse(listaStored);
+      }
+      return carrera;
+    }
+
+    function localStorageProfesor(pProfesor){
+      localStorage.setItem(['localProfesor'], JSON.stringify(pProfesor));
+    }
+
+    function localStorageAsistente(pAsistente){
+      localStorage.setItem(['localAsistente'], JSON.stringify(pAsistente));
+    }
+
+    function localStorageConsejo(pConsejo){
+      localStorage.setItem(['localConsejo'], JSON.stringify(pConsejo));
+    }
+
+    function localStorageUsuario(pUsuario){
+      localStorage.setItem(['localUsuario'], JSON.stringify(pUsuario));
+    }
+
+    function localStorageCarrera(pCarrera){
+      localStorage.setItem(['localCarrera'], JSON.stringify(pCarrera));
+    }
+
+    function localStorageIndustria(pIndustria){
+      localStorage.setItem(['localIndustria'], JSON.stringify(pIndustria));
     }
 
 }
