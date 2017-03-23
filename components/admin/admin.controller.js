@@ -8,22 +8,70 @@
       adminCtrl.cloudObj = ImageService.getConfiguration();
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         adminCtrl.personasList = usuarioService.getUsuario();
         adminCtrl.industriasList = usuarioService.getIndustria();
         adminCtrl.profesoresList = usuarioService.getProfesor();
         adminCtrl.carrerasList = usuarioService.getCarrera();
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+        adminCtrl.personasList = usuarioService.getProfesor();
+=======
+<<<<<<< HEAD
+        adminCtrl.personasList = usuarioService.getProfesor();
+=======
+        // adminCtrl.profesorList = usuarioService.getProfesor();
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
         
       }
       init();
 
+<<<<<<< HEAD
       adminCtrl.preSaveProfesor = function(){
         adminCtrl.cloudObj.data.file = document.getElementById("photoProfesor").files[0];
+=======
+<<<<<<< HEAD
+      adminCtrl.preSaveProfesor = function(){
+        adminCtrl.cloudObj.data.file = document.getElementById("photoProfesor").files[0];
+=======
+<<<<<<< HEAD
+      adminCtrl.preSaveProfesor = function(){
+        adminCtrl.cloudObj.data.file = document.getElementById("photoProfesor").files[0];
+=======
+<<<<<<< HEAD
+      adminCtrl.preSaveProfesor = function(){
+        adminCtrl.cloudObj.data.file = document.getElementById("photoProfesor").files[0];
+=======
+      adminCtrl.preSave = function(){
+        adminCtrl.cloudObj.data.file = document.getElementById("photo").files[0];
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
         Upload.upload(adminCtrl.cloudObj)
           .success(function(data){
             adminCtrl.saveProfesor(data.url);
           });
       }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
       adminCtrl.preSaveAsistente = function(){
         adminCtrl.cloudObj.data.file = document.getElementById("photoAsistente").files[0];
         Upload.upload(adminCtrl.cloudObj)
@@ -40,6 +88,17 @@
           });
       }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
       adminCtrl.saveProfesor= function(pFoto){
         var nuevoProfesor ={
           nombre : adminCtrl.nombreProfesor,
@@ -48,6 +107,10 @@
           direccion : adminCtrl.direccionProfesor,
           correo : adminCtrl.correoProfesor,
           telefono : adminCtrl.numeroTelefonoProfesor,
+<<<<<<< HEAD
+          genero: adminCtrl.generoProfesor,
+=======
+<<<<<<< HEAD
           genero: adminCtrl.generoProfesor,
           rol: "Profesor",
           estado: "Activo",
@@ -92,6 +155,91 @@
           adminCtrl.generoAsistente = null;    
       }
 
+=======
+<<<<<<< HEAD
+          genero: adminCtrl.generoProfesor,
+          rol: "Profesor",
+          estado: "Activo",
+          foto: pFoto
+          
+        }
+
+        usuarioService.agregarProfesor(nuevoProfesor);
+
+          adminCtrl.nombreProfesor = null;
+          adminCtrl.cedulaProfesor = null;
+          adminCtrl.fechaNacimientoProfesor = null;
+          adminCtrl.direccionProfesor = null;
+          adminCtrl.correoProfesor = null;
+          adminCtrl.numeroTelefonoProfesor = null;
+          adminCtrl.generoProfesor = null;    
+      }
+
+      adminCtrl.saveAsistente= function(pFoto){
+        var nuevoAsistente ={
+          nombre : adminCtrl.nombreAsistente,
+          cedula : adminCtrl.cedulaAsistente,
+          fechaNacimiento : adminCtrl.fechaNacimientoAsistente,
+          direccion : adminCtrl.direccionAsistente,
+          correo : adminCtrl.correoAsistente,
+          telefono : adminCtrl.numeroTelefonoAsistente,
+          genero: adminCtrl.generoAsistente,
+          rol: "Asistente",
+=======
+<<<<<<< HEAD
+          genero: adminCtrl.generoProfesor,
+=======
+          genero: adminCtrl.genero,
+>>>>>>> origin/master
+>>>>>>> origin/master
+          rol: "Profesor",
+          estado: "Activo",
+          foto: pFoto
+          
+        }
+
+        usuarioService.agregarProfesor(nuevoProfesor);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
+
+          adminCtrl.nombreProfesor = null;
+          adminCtrl.cedulaProfesor = null;
+          adminCtrl.fechaNacimientoProfesor = null;
+          adminCtrl.direccionProfesor = null;
+          adminCtrl.correoProfesor = null;
+          adminCtrl.numeroTelefonoProfesor = null;
+          adminCtrl.generoProfesor = null;    
+      }
+
+      adminCtrl.saveAsistente= function(pFoto){
+        var nuevoAsistente ={
+          nombre : adminCtrl.nombreAsistente,
+          cedula : adminCtrl.cedulaAsistente,
+          fechaNacimiento : adminCtrl.fechaNacimientoAsistente,
+          direccion : adminCtrl.direccionAsistente,
+          correo : adminCtrl.correoAsistente,
+          telefono : adminCtrl.numeroTelefonoAsistente,
+          genero: adminCtrl.generoAsistente,
+          rol: "Asistente",
+          estado: "Activo",
+          foto: pFoto
+<<<<<<< HEAD
+          
+        }
+
+        usuarioService.agregarAsistente(nuevoAsistente);
+
+          adminCtrl.nombreAsistente = null;
+          adminCtrl.cedulaAsistente = null;
+          adminCtrl.fechaNacimientoAsistente = null;
+          adminCtrl.direccionAsistente = null;
+          adminCtrl.correoAsistente = null;
+          adminCtrl.numeroTelefonoAsistente = null;
+          adminCtrl.generoAsistente = null;    
+      }
+
       adminCtrl.saveConsejo= function(pFoto){
         var nuevoConsejo ={
           nombre : adminCtrl.nombreConsejo,
@@ -109,6 +257,73 @@
 
         usuarioService.agregarConsejo(nuevoConsejo);
 
+=======
+          
+        }
+
+        usuarioService.agregarAsistente(nuevoAsistente);
+
+          adminCtrl.nombreAsistente = null;
+          adminCtrl.cedulaAsistente = null;
+          adminCtrl.fechaNacimientoAsistente = null;
+          adminCtrl.direccionAsistente = null;
+          adminCtrl.correoAsistente = null;
+          adminCtrl.numeroTelefonoAsistente = null;
+          adminCtrl.generoAsistente = null;    
+      }
+
+      adminCtrl.saveConsejo= function(pFoto){
+        var nuevoConsejo ={
+          nombre : adminCtrl.nombreConsejo,
+          cedula : adminCtrl.cedulaConsejo,
+          fechaNacimiento : adminCtrl.fechaNacimientoConsejo,
+          direccion : adminCtrl.direccionConsejo,
+          correo : adminCtrl.correoConsejo,
+          telefono : adminCtrl.numeroTelefonoConsejo,
+          genero: adminCtrl.generoConsejo,
+          rol: "Consejo",
+>>>>>>> origin/master
+          estado: "Activo",
+          foto: pFoto
+          
+        }
+
+<<<<<<< HEAD
+        usuarioService.agregarAsistente(nuevoAsistente);
+
+          adminCtrl.nombreAsistente = null;
+          adminCtrl.cedulaAsistente = null;
+          adminCtrl.fechaNacimientoAsistente = null;
+          adminCtrl.direccionAsistente = null;
+          adminCtrl.correoAsistente = null;
+          adminCtrl.numeroTelefonoAsistente = null;
+          adminCtrl.generoAsistente = null;    
+      }
+
+>>>>>>> origin/master
+      adminCtrl.saveConsejo= function(pFoto){
+        var nuevoConsejo ={
+          nombre : adminCtrl.nombreConsejo,
+          cedula : adminCtrl.cedulaConsejo,
+          fechaNacimiento : adminCtrl.fechaNacimientoConsejo,
+          direccion : adminCtrl.direccionConsejo,
+          correo : adminCtrl.correoConsejo,
+          telefono : adminCtrl.numeroTelefonoConsejo,
+          genero: adminCtrl.generoConsejo,
+          rol: "Consejo",
+          estado: "Activo",
+          foto: pFoto
+          
+        }
+
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
+        usuarioService.agregarConsejo(nuevoConsejo);
+
+>>>>>>> origin/master
           adminCtrl.nombreConsejo = null;
           adminCtrl.cedulaConsejo = null;
           adminCtrl.fechaNacimientoConsejo = null;
@@ -118,6 +333,10 @@
           adminCtrl.generoConsejo = null;    
       }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
       adminCtrl.preActivarPerfil = function(){
         var listaPersona = adminCtrl.personasList;
         var cedulaSelect = adminCtrl.cedulaPersona;
@@ -133,6 +352,12 @@
       }
 
       adminCtrl.buscaEditarPersona = function(){
+<<<<<<< HEAD
+=======
+=======
+      adminCtrl.editarPersona = function(){
+>>>>>>> origin/master
+>>>>>>> origin/master
         var listaPersona = adminCtrl.personasList;
         var cedulaSelect = adminCtrl.cedulaPersonaEditar;
         
@@ -147,6 +372,26 @@
                 adminCtrl.rolPersonaEditar = listaPersona[i].rol;
           }
         }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+
+          adminCtrl.nombreProfesor = null;
+          adminCtrl.cedulaProfesor = null;
+          adminCtrl.fechaNacimientoProfesor = null;
+          adminCtrl.direccionProfesor = null;
+          adminCtrl.correoProfesor = null;
+          adminCtrl.numeroTelefonoProfesor = null;
+          adminCtrl.genero = null;
+          adminCtrl.genero = null;        
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
       }
 
       adminCtrl.agregarCarrera = function(){
@@ -160,6 +405,7 @@
         adminCtrl.nombreCarrera = null;
       }
 
+<<<<<<< HEAD
       adminCtrl.agregarCurso = function(){
         var nuevoCurso ={
           carrera : adminCtrl.carreraCurso.nombre,
@@ -171,6 +417,8 @@
         adminCtrl.nombreCurso = null;
       }
 
+=======
+>>>>>>> origin/master
       adminCtrl.agregarIndustria = function(){
         var nuevaIndustria ={
           nombre : adminCtrl.nombreIndustria

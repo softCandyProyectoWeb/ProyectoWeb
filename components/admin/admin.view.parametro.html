@@ -79,7 +79,11 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Carrera</label>
             <md-select required ng-model="adminCtrl.carreraCurso" name="carreraCurso">
+<<<<<<< HEAD
             <md-option ng-value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
+=======
+            <md-option value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
+>>>>>>> origin/master
             </md-select>
             <div ng-messages="mantenimientoCursoForm.carreraCurso.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar una carrera
@@ -98,7 +102,11 @@
           </md-input-container>
         </div>
 
+<<<<<<< HEAD
         <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="adminCtrl.agregarCurso()">
+=======
+        <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="">
+>>>>>>> origin/master
           <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
           <md-tooltip md-direction="bottom">Agregar curso</md-tooltip>
         </md-button>
