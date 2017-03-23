@@ -23,6 +23,22 @@
         })
 
         $stateProvider
+        .state('perfil',{
+          url: '/perfil',
+          templateUrl: 'components/admin/admin.view.perfil.html',
+          controller: 'adminController',
+          controllerAs: 'adminCtrl'
+        })
+
+        $stateProvider
+        .state('parametro',{
+          url: '/parametro',
+          templateUrl: 'components/admin/admin.view.parametro.html',
+          controller: 'adminController',
+          controllerAs: 'adminCtrl'
+        })
+
+        $stateProvider
         .state('asistente',{
           url: '/asistente',
           templateUrl: 'components/asistente/asistente.view.html',
