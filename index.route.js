@@ -31,6 +31,13 @@
         })
 
         $stateProvider
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
+>>>>>>> origin/master
         .state('parametro',{
           url: '/parametro',
           templateUrl: 'components/admin/admin.view.parametro.html',
@@ -39,6 +46,7 @@
         })
 
         $stateProvider
+<<<<<<< HEAD
         .state('reporte',{
           url: '/reporte',
           templateUrl: 'components/admin/admin.view.reporte.html',
@@ -55,6 +63,13 @@
         })
 
         $stateProvider
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
         .state('asistente',{
           url: '/asistente',
           templateUrl: 'components/asistente/asistente.view.html',
