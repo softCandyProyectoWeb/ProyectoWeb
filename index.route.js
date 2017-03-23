@@ -31,6 +31,7 @@
         })
 
         $stateProvider
+<<<<<<< HEAD
         .state('parametro',{
           url: '/parametro',
           templateUrl: 'components/admin/admin.view.parametro.html',
@@ -39,6 +40,8 @@
         })
 
         $stateProvider
+=======
+>>>>>>> origin/master
         .state('asistente',{
           url: '/asistente',
           templateUrl: 'components/asistente/asistente.view.html',
