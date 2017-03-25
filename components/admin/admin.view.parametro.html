@@ -31,11 +31,19 @@
 <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
 
 <md-tab label="Mantenimiento Carreras">
+<<<<<<< HEAD
 <section>
   <md-content layout-padding>
     <div>
       <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
         <h3>Crear carerras</h3>
+=======
+  <section>
+  <md-content layout-padding>
+    <div>
+      <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
+
+>>>>>>> origin/master
         <div layout-gt-sm="row">
           <md-input-container class="md-block">
             <label>ID de la carrera</label>
@@ -60,6 +68,7 @@
           <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
           <md-tooltip md-direction="bottom">Ingresar carrera</md-tooltip>
         </md-button>
+<<<<<<< HEAD
       </form>
     </div>
   </md-content>
@@ -112,6 +121,9 @@
           <md-icon md-svg-src="vendor/img/icons/delete.svg"></md-icon>
           <md-tooltip md-direction="bottom">Borrar carrera</md-tooltip>
         </md-button>
+=======
+
+>>>>>>> origin/master
 
       </form>
     </div>
@@ -130,7 +142,23 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Carrera</label>
             <md-select required ng-model="adminCtrl.carreraCurso" name="carreraCurso">
+<<<<<<< HEAD
             <md-option ng-value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
+=======
+<<<<<<< HEAD
+            <md-option ng-value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
+=======
+<<<<<<< HEAD
+            <md-option ng-value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
+=======
+<<<<<<< HEAD
+            <md-option ng-value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
+=======
+            <md-option value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
             </md-select>
             <div ng-messages="mantenimientoCursoForm.carreraCurso.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar una carrera
@@ -149,7 +177,23 @@
           </md-input-container>
         </div>
 
+<<<<<<< HEAD
         <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="adminCtrl.agregarCurso()">
+=======
+<<<<<<< HEAD
+        <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="adminCtrl.agregarCurso()">
+=======
+<<<<<<< HEAD
+        <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="adminCtrl.agregarCurso()">
+=======
+<<<<<<< HEAD
+        <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="adminCtrl.agregarCurso()">
+=======
+        <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="">
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
           <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
           <md-tooltip md-direction="bottom">Agregar curso</md-tooltip>
         </md-button>
@@ -240,7 +284,11 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Profesor</label>
             <md-select required ng-model="adminCtrl.profesorProyecto" name="profesorProyecto">
+<<<<<<< HEAD
             <md-option ng-value="profesor" ng-repeat="profesor in adminCtrl.usuarioList | filter:{rol:'Profesor'}">{{profesor.nombre}}</md-option>
+=======
+            <md-option value="profesor" ng-repeat="profesor in adminCtrl.profesoresList">{{profesor.nombre}}</md-option>
+>>>>>>> origin/master
             </md-select>
             <div ng-messages="agregarConsejoForm.profesorProyecto.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar un profesor
@@ -253,7 +301,11 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Proyecto</label>
             <md-select required ng-model="adminCtrl.proyectoAsignar" name="proyectoAsignar">
+<<<<<<< HEAD
             <md-option ng-value="proyecto" ng-repeat="proyecto in adminCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
+=======
+            <md-option ></md-option>
+>>>>>>> origin/master
             </md-select>
             <div ng-messages="agregarConsejoForm.proyectoAsignar.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar un proyecto a asignar
@@ -262,7 +314,11 @@
           </md-input-container>
         </div>
 
+<<<<<<< HEAD
         <md-button class="md-fab md-primary" aria-label="Asignar profesor al proyecto" ng-click="adminCtrl.asignarProfesorProyecto()">
+=======
+        <md-button class="md-fab md-primary" aria-label="Asignar profesor al proyecto" ng-click="">
+>>>>>>> origin/master
           <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
           <md-tooltip md-direction="bottom">Asignar profesor al proyecto</md-tooltip>
         </md-button>

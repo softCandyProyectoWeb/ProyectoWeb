@@ -8,7 +8,11 @@
       profesorCtrl.cloudObj = ImageService.getConfiguration();
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
+<<<<<<< HEAD
         // homeCtrl.solicitudList = homeService.getSolicitud();
+=======
+        profesorCtrl.solicitudList = usuarioService.getSolicitud();
+>>>>>>> origin/master
         
       }
       init();
