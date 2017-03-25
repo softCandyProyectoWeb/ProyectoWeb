@@ -1,0 +1,167 @@
+<nav class="navbar navbar-default" id="navPrincipal">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="images/logo.png" alt="" width="200px"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#/admin">Inicio</a></li>
+        <li><a href="#">Modificar expediente cliente</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+<div class="col-lg-12">
+  <h1>¡Bienvenido!</h1>
+</div>
+
+<div class="col-lg-12">
+<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+
+<md-tab label="Agregar comentarios expediente cliente">
+  <section>
+  <md-content layout-padding>
+    <div>
+      <form name="editarExpedienteClienteForm" id="editarExpedienteClienteForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre del proyecto</label>
+            <md-select required ng-model="adminCtrl.nombreProyectoExpediente" name="nombreProyectoExpediente" ng-change="adminCtrl.buscarClienteExpediente()">
+            <md-option ng-value="cliente" ng-repeat="cliente in adminCtrl.solicitudList">{{cliente.nombreProyecto}}</md-option>
+            </md-select>
+            <div ng-messages="editarExpedienteClienteForm.nombreProyectoExpediente.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un cliente
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre del cliente</label>
+            <input ng-model="adminCtrl.nombreClienteExpediente" name="nombreClienteExpediente" disabled>
+            <div ng-messages="editarExpedienteClienteForm.nombreClienteExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre de la persona encargada</label>
+            <input ng-model="adminCtrl.nombreEncargadoExpediente" name="nombreEncargadoExpediente" disabled>
+            <div ng-messages="editarExpedienteClienteForm.nombreEncargadoExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Comentarios</label>
+            <textarea ng-model="adminCtrl.comentarioExpediente" name="comentarioExpediente" ng-maxlength="100"></textarea>
+            <div ng-messages="editarExpedienteClienteForm.comentarioExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-primary" aria-label="Editar expediente cliente" ng-click="adminCtrl.agregarComentarioCliente()">
+          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Agregar comentarios</md-tooltip>
+        </md-button>
+
+
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
+<md-tab label="Agregar comentarios expediente estudiante">
+  <section>
+  <md-content layout-padding>
+    <div>
+      <form name="editarExpedienteEstudiante" id="editarExpedienteEstudiante">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block">
+            <label>Elegir el estudiante</label>
+            <md-select required ng-model="adminCtrl.nombreEstudianteSelect" name="nombreEstudianteSelect" ng-change="adminCtrl.buscarEstudianteExpediente()">
+            <md-option ng-value="estudiante" ng-repeat="estudiante in adminCtrl.usuarioList | filter:{rol:'Estudiante'}">{{estudiante.nombre}}</md-option>
+            </md-select>
+            <div ng-messages="activarPerfilesForm.nombreEstudianteSelect.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe elegir un estudiante</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Cedula del estudiante</label>
+            <input ng-model="adminCtrl.cedulaEstudianteExpediente" name="cedulaEstudianteExpediente" disabled>
+            <div ng-messages="editarExpedienteEstudiante.cedulaEstudianteExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Correo electronico</label>
+            <input ng-model="adminCtrl.correoEstudianteExpediente" name="correoEstudianteExpediente" disabled type="email">
+            <div ng-messages="editarExpedienteEstudiante.correoEstudianteExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Teléfono</label>
+            <input ng-model="adminCtrl.telefonoEstudianteExpediente" name="telefonoEstudianteExpediente" maxlength="8" disabled>
+            <div ng-messages="editarExpedienteEstudiante.telefonoEstudianteExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Estado del estudiante</label>
+            <input ng-model="adminCtrl.estadoEstudianteExpediente" name="estadoEstudianteExpediente" disabled>
+            <div ng-messages="editarExpedienteEstudiante.estadoEstudianteExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Comentarios</label>
+            <textarea ng-model="adminCtrl.comentarioEstudianteExpediente" name="comentarioEstudianteExpediente" maxlength="100"></textarea>
+            <div ng-messages="editarExpedienteEstudiante.comentarioEstudianteExpediente.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe agregar un comentario</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-primary" aria-label="Editar expediente cliente" ng-click="adminCtrl.agregarComentarioEstudiante()">
+          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Agregar comentarios</md-tooltip>
+        </md-button>
+
+      </form>
+    </div>
+  </md-content>
+</section>  
+</md-tab>
+
+</md-tabs>
+</div>
