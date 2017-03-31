@@ -28,7 +28,7 @@
 </nav>
 
 <div>
-  <img src="images/banner.jpg" alt="" width="100%">
+
 </div>
 
 <!-- Modal -->
@@ -81,108 +81,163 @@
 </div>
 
 
-<div class="col-lg-12">
+<div class="col-lg-12 text-center">
   <h1>¡Bienvenido!</h1>
-  <p>Su casa para recibir servicios profesionales en tecnologías de información, de gran calidad, diseñados y construidos por estudiantes y profesores de la Universidad Cenfotec para la comunidad.</p>
-
-  <h3>Nosotros</h3>
-  <p> El Cenfotec Software House es un proyecto de emprendimiento académico y profesional dentro de la Universidad Cenfotec, donde los estudiantes de la Universidad brindan servicios a la comunidad, asesorados por profesores expertos en diferentes áreas, con precios muy asequibles. El Cenfotec Software House nace como complemento de formación que permita a los estudiantes vivir experiencias de trabajo reales, y con un cliente final, alineado con la metodología de proyectos característica de la Universidad Cenfotec, y para dar atención a las múltiples solicites del desarrollo de proyectos TICs. El Cenfotec Software House brinda a los estudiantes que trabajan en los proyectos, becas como remuneración a su participación.</p>
 </div>
 
+<div class="col-lg-12 text-center" ng-repeat="estudiante in estudianteCtrl.ListEstudiantes | filter:{rol: 'Estudiante'}">
+   <h3>{{estudiante.nombre}}</h3>
+</div>
+
+
 <div class="col-lg-12">
-<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
-<md-tab label="Solicitud de Proyectos">
-<section>
+<md-tabs>
+  <md-tab label="Perfil" >
+      <form name="tablaSolicitudes" id="tablaSolicitudes">
+        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Nombre del estudiante</th>
+              <th>Numero de cédula</th>
+              <th>Fecha de Nacimiento</th>
+              <th>Correo Electronico</th>
+              <th>Dirección</th>
+              <th>Número de teléfono</th>
+              <th>Genero</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="estudiante in estudianteCtrl.ListEstudiantes | filter: {rol:'Estudiante'}">
+              <td>{{estudiante.nombre}}</td>
+              <td>{{estudiante.cedula}}</td>
+              <td>{{estudiante.fechaNacimiento}}</td>
+              <td>{{estudiante.correo}}</td>
+              <td>{{estudiante.direccion}}</td>
+              <td>{{estudiante.telefono}}</td>
+              <td>{{estudiante.genero}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </form>
+    </md-tab>
+
+    <md-tab label="Editar perfiles">
+  <section>
   <md-content layout-padding>
     <div>
-      <form name="solicitudForm" id="solicitudForm">
-        
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre Completo</label>
-            <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-            <div ng-messages="solicitudForm.nombre.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre de Encargado</label>
-            <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-            <div ng-messages="solicitudForm.nombreEncargado.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-            </div>
-          </md-input-container>
-        </div>
-
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Cédula</label>
-            <input required ng-model="homeCtrl.cedula" name="cedula">
-            <div ng-messages="solicitudForm.cedula.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Seleccione una industria</label>
-            <md-select required ng-model="homeCtrl.industria" name="industria"></md-select>
-          
-            <div ng-messages="movieForm.industria.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar una clasificación
-            </div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Objetivos</label>
-            <input required ng-model="homeCtrl.objetivos" name="objetivos">
-            <div ng-messages="solicitudForm.objetivos.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar los objetivos</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Capital (Posee fondos económicos)</label>
-            <md-select required ng-model="homeCtrl.capital" name="capital">
-            <md-option value="Sí">Sí</md-option>
-            <md-option value="No">No</md-option></md-select>
-            <div ng-messages="movieForm.capital.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar una opción
-            </div>
-            </div>
-          </md-input-container>
-        </div>
+      <form name="editarPerfilesForm" id="editarPerfilesForm">
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block">
-            <label>Adjuntar resumen ejecutivo (.doc, .docx o .pdf)</label>
-            <input type="file"  id="file" ng-model="movieForm.archivo">
+            <label>Cédula de la persona</label>
+            <input required ng-model="adminCtrl.cedulaPersonaEditar" name="cedulaPersonaEditar" maxlength="9">
+            <div ng-messages="editarPerfilesForm.cedulaPersonaEditar.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la cedula</div>
+            </div>
+          </md-input-container>
+        <md-button class="md-fab md-mini" aria-label="Buscar persona" ng-click="adminCtrl.buscaEditarPersona()">
+          <md-icon md-svg-src="vendor/img/icons/ic_search.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Buscar persona</md-tooltip>
+        </md-button>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre Completo</label>
+            <input ng-model="adminCtrl.nombreEditar" name="nombreEditar">
+            <div ng-messages="editarPerfilesForm.nombreEditar.$error" role="alert" multiple>
+            <div ng-message="required" class="my-message">Debe ingresar el nombre completo</div>
+            </div>
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Enviar Solicitud" ng-click="homeCtrl.save()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Enviar Solicitud</md-tooltip>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Contraseña</label>
+            <input required ng-model="adminCtrl.contrasenaEditar" name="contrasenaEditar"  maxlength=10>
+            <div ng-messages="agregarConsejoForm.contrasenaEditar.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la contraseña</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Fecha de nac.</label>
+            <md-datepicker ng-model="adminCtrl.fechaNacimientoEditar"></md-datepicker>
+        </md-input-container>
+
+         <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Dirección</label>
+            <input required ng-model="adminCtrl.direccionEditar" name="direccionEditar">
+            <div ng-messages="editarPerfilesForm.direccionEditar.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la dirección</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Correo</label>
+            <input required ng-model="adminCtrl.correoEditar" name="correoEditar" type="email">
+            <div ng-messages="editarPerfilesForm.correoEditar.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar el correo electronico</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Teléfono</label>
+            <input required ng-model="adminCtrl.numeroTelefonoEditar" name="numeroTelefonoEditar" type="number">
+            <div ng-messages="editarPerfilesForm.numeroTelefonoEditar.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar el numero</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Genero</label>
+            <md-select required ng-model="adminCtrl.generoEditar" name="generoEditar">
+            <md-option value="Femenino">Femenino</md-option>
+            <md-option value="Masculino">Masculino</md-option>
+            </md-select>
+            <div ng-messages="editarPerfilesForm.generoEditar.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un genero
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Rol</label>
+            <md-select ng-model="adminCtrl.rolPersonaEditar" name="rolPersonaEditar">
+              <md-option value="Administrador">Administrador</md-option>
+              <md-option value="Profesor">Profesor</md-option>
+              <md-option value="Asistente">Asistente</md-option>
+              <md-option value="Estudiante">Estudiante</md-option>
+              <md-option value="Consejo">Consejo</md-option>
+            </md-select>
+            <div ng-messages="editarPerfilesForm.rolPersonaEditar.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-primary" aria-label="Editar persona" ng-click="adminCtrl.editarPerfil()">
+          <md-icon md-svg-src="vendor/img/icons/ic_border_color_white_24px.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Editar persona</md-tooltip>
         </md-button>
-
-
       </form>
     </div>
   </md-content>
 </section>
 </md-tab>
-<md-tab label="cliente">
-  
-</md-tab>
-</md-tabs>
+  </md-tabs>
 </div>
+
+
+
+

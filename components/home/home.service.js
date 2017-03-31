@@ -5,15 +5,16 @@
 
 function homeService(){
 	var solicitud = [];
+  var estudiante = [];
 
   var publicAPI = {
   	  addSolicitud : _addSolicitud,
       getSolicitud : _getSolicitud,
-      setLocal : localStorageSolicitud
+      setLocalSolicitud : localStorageSolicitud
     };
     return publicAPI;
 
- function _addSolicitud(pSolicitud){
+    function _addSolicitud(pSolicitud){
   
       solicitud.push(pSolicitud);
       console.log(pSolicitud);
@@ -22,7 +23,7 @@ function homeService(){
     }
 
     function _getSolicitud(){
-      var listaStored = localStorage.getItem('localsolicitud');
+      var listaStored = localStorage.getItem('localSolicitud');
       if (listaStored == null ) {
         solicitud = [];
       }else {
@@ -32,7 +33,7 @@ function homeService(){
     }
 
     function localStorageSolicitud(pSolicitud){
-      localStorage.setItem(['localsolicitud'], JSON.stringify(pSolicitud));
+      localStorage.setItem(['localSolicitud'], JSON.stringify(pSolicitud));
     }
 
 }

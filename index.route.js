@@ -23,6 +23,38 @@
         })
 
         $stateProvider
+        .state('perfil',{
+          url: '/perfil',
+          templateUrl: 'components/admin/admin.view.perfil.html',
+          controller: 'adminController',
+          controllerAs: 'adminCtrl'
+        })
+
+        $stateProvider
+        .state('parametro',{
+          url: '/parametro',
+          templateUrl: 'components/admin/admin.view.parametro.html',
+          controller: 'adminController',
+          controllerAs: 'adminCtrl'
+        })
+
+        $stateProvider
+        .state('reporte',{
+          url: '/reporte',
+          templateUrl: 'components/admin/admin.view.reporte.html',
+          controller: 'adminController',
+          controllerAs: 'adminCtrl'
+        })
+
+        $stateProvider
+        .state('expediente',{
+          url: '/expediente',
+          templateUrl: 'components/admin/admin.view.expediente.html',
+          controller: 'adminController',
+          controllerAs: 'adminCtrl'
+        })
+
+        $stateProvider
         .state('asistente',{
           url: '/asistente',
           templateUrl: 'components/asistente/asistente.view.html',
@@ -50,6 +82,38 @@
         .state('profesor',{
           url: '/profesor',
           templateUrl: 'components/profesor/profesor.view.html',
+          controller: 'profesorController',
+          controllerAs: 'profesorCtrl'
+        })
+
+        $stateProvider
+        .state('reporteProfesor',{
+          url: '/reporteProfesor',
+          templateUrl: 'components/profesor/profesor.view.reporteProfesor.html',
+          controller: 'profesorController',
+          controllerAs: 'profesorCtrl'
+        })
+
+        $stateProvider
+        .state('proyectoProfesor',{
+          url: '/proyectoProfesor',
+          templateUrl: 'components/profesor/profesor.view.proyectoProfesor.html',
+          controller: 'profesorController',
+          controllerAs: 'profesorCtrl'
+        })
+
+        $stateProvider
+        .state('informacionProfesor',{
+          url: '/informacionProfesor',
+          templateUrl: 'components/profesor/profesor.view.informacionProfesor.html',
+          controller: 'profesorController',
+          controllerAs: 'profesorCtrl'
+        })
+
+        $stateProvider
+        .state('expedienteClienteProfesor',{
+          url: '/expedienteClienteProfesor',
+          templateUrl: 'components/profesor/profesor.view.expedienteClienteProfesor.html',
           controller: 'profesorController',
           controllerAs: 'profesorCtrl'
         })

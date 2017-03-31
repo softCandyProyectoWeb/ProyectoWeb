@@ -1,0 +1,153 @@
+<nav class="navbar navbar-default" id="navPrincipal">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      
+      <a class="navbar-brand" href="#"><img src="images/logo.png" alt="" width="200px"></a>
+      <a class="navbar-brand" href="#"><img src="images/pngsImgsApp-1-07.png" alt="" width="200px"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#/informacionProfesor">Mi información</a></li>
+        <li><a href="#/reporteProfesor">Reportes</a></li>
+        <li><a href="#/proyectoProfesor">Proyectos</a></li>
+        <li><a href="#/expedienteClienteProfesor">Expedientes Cliente</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+<div class="col-lg-12">
+
+<md-tabs md-dynamic-height md-border-bottom md-selected="">
+
+<md-tab label="Poyectos">
+ <section>
+  
+    
+     <md-content layout-padding>
+
+<span class="md-headline">Nombre del proyecto</span>
+<div ng-repeat="profesor in profesorCtrl.solicitudList">
+<span class="md-subhead">{{profesor.nombreProyecto}}</span>
+</div>
+
+ <span class="md-headline">Nombre completo</span>
+<div ng-repeat="profesor in profesorCtrl.solicitudList">
+<span class="md-subhead">{{profesor.nombreSolicitante}}</span>
+</div>
+<span class="md-headline">Nombre de Encargado</span>
+<div ng-repeat="profesor in profesorCtrl.solicitudList">
+<span class="md-subhead">{{profesor.nombreEncargado}}</span>
+</div>
+<span class="md-headline">Cédula</span>
+<div ng-repeat="profesor in profesorCtrl.solicitudList">
+<span class="md-subhead">{{profesor.cedula}}</span>
+</div>
+
+<span class="md-headline">Industria</span>
+<div ng-repeat="profesor in profesorCtrl.solicitudList">
+<span class="md-subhead">{{profesor.industria.nombre}}</span>
+</div>
+
+<span class="md-headline">Objetivo</span>
+<div ng-repeat="profesor in profesorCtrl.solicitudList">
+<span class="md-subhead">{{profesor.objetivos}}</span>
+</div>
+
+<span class="md-headline">Capital</span>
+<div ng-repeat="profesor in profesorCtrl.solicitudList">
+<span class="md-subhead">{{profesor.capital}}</span>
+</div>
+
+
+</md-tab>
+  </md-content>
+
+   
+</section> 
+</md-tab>
+
+<md-tab label="Asignar profesor responsable a proyecto">
+ <section>
+  
+    
+     <md-content layout-padding>
+    <div>
+      <form name="visualizarProyectoForm" id="visualizarProyectoForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Proyecto a ver</label>
+            <md-select required ng-model="adminCtrl.proyectoVer" name="proyectoVer">
+            <md-option ng-value="proyecto" ng-repeat="proyecto in profesorCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
+            </md-select>
+            <div ng-messages="visualizarProyectoForm.proyectoVer.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un proyecto
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-mini" aria-label="Visualizar proyecto" ng-click="">
+          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Visualizar proyecto</md-tooltip>
+        </md-button>
+
+
+      </form>
+    </div>
+  </md-content>
+
+  
+</section> 
+</md-tab>
+
+
+
+<md-tab label="Asignar estudiante a proyecto">
+ <section>
+  
+    
+     <md-content layout-padding>
+    <div>
+      <form name="visualizarProyectoForm" id="visualizarProyectoForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Proyecto a ver</label>
+            <md-select required ng-model="adminCtrl.proyectoVer" name="proyectoVer">
+            <md-option ng-value="proyecto" ng-repeat="proyecto in profesorCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
+            </md-select>
+            <div ng-messages="visualizarProyectoForm.proyectoVer.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un proyecto
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-mini" aria-label="Visualizar proyecto" ng-click="">
+          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Visualizar proyecto</md-tooltip>
+        </md-button>
+
+
+      </form>
+    </div>
+  </md-content>
+
+  
+</section> 
+</md-tab>
+
+</md-tabs>
+
+
+
+</div>
+
+
+
+

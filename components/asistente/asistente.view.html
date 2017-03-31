@@ -14,127 +14,36 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Proceso</a></li>
-        <li><a href="#">Solicitud</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="" data-toggle="modal" data-target="#myModal">Ingresar</a></li>
-        <li><a href="#">Registrarse</a></li>
+        <li><a href="#/admin">Inicio</a></li>
+        <li><a href="#/asistente">Sitio del asistente</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
-<div>
-  <img src="images/banner.jpg" alt="" width="100%">
-</div>
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Iniciar Sesión</h4>
-      </div>
-      <div class="modal-body">
-          <md-content layout-padding>
-    <div>
-      <form name="estudianteForm">
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Correo electronico</label>
-            <input required ng-model="estudianteCtrl.correoEstudiante" name="correoElectronico">
-            <div ng-messages="estudianteForm.correoElectrico.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un correo electronico</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Contraseña</label>
-            <input type= "password" required ng-model="estudianteCtrl.contrasena" name="contrasena" type="password">
-            <div ng-messages="estudianteForm.contrasena.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar una contraseña</div>
-            </div>
-          </md-input-container>
-        </div>
-      </form>
-    </div>
-  </md-content>
-      </div>
-      <div class="modal-footer">
-      <md-button class="md-fab md-primary" aria-label="Ingresar" ng-click="estudianteCtrl.login()">
-          <md-icon md-svg-src="vendor/img/icons/ic_check_white_24px.svg"></md-icon>
-          <md-tooltip md-direction="right">Ingresar</md-tooltip>
-        </md-button>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 
 <div class="col-lg-12">
   <h1>¡Bienvenido!</h1>
-  <p>Su casa para recibir servicios profesionales en tecnologías de información, de gran calidad, diseñados y construidos por estudiantes y profesores de la Universidad Cenfotec para la comunidad.</p>
-
-  <h3>Nosotros</h3>
-  <p> El Cenfotec Software House es un proyecto de emprendimiento académico y profesional dentro de la Universidad Cenfotec, donde los estudiantes de la Universidad brindan servicios a la comunidad, asesorados por profesores expertos en diferentes áreas, con precios muy asequibles. El Cenfotec Software House nace como complemento de formación que permita a los estudiantes vivir experiencias de trabajo reales, y con un cliente final, alineado con la metodología de proyectos característica de la Universidad Cenfotec, y para dar atención a las múltiples solicites del desarrollo de proyectos TICs. El Cenfotec Software House brinda a los estudiantes que trabajan en los proyectos, becas como remuneración a su participación.</p>
 </div>
 
 <div class="col-lg-12">
 <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
-<md-tab label="Solicitud de Proyectos">
-<section>
+
+<md-tab label="Crear citas">
+  <section>
   <md-content layout-padding>
     <div>
-      <form name="solicitudForm" id="solicitudForm">
-        
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre Completo</label>
-            <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-            <div ng-messages="solicitudForm.nombre.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-            </div>
-          </md-input-container>
-        </div>
+      <form name="crearCitaForm" id="crearCitaForm">
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre de Encargado</label>
-            <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-            <div ng-messages="solicitudForm.nombreEncargado.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-            </div>
-          </md-input-container>
-        </div>
-
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Cédula</label>
-            <input required ng-model="homeCtrl.cedula" name="cedula">
-            <div ng-messages="solicitudForm.cedula.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Seleccione una industria</label>
-            <md-select required ng-model="homeCtrl.industria" name="industria"></md-select>
-          
-            <div ng-messages="movieForm.industria.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar una clasificación
+            <label>Nombre del profesor a citar</label>
+            <md-select required ng-model="asistenteCtrl.nombreProfesorCita" name="nombreProfesorCita">
+            <md-option ng-value="usuario" ng-repeat="usuario in asistenteCtrl.usuariosList | filter:{rol:'Profesor'}">{{usuario.nombre}}</md-option>
+            </md-select>
+            <div ng-messages="crearCitaForm.nombreProfesorCita.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un profesor encargado para la cita
             </div>
             </div>
           </md-input-container>
@@ -142,37 +51,40 @@
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Objetivos</label>
-            <input required ng-model="homeCtrl.objetivos" name="objetivos">
-            <div ng-messages="solicitudForm.objetivos.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar los objetivos</div>
+            <label>Nombre del estudiante a citar</label>
+            <md-select required ng-model="asistenteCtrl.nombreEstudianteCita" name="nombreEstudianteCita">
+            <md-option ng-value="estudiante" ng-repeat="estudiante in asistenteCtrl.usuariosList | filter:{rol:'Estudiante'}">{{estudiante.nombre}}</md-option>
+            </md-select>
+            <div ng-messages="crearCitaForm.nombreEstudianteCita.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un estudiante para la cita
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+      <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Fecha Cita</label>
+            <md-datepicker required ng-model="asistenteCtrl.fechaCita" name="fechaCita"></md-datepicker>
+            <div ng-messages="solicitudEstudianteForm.fechaCita.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la fecha de la cita</div>
             </div>
           </md-input-container>
         </div>
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Capital (Posee fondos económicos)</label>
-            <md-select required ng-model="homeCtrl.capital" name="capital">
-            <md-option value="Sí">Sí</md-option>
-            <md-option value="No">No</md-option></md-select>
-            <div ng-messages="movieForm.capital.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar una opción
-            </div>
+            <label>Hora de la cita</label>
+            <input ng-model="asistenteCtrl.horaCita" name="horaCita" type="time" required>
+            <div ng-messages="crearCitaForm.horaCita.$error" role="alert" multiple>
             </div>
           </md-input-container>
         </div>
 
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block">
-            <label>Adjuntar resumen ejecutivo (.doc, .docx o .pdf)</label>
-            <input type="file"  id="file" ng-model="movieForm.archivo">
-          </md-input-container>
-        </div>
 
-        <md-button class="md-fab md-primary" aria-label="Enviar Solicitud" ng-click="homeCtrl.save()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Enviar Solicitud</md-tooltip>
+        <md-button class="md-fab md-primary" aria-label="Crear cita" ng-click="asistenteCtrl.agregarCita()">
+          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Crear cita</md-tooltip>
         </md-button>
 
 
@@ -181,8 +93,171 @@
   </md-content>
 </section>
 </md-tab>
-<md-tab label="cliente">
-  
+
+<md-tab label="Agregar comentarios al expediente Cliente">
+   <section>
+  <md-content layout-padding>
+    <div>
+      <form name="editarExpedienteClienteForm" id="editarExpedienteClienteForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre del proyecto</label>
+            <md-select required ng-model="asistenteCtrl.nombreProyectoExpediente" name="nombreProyectoExpediente" ng-change="asistenteCtrl.buscarClienteExpediente()">
+            <md-option ng-value="cliente" ng-repeat="cliente in asistenteCtrl.solicitudList">{{cliente.nombreProyecto}}</md-option>
+            </md-select>
+            <div ng-messages="editarExpedienteClienteForm.nombreProyectoExpediente.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un cliente
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre del cliente</label>
+            <input ng-model="asistenteCtrl.nombreClienteExpediente" name="nombreClienteExpediente" disabled>
+            <div ng-messages="editarExpedienteClienteForm.nombreClienteExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre de la persona encargada</label>
+            <input ng-model="asistenteCtrl.nombreEncargadoExpediente" name="nombreEncargadoExpediente" disabled>
+            <div ng-messages="editarExpedienteClienteForm.nombreEncargadoExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Comentarios</label>
+            <textarea ng-model="asistenteCtrl.comentarioExpediente" name="comentarioExpediente" ng-maxlength="100"></textarea>
+            <div ng-messages="editarExpedienteClienteForm.comentarioExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-primary" aria-label="Editar expediente cliente" ng-click="asistenteCtrl.agregarComentarioCliente()">
+          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Agregar comentarios</md-tooltip>
+        </md-button>
+
+
+      </form>
+    </div>
+  </md-content>
+</section>
 </md-tab>
+
+<md-tab label="Agregar comentarios al expediente Estudiante">
+<section>
+  <md-content layout-padding>
+    <div>
+      <form name="agregarComentarioEstudiante" id="agregarComentarioEstudiante">
+        
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Estudiante</label>
+            <md-select required ng-model="asistenteCtrl.nombreEstudianteExpediente" name="nombreEstudianteExpediente" ng-change="asistenteCtrl.buscaAgregarComentarioEstudiante()">
+            <md-option ng-value="estudiante" ng-repeat="estudiante in asistenteCtrl.usuariosList | filter: {rol:'Estudiante'}">{{estudiante.nombre}}</md-option>
+            </md-select>
+            <div ng-messages="agregarComentarioEstudiante.nombreEstudianteExpediente.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un estudiante</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Cédula</label>
+            <input ng-model="asistenteCtrl.cedulaEstudianteExpediente" name="cedulaEstudianteExpediente"  maxlength=9 disabled>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Correo eletronico</label>
+            <input disabled ng-model="asistenteCtrl.correoEstudianteExpediente" name="correoEstudianteExpediente" type="email">
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Teléfono</label>
+            <input disabled ng-model="asistenteCtrl.numeroTelefonoEstudianteExpediente" name="numeroTelefonoEstudianteExpediente" maxlength="8">
+          </md-input-container>
+        </div>
+
+         <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Estado</label>
+            <input disabled ng-model="asistenteCtrl.estadoEstudianteExpediente" name="estadoEstudianteExpediente">
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Comentarios</label>
+            <textarea required ng-model="asistenteCtrl.comentarioEstudianteExpediente" name="comentarioEstudianteExpediente" maxlength="100"></textarea>
+            <div ng-messages="agregarComentarioEstudiante.comentarioEstudianteExpediente.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un comentario</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-primary" aria-label="Agregar comentarios" ng-click="asistenteCtrl.agregarComentarioEstudiante()">
+          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Agregar comentarios</md-tooltip>
+        </md-button>
+
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
+<md-tab label="Ver solicitudes de proyecto">
+<section>
+  <md-content layout-padding>
+    <div>
+      <form name="tablaSolicitudes" id="tablaSolicitudes">
+        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Nombre del proyecto</th>
+              <th>Nombre del solicitante</th>
+              <th>Nombre del encargado</th>
+              <th>Cédula</th>
+              <th>Industria</th>
+              <th>Objetivos</th>
+              <th>Posee capital</th>
+              <th>Profesor encargado</th>
+              <th>Estado de la solicitud</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="solicitud in asistenteCtrl.solicitudList">
+              <td>{{solicitud.nombreProyecto}}</td>
+              <td>{{solicitud.nombreSolicitante}}</td>
+              <td>{{solicitud.nombreEncargado}}</td>
+              <td>{{solicitud.cedula}}</td>
+              <td>{{solicitud.industria.nombre}}</td>
+              <td>{{solicitud.objetivos}}</td>
+              <td>{{solicitud.capital}}</td>
+              <td>{{solicitud.profesorEncargado}}</td>
+              <td>{{solicitud.estado}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
 </md-tabs>
 </div>
