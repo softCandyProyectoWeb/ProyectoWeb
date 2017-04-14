@@ -16,10 +16,40 @@
 <md-tabs md-dynamic-height md-border-bottom md-selected="">
 
 <md-tab label="Ver solicitudes de proyecto" class="solicitudProyecto">
- <section>
+<section>
   <md-content layout-padding>
     <div>
-      
+      <form name="tablaSolicitudes" id="tablaSolicitudes">
+        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Nombre del proyecto</th>
+              <th>Nombre del solicitante</th>
+              <th>Nombre del encargado</th>
+              <th>Cédula</th>
+              <th>Industria</th>
+              <th>Objetivos</th>
+              <th>Posee capital</th>
+              <th>Profesor encargado</th>
+              <th>Estado de la solicitud</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="solicitud in consejoCtrl.solicitudList">
+              <td>{{solicitud.nombreProyecto}}</td>
+              <td>{{solicitud.nombreSolicitante}}</td>
+              <td>{{solicitud.nombreEncargado}}</td>
+              <td>{{solicitud.cedula}}</td>
+              <td>{{solicitud.industria.nombre}}</td>
+              <td>{{solicitud.objetivos}}</td>
+              <td>{{solicitud.capital}}</td>
+              <td>{{solicitud.profesorEncargado}}</td>
+              <td>{{solicitud.estado}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </form>
     </div>
   </md-content>
 </section>

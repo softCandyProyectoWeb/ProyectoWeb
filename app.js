@@ -1,5 +1,5 @@
 (function(){
-  angular.module('myApp', ['ui.router','ngMaterial','ngFileUpload'])
+  angular.module('myApp', ['ui.router','ngMaterial','ngFileUpload', 'ngMessages'])
   .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('blue-grey')

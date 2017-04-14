@@ -40,11 +40,7 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Proyecto a ver</label>
             <md-select required ng-model="adminCtrl.proyectoVer" name="proyectoVer">
-<<<<<<< HEAD
             <md-option ng-value="proyecto" ng-repeat="proyecto in adminCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
-=======
-            <md-option ng-value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
->>>>>>> origin/master
             </md-select>
             <div ng-messages="visualizarProyectoForm.proyectoVer.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar un proyecto

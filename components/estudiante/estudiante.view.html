@@ -28,7 +28,7 @@
 </nav>
 
 <div>
-  <img src="images/banner.jpg" alt="" width="100%">
+
 </div>
 
 <!-- Modal -->
@@ -85,100 +85,45 @@
   <h1>¡Bienvenido!</h1>
 </div>
 
+<div class="col-lg-12 text-center" ng-repeat="estudiante in estudianteCtrl.ListEstudiantes | filter:{rol: 'Estudiante'}">
+   <h3>{{estudiante.nombre}}</h3>
+</div>
+
+
 <div class="col-lg-12">
-<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
-<md-tab label="Solicitud de Proyectos">
-<section>
-  <md-content layout-padding>
-    <div>
-      <form name="solicitudForm" id="solicitudForm">
-        
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre Completo</label>
-            <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-            <div ng-messages="solicitudForm.nombre.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre de Encargado</label>
-            <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-            <div ng-messages="solicitudForm.nombreEncargado.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-            </div>
-          </md-input-container>
-        </div>
-
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Cédula</label>
-            <input required ng-model="homeCtrl.cedula" name="cedula">
-            <div ng-messages="solicitudForm.cedula.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Seleccione una industria</label>
-            <md-select required ng-model="homeCtrl.industria" name="industria"></md-select>
-          
-            <div ng-messages="movieForm.industria.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar una clasificación
-            </div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Objetivos</label>
-            <input required ng-model="homeCtrl.objetivos" name="objetivos">
-            <div ng-messages="solicitudForm.objetivos.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar los objetivos</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Capital (Posee fondos económicos)</label>
-            <md-select required ng-model="homeCtrl.capital" name="capital">
-            <md-option value="Sí">Sí</md-option>
-            <md-option value="No">No</md-option></md-select>
-            <div ng-messages="movieForm.capital.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar una opción
-            </div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block">
-            <label>Adjuntar resumen ejecutivo (.doc, .docx o .pdf)</label>
-            <input type="file"  id="file" ng-model="movieForm.archivo">
-          </md-input-container>
-        </div>
-
-        <md-button class="md-fab md-primary" aria-label="Enviar Solicitud" ng-click="homeCtrl.save()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Enviar Solicitud</md-tooltip>
-        </md-button>
-
+<md-tabs>
+  <md-tab label="Perfil" >
+      <form name="tablaSolicitudes" id="tablaSolicitudes">
+        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Nombre del estudiante</th>
+              <th>Numero de cédula</th>
+              <th>Fecha de Nacimiento</th>
+              <th>Correo Electronico</th>
+              <th>Dirección</th>
+              <th>Número de teléfono</th>
+              <th>Genero</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="estudiante in estudianteCtrl.ListEstudiantes | filter: {rol:'Estudiante'}">
+              <td>{{estudiante.nombre}}</td>
+              <td>{{estudiante.cedula}}</td>
+              <td>{{estudiante.fechaNacimiento}}</td>
+              <td>{{estudiante.correo}}</td>
+              <td>{{estudiante.direccion}}</td>
+              <td>{{estudiante.telefono}}</td>
+              <td>{{estudiante.genero}}</td>
+            </tr>
+          </tbody>
+        </table>
 
       </form>
-    </div>
-  </md-content>
-</section>
-</md-tab>
-<md-tab label="cliente">
-  
-</md-tab>
-</md-tabs>
+    </md-tab>
+  </md-tabs>
 </div>
+
+
+
+

@@ -1,25 +1,41 @@
-<<<<<<< HEAD
+@font-face{
+  font-family: 'Novecento';
+  src: url('../fonts/Novecentowide-Bold.otf');
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+}
+
 #photoProfesor, #photoAsistente, #photoEditar, #photoConsejo, #file{
-=======
-#photoProfesor, #photoAsistente, #photoEditar, #photoConsejo{
->>>>>>> origin/master
   margin-top: 7%;
   height: 40px;
 }
 
 #bs-example-navbar-collapse-1, .container-fluid{
-    background-color: #000000;
+    background-color: #292929;
     height: 100px;
     margin-bottom: 0;
 }
 
 #navPrincipal{
     margin: 0;
+    border:0;
+    background-color: #292929;
+    font-family: 'Novecento';
 }
 
 li{
     padding: 10px;
-    margin-top: 20px;
+    /*border-right: 1px #646464 solid;*/
+}
+
+#navLogin li{
+  padding-top: 20px;
+}
+
+#navSocial{
+  font-size: 22px;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -32,10 +48,40 @@ li{
     color: #F8D022;
 }
 
+.modal-header{
+  background-color: #292929;
+  color: #fff;
+}
+
+.close{
+  color: #fff;
+}
+
+.close:hover{
+  color: #F8D022;
+}
+
+.md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover{
+  background-color: #398439;
+}
+
+.btn-success[disabled]{
+  background-color: #fff;
+}
+
+.btn-default:hover{
+  background-color: #F8D022;
+}
+
+#imgLogin{
+  display: block;
+  text-align: center;
+}
+
 #tblInfo{
 
     margin-top: 20px;
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 #tblInfo tr{
