@@ -61,21 +61,52 @@ li{
   color: #F8D022;
 }
 
-.md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover{
+#btnIngresar:not([disabled]):hover, #btnIngresar:not([disabled]):hover{
   background-color: #398439;
 }
 
-.btn-success[disabled]{
+#btnIngresar[disabled]{
   background-color: #fff;
 }
 
-.btn-default:hover{
-  background-color: #F8D022;
+#btnIngresar:hover{
+  background-color: #398439;
+}
+
+#btnSalir:hover{
+  background-color: #ac2925;
 }
 
 #imgLogin{
   display: block;
   text-align: center;
+}
+
+#cuadrado{
+  height: 650px;
+  background-color: #cecece;
+}
+
+#cuadradoContacto{
+  height: 650px;
+  background-color: #cecece;
+}
+
+#sectionNosotros h2, #sectionProceso h2, #sectionContacto h2{
+  font-family: 'Novecento';
+  margin-bottom: 40px;
+  color: #282828;
+  margin-top: 100px;
+}
+
+#sectionNosotros p, #sectionProceso p, #sectionContacto p{
+  text-align: justify;
+  color: #282828;
+}
+
+#imgNosotros, #imgProceso, #imgContacto{
+  padding-left: 0;
+  margin-top: 80px;
 }
 
 #tblInfo{
