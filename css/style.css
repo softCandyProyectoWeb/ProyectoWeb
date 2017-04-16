@@ -157,3 +157,24 @@ li{
   text-align: center;
   padding: 1px;
 }
+
+#cuadroAdmin{
+  margin-top: 70px;
+  height: 100%;
+  background-color: #fff;
+  border: 3px solid #282828;
+}
+
+i{
+  color: #F8D022;
+  margin: 47px;
+}
+
+#iconoProyecto{
+  margin-left: 75px;
+}
+
+a{
+   font-family: 'Novecento';
+   font-size: 12px;
+}
