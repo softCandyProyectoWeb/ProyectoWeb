@@ -2,29 +2,99 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      
-      <a class="navbar-brand" href="#"><img src="images/logo.png" alt="" width="200px"></a>
-      <a class="navbar-brand" href="#">Mi información</a>
-      <a class="navbar-brand" href="#"><img src="images/pngsImgsApp-1-07.png" alt="" width="200px"></a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="images/logo.png" alt="" width="200px">
     </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right" id="navLogin">
+        
+        <li><img class="notificacionImagen" src="images/pngsImgsApp-1-07.png" alt="" width="200px"></li>
+        <li> <a href="#home"><li><button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-in"></span>  Salir</button></li></a> </li>
+        
+      </ul>
+        
+    </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+<div class="col-lg-12">
+  <h1 id="sitioConsejo">Sitio de Consejo</h1>
+</div>
 
 <div class="col-lg-12">
 
 <md-tabs md-dynamic-height md-border-bottom md-selected="">
 
 <md-tab label="Ver solicitudes de proyecto" class="solicitudProyecto">
- <section>
+<section>
   <md-content layout-padding>
     <div>
-      
+      <form name="tablaSolicitudes" id="tablaSolicitudes">
+        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Nombre del proyecto</th>
+              <th>Nombre del solicitante</th>
+              <th>Nombre del encargado</th>
+              <th>Cédula</th>
+              <th>Industria</th>
+              <th>Objetivos</th>
+              <th>Posee capital</th>
+              <th>Profesor encargado</th>
+              <th>Estado de la solicitud</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="solicitud in consejoCtrl.solicitudList">
+              <td>{{solicitud.nombreProyecto}}</td>
+              <td>{{solicitud.nombreSolicitante}}</td>
+              <td>{{solicitud.nombreEncargado}}</td>
+              <td>{{solicitud.cedula}}</td>
+              <td>{{solicitud.industria.nombre}}</td>
+              <td>{{solicitud.objetivos}}</td>
+              <td>{{solicitud.capital}}</td>
+              <td>{{solicitud.profesorEncargado}}</td>
+              <td>{{solicitud.estado}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </form>
     </div>
   </md-content>
 </section>
 </md-tab>
 
+</md-tabs>
+
+<div id="cuadradoContacto4">
+<div id="sectionContacto2">
+  <div class="col-lg-12">
+    
+    <div class="col-lg-6">
+    <h4>Datos de contacto</h4>
+    <p><span class="menu-icon fa fa-map-marker"></span>  Santa Marta - San Pedro de Montes Oca, del Cruce de la Escuela de Santa Marta 400 metros noreste carretera al Cristo de Sabanilla, San José, Costa Rica</p>
+    <a href="mailto:softwarehouse@ucenfotec.ac.cr"><span class="menu-icon fa fa-envelope-o"></span id="enlaceMailtoUrl">softwarehouse@ucenfotec.ac.cr</a>
+    <p><span class="menu-icon fa fa-phone"></span>  +506 2281-1555</p>
+    <p id="derechosReservados">Universidad CENFOTEC Derechos Reservados 2017</p>
+    </div>
+ 
+
+    <div class="col-lg-6">
+      <div id="masInfo">
+    
+    <a id="sitioWebElaborado"><span class="menu-icon fa fa-laptop"> Sitio web elaborado por: </span></a><a href="https://www.facebook.com/SoftCandyCR" target="_blank"><img src="images/logoSoft.png" alt="logoSoft" width="15%"></a>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
-</md-tabs>
+
+</div>

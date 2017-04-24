@@ -2,577 +2,285 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      
-      <a class="navbar-brand" href="#"><img src="images/logo.png" alt="" width="200px"></a>
-<<<<<<< HEAD
-      <a class="navbar-brand" href="#">Mi información</a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="images/logo.png" alt="" width="200px">
     </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right" id="navLogin">
+        
+        <li><img class="notificacionImagen" src="images/pngsImgsApp-1-07.png" alt="" width="200px"></li>
+        <li> <a href="#home"><li><button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-in"></span>  Salir</button></li></a> </li>
+        
+      </ul>
+        
+    </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<div class="col-lg-12">
+  <h1 id="sitioProfesor">Sitio de Profesor</h1>
+</div>
 
 <div class="col-lg-12">
 
 <md-tabs md-dynamic-height md-border-bottom md-selected="">
 
-<md-tab label="Ver Reportes" class="tituloTablaReportesProfesor">
+<md-tab label="Mi información de perfil">
  <section>
-  <md-content layout-padding>
-    <div>
-      <md-tab label="Ver reporte profesor">
-<table id="tblInfo" class="col-lg-offset-1 col-lg-10">
-  <thead>
-    <tr>
-      <th>Reporte de proyectos activos</th>
-      <th>Reporte de proyectos realizados</th>
-      <th>Reporte de involucrados por proyecto</th>
-      <th>Reporte de estudiantes activos</th>
-      <th>Reporte de elegibles</th>
-      <th>Reporte de cada proyecto</th>
-      <th>Reporte de rechazados</th>
-      <th>Reporte de estudiantes por estados</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-    <tr ng-repeat="reporte in reporteCtrl.reporteList">
-      <td>{{reporte.proyecto.activo}}</td>
-      <td>{{reporte.proyecto.realizado}}</td>
-      <td>{{reporte.involucrado.proyecto}}</td>
-      <td>{{reporte.estudiante.activo}}</td>
-      <td>{{reporte.estudiante.elegible}}</td>
-      <td>{{reporte.cada.proyecto}}</td>
-      <td>{{reporte.rechazado}}</td>
-      <td>{{reporte.estudiante.estado}}</td>
-    </tr>
-  </tbody>
-</table>
-</md-tab>
-    </div>
-  </md-content>
-</section>
-</md-tab>
-
-<md-tab label="Crear Reportes" class="crearReporteForm">
- <section>
-  <md-content layout-padding>
-
-
-    <div class="col-lg-12">
-<h2>¿Deseas crear un reporte?</h2>
-</div>
-<div class="col-lg-12">
-<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
-
-  <md-tab label="Reporte de proyectos activos">
-  <section>
-    <md-content layout-padding>
-      <div>
-        <form name="reporteTipo" id="reporteTipo">
-          
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Nombre Completo</label>
-              <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-              <div ng-messages="reporteTipo.nombre.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-              </div>
-            </md-input-container>
-          </div>
-
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Nombre de Encargado</label>
-              <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-              <div ng-messages="reporteTipo.nombreEncargado.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-              </div>
-            </md-input-container>
-          </div>
-
-
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Cédula</label>
-              <input required ng-model="homeCtrl.cedula" name="cedula">
-              <div ng-messages="reporteTipo.cedula.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-              </div>
-            </md-input-container>
-          </div>
-
-          
-
-          <md-button class="md-fab md-primary" aria-label="Crear Reporte" ng-click="profesorCtrl.save()">
-            <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-            <md-tooltip md-direction="bottom">Crear Reporte</md-tooltip>
-          </md-button>
-
-
-        </form>
-      </div>
-    </md-content>
-  </section>
-  </md-tab>
-
-
-
-  <md-tab label="Reporte de proyectos realizados">
-<section>
-  <md-content layout-padding>
-    <div>
-      <form name="reporteTipo" id="reporteTipo">
-        
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre Completo</label>
-            <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-            <div ng-messages="reporteTipo.nombre.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre de Encargado</label>
-            <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-            <div ng-messages="reporteTipo.nombreEncargado.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-            </div>
-          </md-input-container>
-        </div>
-
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Cédula</label>
-            <input required ng-model="homeCtrl.cedula" name="cedula">
-            <div ng-messages="reporteTipo.cedula.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        
-
-        <md-button class="md-fab md-primary" aria-label="Crear Reporte" ng-click="profesorCtrl.save()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Crear Reporte</md-tooltip>
-        </md-button>
-
-
-      </form>
-    </div>
-  </md-content>
-</section>
-</md-tab>   
-
-
-<md-tab label="Reporte de involucrados por proyecto">
-  <section>
-    <md-content layout-padding>
-      <div>
-        <form name="reporteTipo" id="reporteTipo">
-          
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Nombre Completo</label>
-              <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-              <div ng-messages="reporteTipo.nombre.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-              </div>
-            </md-input-container>
-          </div>
-
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Nombre de Encargado</label>
-              <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-              <div ng-messages="reporteTipo.nombreEncargado.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-              </div>
-            </md-input-container>
-          </div>
-
-
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Cédula</label>
-              <input required ng-model="homeCtrl.cedula" name="cedula">
-              <div ng-messages="reporteTipo.cedula.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-              </div>
-            </md-input-container>
-          </div>
-
-          
-
-          <md-button class="md-fab md-primary" aria-label="Crear Reporte" ng-click="profesorCtrl.save()">
-            <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-            <md-tooltip md-direction="bottom">Crear Reporte</md-tooltip>
-          </md-button>
-
-
-        </form>
-      </div>
-    </md-content>
-  </section>
-  </md-tab>
-
- <md-tab label="Reporte de estudiantes activos">
-  <section>
-    <md-content layout-padding>
-      <div>
-        <form name="reporteTipo" id="reporteTipo">
-          
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Nombre Completo</label>
-              <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-              <div ng-messages="reporteTipo.nombre.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-              </div>
-            </md-input-container>
-          </div>
-
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Nombre de Encargado</label>
-              <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-              <div ng-messages="reporteTipo.nombreEncargado.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-              </div>
-            </md-input-container>
-          </div>
-
-
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Cédula</label>
-              <input required ng-model="homeCtrl.cedula" name="cedula">
-              <div ng-messages="reporteTipo.cedula.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-              </div>
-            </md-input-container>
-          </div>
-
-          
-
-          <md-button class="md-fab md-primary" aria-label="Crear Reporte" ng-click="profesorCtrl.save()">
-            <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-            <md-tooltip md-direction="bottom">Crear Reporte</md-tooltip>
-          </md-button>
-
-
-        </form>
-      </div>
-    </md-content>
-  </section>
-  </md-tab>
-
-
-
-  <md-tab label="Reporte de elegibles">
-<section>
-  <md-content layout-padding>
-    <div>
-      <form name="reporteTipo" id="reporteTipo">
-        
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre Completo</label>
-            <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-            <div ng-messages="reporteTipo.nombre.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre de Encargado</label>
-            <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-            <div ng-messages="reporteTipo.nombreEncargado.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-            </div>
-          </md-input-container>
-        </div>
-
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Cédula</label>
-            <input required ng-model="homeCtrl.cedula" name="cedula">
-            <div ng-messages="reporteTipo.cedula.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        
-
-        <md-button class="md-fab md-primary" aria-label="Crear Reporte" ng-click="profesorCtrl.save()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Crear Reporte</md-tooltip>
-        </md-button>
-
-
-      </form>
-    </div>
-  </md-content>
-</section>
-</md-tab>
-
-
-
-
- <md-tab label="Reporte de cada proyecto">
-  <section>
-    <md-content layout-padding>
-      <div>
-        <form name="reporteTipo" id="reporteTipo">
-          
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Nombre Completo</label>
-              <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-              <div ng-messages="reporteTipo.nombre.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-              </div>
-            </md-input-container>
-          </div>
-
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Nombre de Encargado</label>
-              <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-              <div ng-messages="reporteTipo.nombreEncargado.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-              </div>
-            </md-input-container>
-          </div>
-
-
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Cédula</label>
-              <input required ng-model="homeCtrl.cedula" name="cedula">
-              <div ng-messages="reporteTipo.cedula.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-              </div>
-            </md-input-container>
-          </div>
-
-          
-
-          <md-button class="md-fab md-primary" aria-label="Crear Reporte" ng-click="profesorCtrl.save()">
-            <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-            <md-tooltip md-direction="bottom">Crear Reporte</md-tooltip>
-          </md-button>
-
-
-        </form>
-      </div>
-    </md-content>
-  </section>
-  </md-tab>
-
-
-
-  <md-tab label="Reporte de rechazados">
-<section>
-  <md-content layout-padding>
-    <div>
-      <form name="reporteTipo" id="reporteTipo">
-        
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre Completo</label>
-            <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-            <div ng-messages="reporteTipo.nombre.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre de Encargado</label>
-            <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-            <div ng-messages="reporteTipo.nombreEncargado.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-            </div>
-          </md-input-container>
-        </div>
-
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Cédula</label>
-            <input required ng-model="homeCtrl.cedula" name="cedula">
-            <div ng-messages="reporteTipo.cedula.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        
-
-        <md-button class="md-fab md-primary" aria-label="Crear Reporte" ng-click="profesorCtrl.save()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Crear Reporte</md-tooltip>
-        </md-button>
-
-
-      </form>
-    </div>
-  </md-content>
-</section>
-</md-tab>
-
-
-<md-tab label="Reporte de estudiantes por estados">
-<section>
-  <md-content layout-padding>
-    <div>
-      <form name="reporteTipo" id="reporteTipo">
-        
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre Completo</label>
-            <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-            <div ng-messages="reporteTipo.nombre.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre de Encargado</label>
-            <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-            <div ng-messages="reporteTipo.nombreEncargado.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-            </div>
-          </md-input-container>
-        </div>
-
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Cédula</label>
-            <input required ng-model="homeCtrl.cedula" name="cedula">
-            <div ng-messages="reporteTipo.cedula.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        
-
-        <md-button class="md-fab md-primary" aria-label="Crear Reporte" ng-click="profesorCtrl.save()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Crear Reporte</md-tooltip>
-        </md-button>
-
-
-      </form>
-    </div>
-  </md-content>
-</section>
-</md-tab>
-
-
-
-  </md-content>
-</section>
-</md-tab>
-
-
-
-<md-tab label="Proyectos">
- <section>
-  <md-content layout-padding>
-    <div>
+  
     
-      <md-tab label="Ver proyecto profesor">
-<table id="tblInfo" class="col-lg-offset-1 col-lg-10">
-  <thead>
-    <tr>
-      <th>Proyecto</th>
-      <th>Estado</th>
-      <th>Estudintes asociados</th>
-      <th>Profesor responsable</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="proyecto in proyectoCtrl.proyectoList">
-      <td>{{proyecto.nombre.proyecto}}</td>
-      <td>{{proyecto.estado}}</td>
-      <td>{{proyecto.estudiantes.asociados}}</td>
-      <td>{{proyecto.profesor.responsable}}</td>
-    </tr>
-  </tbody>
-</table>
-</md-tab>
+     <md-content layout-padding>
 
-    </div>
+
+
+<div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
+<span class="md-subhead">{{profesor.nombre}}</span>
+</div>
+
+ <span class="md-headline">Cédula</span>
+<div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
+<span class="md-subhead">{{profesor.cedula}}</span>
+</div>
+<span class="md-headline">Fecha de nacimiento</span>
+<div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
+<span class="md-subhead">{{profesor.fechaNacimiento}}</span>
+</div>
+<span class="md-headline">Dirección</span>
+<div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
+<span class="md-subhead">{{profesor.direccion}}</span>
+</div>
+
+<span class="md-headline">Teléfono</span>
+<div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
+<span class="md-subhead">{{profesor.telefono}}</span>
+</div>
+
+
+</md-tab>
   </md-content>
+
+   
 </section> 
 </md-tab>
 
+<md-tab label="Poyectos">
+ <section>
+  
+    
+     <md-content layout-padding>
+
+
+     <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Nombre del proyecto</th>
+              <th>Nombre del solicitante</th>
+              <th>Nombre del encargado</th>
+              <th>Cédula</th>
+              <th>Industria</th>
+              <th>Objetivos</th>
+              <th>Posee capital</th>
+              <th>Profesor encargado</th>
+              <th>Estado de la solicitud</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="profesor in profesorCtrl.solicitudList">
+              <td>{{profesor.nombreProyecto}}</td>
+              <td>{{profesor.nombreSolicitante}}</td>
+              <td>{{profesor.nombreEncargado}}</td>
+              <td>{{profesor.cedula}}</td>
+              <td>{{profesor.industria.nombre}}</td>
+              <td>{{profesor.objetivos}}</td>
+              <td>{{profesor.capital}}</td>
+              <td>{{profesor.profesorEncargado}}</td>
+              <td>{{profesor.estado}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+
+</md-tab>
+  </md-content>
+
+   
+</section> 
+</md-tab>
+
+<md-tab label="Asignar profesor responsable a proyecto">
+ <section>
+  
+    
+     <md-content layout-padding>
+    <div>
+      <form name="visualizarProyectoForm" id="visualizarProyectoForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Proyecto a ver</label>
+            <md-select required ng-model="adminCtrl.proyectoVer" name="proyectoVer">
+            <md-option ng-value="proyecto" ng-repeat="proyecto in profesorCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
+            </md-select>
+            <div ng-messages="visualizarProyectoForm.proyectoVer.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un proyecto
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-mini" aria-label="Visualizar proyecto" ng-click="">
+          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Visualizar proyecto</md-tooltip>
+        </md-button>
+
+
+      </form>
+    </div>
+  </md-content>
+
+  
+</section> 
+</md-tab>
+
+
+
+<md-tab label="Asignar estudiante a proyecto">
+ <section>
+  
+    
+     <md-content layout-padding>
+    <div>
+      <form name="visualizarProyectoForm" id="visualizarProyectoForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Proyecto a ver</label>
+            <md-select required ng-model="adminCtrl.proyectoVer" name="proyectoVer">
+            <md-option ng-value="proyecto" ng-repeat="proyecto in profesorCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
+            </md-select>
+            <div ng-messages="visualizarProyectoForm.proyectoVer.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un proyecto
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-mini" aria-label="Visualizar proyecto" ng-click="">
+          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Visualizar proyecto</md-tooltip>
+        </md-button>
+
+
+      </form>
+    </div>
+  </md-content>
+
+  
+</section> 
+</md-tab>
+
+<md-tab label="Agregar comentarios al expediente Cliente">
+   <section>
+  <md-content layout-padding>
+    <div>
+      <form name="editarExpedienteClienteForm" id="editarExpedienteClienteForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre del proyecto</label>
+            <md-select required ng-model="profesorCtrl.nombreProyectoExpediente" name="nombreProyectoExpediente" ng-change="profesorCtrl.buscarClienteExpediente()">
+            <md-option ng-value="cliente" ng-repeat="cliente in profesorCtrl.solicitudList">{{cliente.nombreProyecto}}</md-option>
+            </md-select>
+            <div ng-messages="editarExpedienteClienteForm.nombreProyectoExpediente.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un cliente
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre del cliente</label>
+            <input ng-model="profesorCtrl.nombreClienteExpediente" name="nombreClienteExpediente" disabled>
+            <div ng-messages="editarExpedienteClienteForm.nombreClienteExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre de la persona encargada</label>
+            <input ng-model="profesorCtrl.nombreEncargadoExpediente" name="nombreEncargadoExpediente" disabled>
+            <div ng-messages="editarExpedienteClienteForm.nombreEncargadoExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Comentarios</label>
+            <textarea ng-model="profesorCtrl.comentarioExpediente" name="comentarioExpediente" ng-maxlength="100"></textarea>
+            <div ng-messages="editarExpedienteClienteForm.comentarioExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-primary" aria-label="Editar expediente cliente" ng-click="profesorCtrl.agregarComentarioCliente()">
+          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Agregar comentarios</md-tooltip>
+        </md-button>
+
+
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
+
+
+
 </md-tabs>
 
-
-
-</div>
-
-
-
-
-=======
-        <a class="navbar-brand" href="#"><img src="images/pngsImgsApp-1-07.png" alt="" width="200px"></a>
-    </div>
-  
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
+<div id="cuadradoContacto2">
+<div id="sectionContacto2">
+  <div class="col-lg-12">
     
-  </div><!-- /.container-fluid -->
-</nav>
+    <div class="col-lg-6">
+    <h4>Datos de contacto</h4>
+    <p><span class="menu-icon fa fa-map-marker"></span>  Santa Marta - San Pedro de Montes Oca, del Cruce de la Escuela de Santa Marta 400 metros noreste carretera al Cristo de Sabanilla, San José, Costa Rica</p>
+    <a href="mailto:softwarehouse@ucenfotec.ac.cr"><span class="menu-icon fa fa-envelope-o"></span id="enlaceMailtoUrl">softwarehouse@ucenfotec.ac.cr</a>
+    <p><span class="menu-icon fa fa-phone"></span>  +506 2281-1555</p>
+    <p id="derechosReservados">Universidad CENFOTEC Derechos Reservados 2017</p>
+    </div>
+ 
 
-<!-- Modal -->
+    <div class="col-lg-6">
+      <div id="masInfo">
+    
+    <a id="sitioWebElaborado"><span class="menu-icon fa fa-laptop"> Sitio web elaborado por: </span></a><a href="https://www.facebook.com/SoftCandyCR" target="_blank"><img src="images/logoSoft.png" alt="logoSoft" width="15%"></a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
-<div class="col-lg-12">
-  <h1>¡Bienvenido profesor!</h1>
 
 </div>
 
-<div ng-cloak>
-  <md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="one">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab One</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="two">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab Two</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
-          <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere nec sapien sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit amet, tempus sapien.</p>
-          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="three">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab Three</h1>
-          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-        </md-content>
-      </md-tab>
-    </md-tabs>
-  </md-content>
-</div>
 
->>>>>>> origin/master
+
+
+
+
+
+
+

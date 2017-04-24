@@ -8,177 +8,93 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img src="images/logo.png" alt="" width="200px"></a>
+      <img src="images/logo.png" alt="" width="200px">
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Proceso</a></li>
-        <li><a href="#">Solicitud</a></li>
+      <ul class="nav navbar-nav navbar-right" id="navLogin">
+        
+        <li><img class="notificacionImagen" src="images/pngsImgsApp-1-07.png" alt="" width="200px"></li>
+        <li> <a href="#home"><li><button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-in"></span>  Salir</button></li></a> </li>
+        
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="" data-toggle="modal" data-target="#myModal">Ingresar</a></li>
-        <li><a href="#">Registrarse</a></li>
-      </ul>
+        
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
-<div>
-  <img src="images/banner.jpg" alt="" width="100%">
-</div>
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Iniciar Sesión</h4>
-      </div>
-      <div class="modal-body">
-          <md-content layout-padding>
-    <div>
-      <form name="estudianteForm">
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Correo electronico</label>
-            <input required ng-model="estudianteCtrl.correoEstudiante" name="correoElectronico">
-            <div ng-messages="estudianteForm.correoElectrico.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un correo electronico</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Contraseña</label>
-            <input type= "password" required ng-model="estudianteCtrl.contrasena" name="contrasena" type="password">
-            <div ng-messages="estudianteForm.contrasena.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar una contraseña</div>
-            </div>
-          </md-input-container>
-        </div>
-      </form>
-    </div>
-  </md-content>
-      </div>
-      <div class="modal-footer">
-      <md-button class="md-fab md-primary" aria-label="Ingresar" ng-click="estudianteCtrl.login()">
-          <md-icon md-svg-src="vendor/img/icons/ic_check_white_24px.svg"></md-icon>
-          <md-tooltip md-direction="right">Ingresar</md-tooltip>
-        </md-button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<div class="col-lg-12 text-center">
-  <h1>¡Bienvenido!</h1>
-</div>
 
 <div class="col-lg-12">
-<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
-<md-tab label="Solicitud de Proyectos">
-<section>
-  <md-content layout-padding>
-    <div>
-      <form name="solicitudForm" id="solicitudForm">
-        
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre Completo</label>
-            <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto">
-            <div ng-messages="solicitudForm.nombre.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
-            </div>
-          </md-input-container>
-        </div>
+  <h1 id="sitioEstudiante">Sitio de Estudiante</h1>
+</div>
 
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre de Encargado</label>
-            <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado">
-            <div ng-messages="solicitudForm.nombreEncargado.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
-            </div>
-          </md-input-container>
-        </div>
+<div class="col-lg-12" ng-repeat="estudiante in estudianteCtrl.ListEstudiantes | filter:{rol: 'Estudiante'}">
+   <h3>{{estudiante.nombre}}</h3>
+</div>
 
 
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Cédula</label>
-            <input required ng-model="homeCtrl.cedula" name="cedula">
-            <div ng-messages="solicitudForm.cedula.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Seleccione una industria</label>
-            <md-select required ng-model="homeCtrl.industria" name="industria"></md-select>
-          
-            <div ng-messages="movieForm.industria.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar una clasificación
-            </div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Objetivos</label>
-            <input required ng-model="homeCtrl.objetivos" name="objetivos">
-            <div ng-messages="solicitudForm.objetivos.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar los objetivos</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Capital (Posee fondos económicos)</label>
-            <md-select required ng-model="homeCtrl.capital" name="capital">
-            <md-option value="Sí">Sí</md-option>
-            <md-option value="No">No</md-option></md-select>
-            <div ng-messages="movieForm.capital.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar una opción
-            </div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block">
-            <label>Adjuntar resumen ejecutivo (.doc, .docx o .pdf)</label>
-            <input type="file"  id="file" ng-model="movieForm.archivo">
-          </md-input-container>
-        </div>
-
-        <md-button class="md-fab md-primary" aria-label="Enviar Solicitud" ng-click="homeCtrl.save()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Enviar Solicitud</md-tooltip>
-        </md-button>
-
+<div class="col-lg-12">
+<md-tabs>
+  <md-tab label="Perfil" >
+      <form name="tablaSolicitudes" id="tablaSolicitudes">
+        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Nombre del estudiante</th>
+              <th>Numero de cédula</th>
+              <th>Fecha de Nacimiento</th>
+              <th>Correo Electronico</th>
+              <th>Dirección</th>
+              <th>Número de teléfono</th>
+              <th>Genero</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="estudiante in estudianteCtrl.ListEstudiantes | filter: {rol:'Estudiante'}">
+              <td>{{estudiante.nombre}}</td>
+              <td>{{estudiante.cedula}}</td>
+              <td>{{estudiante.fechaNacimiento}}</td>
+              <td>{{estudiante.correo}}</td>
+              <td>{{estudiante.direccion}}</td>
+              <td>{{estudiante.telefono}}</td>
+              <td>{{estudiante.genero}}</td>
+            </tr>
+          </tbody>
+        </table>
 
       </form>
+    </md-tab>
+  </md-tabs>
+
+
+<div id="cuadradoContacto5">
+<div id="sectionContacto2">
+  <div class="col-lg-12">
+    
+    <div class="col-lg-6">
+    <h4>Datos de contacto</h4>
+    <p><span class="menu-icon fa fa-map-marker"></span>  Santa Marta - San Pedro de Montes Oca, del Cruce de la Escuela de Santa Marta 400 metros noreste carretera al Cristo de Sabanilla, San José, Costa Rica</p>
+    <a href="mailto:softwarehouse@ucenfotec.ac.cr"><span class="menu-icon fa fa-envelope-o"></span id="enlaceMailtoUrl">softwarehouse@ucenfotec.ac.cr</a>
+    <p><span class="menu-icon fa fa-phone"></span>  +506 2281-1555</p>
+    <p id="derechosReservados">Universidad CENFOTEC Derechos Reservados 2017</p>
     </div>
-  </md-content>
-</section>
-</md-tab>
-<md-tab label="cliente">
-  
-</md-tab>
-</md-tabs>
+ 
+
+    <div class="col-lg-6">
+      <div id="masInfo">
+    
+    <a id="sitioWebElaborado"><span class="menu-icon fa fa-laptop"> Sitio web elaborado por: </span></a><a href="https://www.facebook.com/SoftCandyCR" target="_blank"><img src="images/logoSoft.png" alt="logoSoft" width="15%"></a>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+
+
+
+</div>
+
+
+
+

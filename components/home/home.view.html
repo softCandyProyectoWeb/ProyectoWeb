@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <nav class="navbar navbar-default" id="navPrincipal">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -8,23 +10,25 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img src="images/logo.png" alt="" width="200px"></a>
+      <img src="images/logo.png" alt="" width="200px">
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Proceso</a></li>
-        <li><a href="#">Solicitud</a></li>
+        <li><a href="#home#imgServicios"><div align="center"><span class="menu-icon fa fa-server"></span></div>
+            Servicios</a></li>
+        <li><a href="#home#sectionProceso"><div align="center"><span class="menu-icon fa fa-newspaper-o"></span></div>
+            Proceso</a></li>
+        <li><a href="#home#sectionSolicitud"><div align="center"><span class="menu-icon fa fa-file-text-o"></span></div>
+            Solicitud</a></li>
+        <li><a href="#home#sectionContacto"><div align="center"><span class="menu-icon fa fa-envelope-o"></span></div>
+            Contacto</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="" data-toggle="modal" data-target="#myModal">Ingresar</a></li>
-<<<<<<< HEAD
-=======
-        <li><a href="#">Enviar solicitud de ingreso</a></li>
->>>>>>> origin/master
+      <ul class="nav navbar-nav navbar-right" id="navLogin">
+        <li><a href="https://www.facebook.com/Cenfotec" target="_blank"><div align="center"><span class="menu-icon fa fa fa-facebook" id="navSocial"></span></div></a></li>
+        <li><a href="https://twitter.com/UCenfotec" target="_blank"><div align="center"><span class="menu-icon fa fa fa-twitter" id="navSocial"></span></div></a></li>
+        <li><button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span>  Ingresar</button></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -49,12 +53,16 @@
     <div>
       <form name="loginForm">
 
+    <div id="imgLogin">
+      <img src="images/login.png" width="180px" height="180px" alt="imagenLogin">
+    </div>
+
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Correo electronico</label>
-            <input required ng-model="homeCtrl.correoLogin" type ="email" name="correoLogin">
-            <div ng-messages="loginForm.correoLogin.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un correo electronico</div>
+            <input required="" ng-model="homeCtrl.correoLogin" type ="email" name="correoLogin" />
+            <div ng-messages="loginForm.correoLogin.$error" role="alert">
+              <div ng-message="required">Debe ingresar un correo electronico</div>
             </div>
           </md-input-container>
         </div>
@@ -63,33 +71,62 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Contraseña</label>
             <input type= "password" required ng-model="homeCtrl.contrasenaLogin" name="contrasenaLogin" type="password">
-            <div ng-messages="loginForm.contrasenaLogin.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar una contraseña</div>
+            <div ng-messages="loginForm.contrasenaLogin.$error" role="alert">
+              <div ng-message="required">Debe ingresar una contraseña</div>
             </div>
           </md-input-container>
+
         </div>
       </form>
     </div>
   </md-content>
       </div>
       <div class="modal-footer">
-      <md-button class="md-fab md-primary" aria-label="Ingresar" ng-click="homeCtrl.login()" data-dismiss="modal">
-          <md-icon md-svg-src="vendor/img/icons/ic_check_white_24px.svg"></md-icon>
-          <md-tooltip md-direction="right">Ingresar</md-tooltip>
-        </md-button>
+      <md-button id="btnIngresar" ng-disabled="!loginForm.$valid" class="btn btn-success" aria-label="Ingresar" ng-click="homeCtrl.login()" data-dismiss="modal"><span class="menu-icon fa fa-sign-in"></span> INGRESAR</md-button>
+      <md-button id="btnSalir" class="btn btn-danger" aria-label="Salir" data-dismiss="modal"><span class="menu-icon fa fa-sign-out"></span> SALIR</md-button>
       </div>
     </div>
 
   </div>
 </div>
 
+<div id="cuadrado">
+<div id="sectionNosotros">
+  <div class="col-lg-12">
+    <img src="images/nosotros.png" width="100%" class="col-lg-6" id="imgNosotros">
+    <h2>CENFOTEC SOFTWARE HOUSE</h2>
+    <p>Su casa para recibir servicios profesionales en tecnologías de información, de gran calidad, diseñados y construidos por estudiantes y profesores de la Universidad Cenfotec para la comunidad.</p>
 
-<div class="col-lg-12">
-  <h1>¡Bienvenido!</h1>
-  <p>Su casa para recibir servicios profesionales en tecnologías de información, de gran calidad, diseñados y construidos por estudiantes y profesores de la Universidad Cenfotec para la comunidad.</p>
+    <p> El Cenfotec Software House es un proyecto de emprendimiento académico y profesional dentro de la Universidad Cenfotec, donde los estudiantes de la Universidad brindan servicios a la comunidad, asesorados por profesores expertos en diferentes áreas, con precios muy asequibles.</p>
 
-  <h3>Nosotros</h3>
-  <p> El Cenfotec Software House es un proyecto de emprendimiento académico y profesional dentro de la Universidad Cenfotec, donde los estudiantes de la Universidad brindan servicios a la comunidad, asesorados por profesores expertos en diferentes áreas, con precios muy asequibles. El Cenfotec Software House nace como complemento de formación que permita a los estudiantes vivir experiencias de trabajo reales, y con un cliente final, alineado con la metodología de proyectos característica de la Universidad Cenfotec, y para dar atención a las múltiples solicites del desarrollo de proyectos TICs. El Cenfotec Software House brinda a los estudiantes que trabajan en los proyectos, becas como remuneración a su participación.</p>
+    <p>El Cenfotec Software House nace como complemento de formación que permita a los estudiantes vivir experiencias de trabajo reales, y con un cliente final, alineado con la metodología de proyectos característica de la Universidad Cenfotec, y para dar atención a las múltiples solicites del desarrollo de proyectos TICs. El Cenfotec Software House brinda a los estudiantes que trabajan en los proyectos, becas como remuneración a su participación.</p>
+  </div>
+</div>
+</div>
+
+<section id="imgServicios">
+  <img src="images/servicios.png" alt="imagenServicios" width="100%">
+</section>
+
+<div id="cuadrado">
+<div id="sectionProceso">
+  <div class="col-lg-12">
+    <img src="images/proceso.jpg" width="100%" class="col-lg-6" id="imgProceso">
+    <div class="col-lg-6">
+    <h2>Los interesados en recibir nuestros servicios deben:</h2>
+    <p>1. Solicitar el servicio llenando el formulario. Esta solicitud será evaluada por el comité director del Cenfotec Software House.</p>
+    <p>2. El Cenfotec Software House concertará una cita entre el solicitante y el equipo de expertos, para analizar la solicitud.</p>
+    <p>3. El comité director del Cenfotec Software House estudia la factibilidad técnica, operativa y académica de participar en proyecto.</p>
+    <p>4. Si el proyecto es factible, se envía al cliente una oferta económica.</p>
+    <p>5. Una vez que el cpente acepta las condiciones, se procede a la firma del contrato y a la conformación del equipo del proyecto, e inicia el proyecto.</p>
+    <p>6. Finalmente, el equipo del proyecto entrega, en el tiempo acordado y según lo pactado, el producto final.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="sectionSolicitud">
+  <img src="images/solicitud.jpg" alt="" width="100%">
 </div>
 
 <div class="col-lg-12">
@@ -164,7 +201,7 @@
             <md-select required ng-model="homeCtrl.industria" name="industria">
               <md-option ng-value="industria" ng-repeat="industria in homeCtrl.listaIndustrias">{{industria.nombre}}</md-option>
             </md-select>
-            <div ng-messages="movieForm.industria.$error" role="alert" multiple>
+            <div ng-messages="solicitudForm.industria.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar una clasificación
             </div>
             </div>
@@ -187,7 +224,7 @@
             <md-select required ng-model="homeCtrl.capital" name="capital">
             <md-option value="Sí">Sí</md-option>
             <md-option value="No">No</md-option></md-select>
-            <div ng-messages="movieForm.capital.$error" role="alert" multiple>
+            <div ng-messages="solicitudForm.capital.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar una opción
             </div>
             </div>
@@ -197,13 +234,12 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block">
             <label>Adjuntar resumen ejecutivo (.doc, .docx o .pdf)</label>
-            <input type="file"  id="file" ng-model="movieForm.archivo">
+            <input type="file"  id="file" ng-model="solicitudForm.archivo">
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Enviar Solicitud" ng-click="homeCtrl.save()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Enviar Solicitud</md-tooltip>
+        <md-button id="btnIngresar" ng-disabled="!solicitudForm.$valid" class="btn btn-success" aria-label="Ingresar" ng-click="homeCtrl.save()" data-dismiss="modal"><span class="menu-icon fa fa-sign-in"></span> ENVIAR SOLICITUD
+        <md-tooltip md-direction="bottom">Enviar Solicitud Cliente</md-tooltip>
         </md-button>
 
 
@@ -293,21 +329,11 @@
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Edad</label>
-            <input required ng-model="homeCtrl.edadEstudiante" name="edadEstudiante" type="number" max="99" min="17">
-            <div ng-messages="solicitudEstudianteForm.edadEstudiante.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar el la edad</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
             <label>Seleccione una carrera</label>
             <md-select required ng-model="homeCtrl.carreraEstudiante" name="carreraEstudiante">
               <md-option ng-value="carrera" ng-repeat="carrera in homeCtrl.listaCarreras">{{carrera.nombre}}</md-option>
             </md-select>
-            <div ng-messages="movieForm.carreraEstudiante.$error" role="alert" multiple>
+            <div ng-messages="solicitudEstudianteForm.carreraEstudiante.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar una carrera
             </div>
             </div>
@@ -321,7 +347,7 @@
               <md-option ng-value="curso" ng-repeat="curso in homeCtrl.listaCursos">{{curso.curso}}</md-option>
             </md-select>
           
-            <div ng-messages="movieForm.cursosAprobadosEstudiante.$error" role="alert" multiple>
+            <div ng-messages="solicitudEstudianteForm.cursosAprobadosEstudiante.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar una carrera
             </div>
             </div>
@@ -336,9 +362,8 @@
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Enviar Solicitud" ng-click="homeCtrl.saveEstudiante()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Enviar Solicitud Estudiante</md-tooltip>
+        <md-button id="btnIngresar" ng-disabled="!solicitudEstudianteForm.$valid" class="btn btn-success" aria-label="Ingresar" ng-click="homeCtrl.saveEstudiante()" data-dismiss="modal"><span class="menu-icon fa fa-sign-in"></span> ENVIAR SOLICITUD
+        <md-tooltip md-direction="bottom">Enviar Solicitud Estudiante</md-tooltip>
         </md-button>
 
 
@@ -348,4 +373,21 @@
 </section>
 </md-tab>
 </md-tabs>
+
+<div id="cuadradoContacto">
+<div id="sectionContacto">
+  <div class="col-lg-12">
+    <img src="images/Contacto.png" width="100%" class="col-lg-6" id="imgContacto">
+    <div class="col-lg-6">
+    <h2>Datos de contacto</h2>
+    <p><span class="menu-icon fa fa-map-marker"></span>  Santa Marta - San Pedro de Montes Oca, del Cruce de la Escuela de Santa Marta 400 metros noreste carretera al Cristo de Sabanilla, San José, Costa Rica</p>
+    <a href="mailto:softwarehouse@ucenfotec.ac.cr"><span class="menu-icon fa fa-envelope-o"></span>  softwarehouse@ucenfotec.ac.cr</a>
+    <p><span class="menu-icon fa fa-phone"></span>  +506 2281-1555</p>
+    <p>Universidad CENFOTEC Derechos Reservados 2017</p>
+    <p><span class="menu-icon fa fa-laptop"> Sitio web elaborado por: </span></p><a href="https://www.facebook.com/SoftCandyCR" target="_blank"><img src="images/logoSoft.png" alt="logoSoft" width="25%"></a>
+    </div>
+  </div>
+</div>
+</div>
+
 </div>

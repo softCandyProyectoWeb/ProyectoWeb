@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <nav class="navbar navbar-default" id="navPrincipal">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -8,14 +9,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img src="images/logo.png" alt="" width="200px"></a>
+      <img src="images/logo.png" alt="" width="200px">
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="#/admin">Inicio</a></li>
-        <li><a href="#/parametro">Mantenimiento parametros</a></li>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/admin"><div align="center"><span class="menu-icon fa fa-home fa-2x"></span></div>
+            Ir al inicio</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -24,26 +25,18 @@
 
 
 <div class="col-lg-12">
-  <h1>¡Bienvenido!</h1>
+  <h1>Editar parámetros del sitema</h1>
 </div>
 
 <div class="col-lg-12">
 <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
 
 <md-tab label="Mantenimiento Carreras">
-<<<<<<< HEAD
 <section>
   <md-content layout-padding>
     <div>
       <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
         <h3>Crear carerras</h3>
-=======
-  <section>
-  <md-content layout-padding>
-    <div>
-      <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
-
->>>>>>> origin/master
         <div layout-gt-sm="row">
           <md-input-container class="md-block">
             <label>ID de la carrera</label>
@@ -68,7 +61,6 @@
           <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
           <md-tooltip md-direction="bottom">Ingresar carrera</md-tooltip>
         </md-button>
-<<<<<<< HEAD
       </form>
     </div>
   </md-content>
@@ -121,9 +113,6 @@
           <md-icon md-svg-src="vendor/img/icons/delete.svg"></md-icon>
           <md-tooltip md-direction="bottom">Borrar carrera</md-tooltip>
         </md-button>
-=======
-
->>>>>>> origin/master
 
       </form>
     </div>
@@ -142,23 +131,7 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Carrera</label>
             <md-select required ng-model="adminCtrl.carreraCurso" name="carreraCurso">
-<<<<<<< HEAD
             <md-option ng-value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
-=======
-<<<<<<< HEAD
-            <md-option ng-value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
-=======
-<<<<<<< HEAD
-            <md-option ng-value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
-=======
-<<<<<<< HEAD
-            <md-option ng-value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
-=======
-            <md-option value="carrera" ng-repeat="carrera in adminCtrl.carrerasList">{{carrera.nombre}}</md-option>
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
             </md-select>
             <div ng-messages="mantenimientoCursoForm.carreraCurso.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar una carrera
@@ -177,23 +150,7 @@
           </md-input-container>
         </div>
 
-<<<<<<< HEAD
         <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="adminCtrl.agregarCurso()">
-=======
-<<<<<<< HEAD
-        <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="adminCtrl.agregarCurso()">
-=======
-<<<<<<< HEAD
-        <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="adminCtrl.agregarCurso()">
-=======
-<<<<<<< HEAD
-        <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="adminCtrl.agregarCurso()">
-=======
-        <md-button class="md-fab md-primary" aria-label="Agregar curso" ng-click="">
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
           <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
           <md-tooltip md-direction="bottom">Agregar curso</md-tooltip>
         </md-button>
@@ -284,11 +241,7 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Profesor</label>
             <md-select required ng-model="adminCtrl.profesorProyecto" name="profesorProyecto">
-<<<<<<< HEAD
             <md-option ng-value="profesor" ng-repeat="profesor in adminCtrl.usuarioList | filter:{rol:'Profesor'}">{{profesor.nombre}}</md-option>
-=======
-            <md-option value="profesor" ng-repeat="profesor in adminCtrl.profesoresList">{{profesor.nombre}}</md-option>
->>>>>>> origin/master
             </md-select>
             <div ng-messages="agregarConsejoForm.profesorProyecto.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar un profesor
@@ -301,11 +254,7 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Proyecto</label>
             <md-select required ng-model="adminCtrl.proyectoAsignar" name="proyectoAsignar">
-<<<<<<< HEAD
             <md-option ng-value="proyecto" ng-repeat="proyecto in adminCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
-=======
-            <md-option ></md-option>
->>>>>>> origin/master
             </md-select>
             <div ng-messages="agregarConsejoForm.proyectoAsignar.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar un proyecto a asignar
@@ -314,11 +263,7 @@
           </md-input-container>
         </div>
 
-<<<<<<< HEAD
         <md-button class="md-fab md-primary" aria-label="Asignar profesor al proyecto" ng-click="adminCtrl.asignarProfesorProyecto()">
-=======
-        <md-button class="md-fab md-primary" aria-label="Asignar profesor al proyecto" ng-click="">
->>>>>>> origin/master
           <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
           <md-tooltip md-direction="bottom">Asignar profesor al proyecto</md-tooltip>
         </md-button>
