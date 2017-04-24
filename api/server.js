@@ -5,15 +5,15 @@ var morgan = require('morgan');
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var passport = require('passport');
-var config = require('./api/config/database');
+var config = require('./config/database');
 var connection = config.database;
 //Se declaran todos los accesos de las rutas
-userRoutes = require('./api/components/users/user.route');
+userRoutes = require('./components/users/user.route');
 mongoose.Promise = require('bluebird');
 
 var app = express();
-app.use(express.static(__dirname + "/client"));//maneja archivos estáticos como un app web
-app.use(express.static(__dirname + "/client/content/css/bootstrap.css.map"));
+app.use(express.static(__dirname + "/../angular"));//maneja archivos estáticos como un app web
+//app.use(express.static(__dirname + "/client/content/css/bootstrap.css.map"));
 
 app.use(bodyParser.json());
 //Permite recibir post

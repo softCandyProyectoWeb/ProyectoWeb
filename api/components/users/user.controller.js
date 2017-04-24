@@ -1,10 +1,9 @@
 //Requerimos el modelo  de usuarios
 var User = require('./user.model.js');
 var config = require('../../config/database');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
-module.exports.save = function(req,res){ //exporta el controlador
-  var currentPass;
+module.exports.save = function(req,res){ //exporta el controlador var currentPass;
   bcrypt.genSalt(10,function(err,salt){
       bcrypt.hash(req.body.contrasena,salt,function(err,hash){
         currentPass = hash;
