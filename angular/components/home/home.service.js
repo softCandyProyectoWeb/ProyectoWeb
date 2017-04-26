@@ -3,7 +3,7 @@
   .module('myApp')
   .service('homeService', homeService);
 
-function homeService(){
+function homeService($http){
 	var solicitud = [];
   var estudiante = [];
 
@@ -15,25 +15,15 @@ function homeService(){
     return publicAPI;
 
     function _addSolicitud(pSolicitud){
-  
-      solicitud.push(pSolicitud);
-      console.log(pSolicitud);
-      localStorageSolicitud(solicitud);
-
+      return $http.post('http://localhost:3000/api/cliente',pSolicitud);
     }
 
     function _getSolicitud(){
-      var listaStored = localStorage.getItem('localSolicitud');
-      if (listaStored == null ) {
-        solicitud = [];
-      }else {
-        solicitud = JSON.parse(listaStored);
-      }
-      return solicitud;
+      return $http.get('http://localhost:3000/api/cliente');
     }
 
     function localStorageSolicitud(pSolicitud){
-      localStorage.setItem(['localSolicitud'], JSON.stringify(pSolicitud));
+      return $http.put('http://localhost:3000/api/cliente');
     }
 
 }

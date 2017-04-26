@@ -35,21 +35,15 @@ function usuarioService($http){
     }
 
   function _agregarIndustria(pIndustria){
-    industria.push(pIndustria);
-    console.log(pIndustria);
-    localStorageIndustria(industria);
+    return $http.post('http://localhost:3000/api/industria',pIndustria);
   }
 
   function _agregarCarrera(pCarrera){
-    carrera.push(pCarrera);
-    console.log(pCarrera);
-    localStorageCarrera(carrera);
+    return $http.post('http://localhost:3000/api/carrera',pCarrera);
   }
 
   function _agregarCurso(pCurso){
-    curso.push(pCurso);
-    console.log(pCurso);
-    localStorageCurso(curso);
+    return $http.post('http://localhost:3000/api/curso',pCurso);
   }
 
     function _agregarCita(pCita){
@@ -67,51 +61,32 @@ function usuarioService($http){
     }
 
     function _getIndustria(){
-      var listaStored = localStorage.getItem('localIndustria');
-      if (listaStored == null ) {
-        industria = [];
-      }else {
-        industria = JSON.parse(listaStored);
-      }
-      return industria;
+      return $http.get('http://localhost:3000/api/industria');
     }
 
 
     function _getCarrera(){
-      var listaStored = localStorage.getItem('localCarrera');
-      if (listaStored == null ) {
-        carrera = [];
-      }else {
-        carrera = JSON.parse(listaStored);
-      }
-      return carrera;
+      return $http.get('http://localhost:3000/api/carrera');
     }
 
     function _getCurso(){
-      var listaStored = localStorage.getItem('localCurso');
-      if (listaStored == null ) {
-        curso = [];
-      }else {
-        curso = JSON.parse(listaStored);
-      }
-      return curso;
+      return $http.get('http://localhost:3000/api/curso');
     }
 
     function localStorageUsuario(pUsuario){
-      console.log(pUsuario);
       return $http.put('http://localhost:3000/api/users',pUsuario);
     }
 
     function localStorageCarrera(pCarrera){
-      localStorage.setItem(['localCarrera'], JSON.stringify(pCarrera));
+      return $http.put('http://localhost:3000/api/carrera',pCarrera);
     }
 
     function localStorageCurso(pCurso){
-      localStorage.setItem(['localCurso'], JSON.stringify(pCurso));
+      return $http.put('http://localhost:3000/api/curso',pCurso);
     }
 
     function localStorageIndustria(pIndustria){
-      localStorage.setItem(['localIndustria'], JSON.stringify(pIndustria));
+      return $http.put('http://localhost:3000/api/industria',pIndustria);
     }
 
     function localStorageCita(pCita){

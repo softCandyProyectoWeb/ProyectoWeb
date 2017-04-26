@@ -8,8 +8,16 @@
       adminCtrl.cloudObj = ImageService.getConfiguration();
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
-        adminCtrl.industriasList = usuarioService.getIndustria();
-        adminCtrl.carrerasList = usuarioService.getCarrera();
+        usuarioService.getIndustria()
+          .success(function(data){
+            adminCtrl.industriasList = data;
+
+          });
+        usuarioService.getCarrera()
+          .success(function(data){
+            adminCtrl.carrerasList = data;
+
+          });
         adminCtrl.solicitudList = homeService.getSolicitud();
         usuarioService.getUsuario()
           .success(function(data){
@@ -156,26 +164,29 @@
             var numeroCedula = listaPersona[i].cedula;
               if (numeroCedula == cedulaSelect) {
                 adminCtrl.nombreEditar = listaPersona[i].nombre,
-                adminCtrl.contrasenaEditar = listaPersona[i].contrasena,
                 adminCtrl.direccionEditar = listaPersona[i].direccion;
                 adminCtrl.correoEditar = listaPersona[i].correo;
                 adminCtrl.numeroTelefonoEditar = listaPersona[i].telefono;
-                adminCtrl.generoEditar = listaPersona[i].genero;
                 adminCtrl.rolPersonaEditar = listaPersona[i].rol;
           }
         }
       }
 
       adminCtrl.agregarCarrera = function(){
+        //var listaCarrera = adminCtrl.carrerasList;
         var nuevaCarrera = {
-          id: adminCtrl.idCarrera,
+          idCarrera: adminCtrl.idCarrera,
           nombre : adminCtrl.nombreCarrera
         }
-
-        usuarioService.agregarCarrera(nuevaCarrera);
+        
+        usuarioService.agregarCarrera(nuevaCarrera)
+        .success(function(data){
+          console.log(data);
         adminCtrl.idCarrera = null;
         adminCtrl.nombreCarrera = null;
-      }
+        init();
+      })
+    }
 
       adminCtrl.agregarCurso = function(){
         var nuevoCurso ={
@@ -193,8 +204,12 @@
           nombre : adminCtrl.nombreIndustria
         }
 
-        usuarioService.agregarIndustria(nuevaIndustria);
+        usuarioService.agregarIndustria(nuevaIndustria)
+        .success(function(data){
+          console.log(data);
+        })
 
+        init();
         adminCtrl.nombreIndustria = null;
       }
 
@@ -228,30 +243,29 @@
 
       adminCtrl.editarIndustria = function(){
         var listaIndustria = adminCtrl.industriasList,
-            industriaSelect = adminCtrl.industriaEditar.nombre,
-            aIndustria = [];
+            industriaSelect = adminCtrl.industriaEditar.nombre
 
         for (var i = 0; i < listaIndustria.length; i++) {
           var nombreIndustria = listaIndustria[i].nombre;
           if (nombreIndustria == industriaSelect) {
             
             var nuevaIndustria = {
-              $$mdSelectId : listaIndustria[i].$$mdSelectId,
-              $$hashKey : listaIndustria[i].$$hashKey,
+              _id: listaIndustria[i]._id,
               nombre : adminCtrl.nombreIndustriaEditar
             }
-              aIndustria.push(nuevaIndustria);
-              }else{
-              aIndustria.push(listaIndustria[i]);
-              }
-            }
-              usuarioService.setLocalIndustria(aIndustria);
-
-              init();
-              adminCtrl.industriaEditar = null;
-              adminCtrl.nombreIndustriaEditar = null;
-        
           }
+        }
+          
+          usuarioService.setLocalIndustria(nuevaIndustria)
+          .success(function(data){
+            console.log(data);
+
+          init();
+          adminCtrl.industriaEditar = null;
+          adminCtrl.nombreIndustriaEditar = null;
+        
+          })
+        }
 
       adminCtrl.editarPerfil = function(){
         var listaUsuarios = adminCtrl.usuarioList,
@@ -263,41 +277,37 @@
 
             if (cedula == cedulaSelect) {
               var nuevoUsuario = {
-                  $$mdSelectId : listaUsuarios[i].$$mdSelectId,
-                  $$hashKey : listaUsuarios[i].$$hashKey,
+                  _id : listaUsuarios[i]._id,
                   nombre : adminCtrl.nombreEditar,
-                  contrasena : adminCtrl.contrasenaEditar,
+                  contrasena : listaUsuarios[i].contrasena,
                   cedula : cedulaSelect,
-                  fechaNacimiento : adminCtrl.fechaNacimientoEditar,
+                  fechaNacimiento : listaUsuarios[i].fechaNacimiento,
                   direccion : adminCtrl.direccionEditar,
                   correo : adminCtrl.correoEditar,
                   telefono : adminCtrl.numeroTelefonoEditar,
-                  genero: adminCtrl.generoEditar,
+                  genero: listaUsuarios[i].genero,
                   rol: adminCtrl.rolPersonaEditar,
                   carrera : listaUsuarios[i].carrera,
                   curso : listaUsuarios[i].curso,
                   estado: "Activo",
                   foto: listaUsuarios[i].foto
+                }
               }
-
-              aUsuario.push(nuevoUsuario);
-            }else{
-              aUsuario.push(listaUsuarios[i]);
             }
-          }
-            usuarioService.setLocalUsuario(aUsuario);
 
-            init();
+            usuarioService.setLocalUsuario(nuevoUsuario)
+            .success(function(data){
+            console.log(data);
+
             adminCtrl.cedulaPersonaEditar = null;
             adminCtrl.nombreEditar = null;
-            adminCtrl.contrasenaEditar = null;
-            adminCtrl.fechaNacimientoEditar = null;
             adminCtrl.direccionEditar = null;
             adminCtrl.correoEditar = null;
             adminCtrl.numeroTelefonoEditar = null;
             adminCtrl.generoEditar = null;
-            adminCtrl.fotoEditar = null;
             adminCtrl.rolPersonaEditar = null;
+            init();
+          })
       }
 
       adminCtrl.buscarEstudianteExpediente = function(){
@@ -326,8 +336,7 @@
 
             if (nombreEstudiante == nombreSelect) {
               var nuevoEstudiante = {
-                  $$mdSelectId : listaEstudiante[i].$$mdSelectId,
-                  $$hashKey : listaEstudiante[i].$$hashKey,
+                  _id: listaEstudiante[i]._id,
                   nombre : listaEstudiante[i].nombre,
                   contrasena : listaEstudiante[i].contrasena,
                   cedula : listaEstudiante[i].cedula,
@@ -341,23 +350,22 @@
                   estado: listaEstudiante[i].estado,
                   foto: listaEstudiante[i].foto,
                   comentario: adminCtrl.comentarioEstudianteExpediente
+                }
               }
-
-              aEstudiante.push(nuevoEstudiante);
-            }else{
-              aEstudiante.push(listaEstudiante[i]);
             }
-          }
 
-            usuarioService.setLocalUsuario(aEstudiante);
+            usuarioService.setLocalUsuario(nuevoEstudiante)
+            .success(function(data){
+              console.log(data);
 
-            init();
             adminCtrl.nombreEstudianteSelect = null;
             adminCtrl.cedulaEstudianteExpediente = null;
             adminCtrl.correoEstudianteExpediente = null;
             adminCtrl.telefonoEstudianteExpediente = null;
             adminCtrl.estadoEstudianteExpediente = null;
             adminCtrl.comentarioEstudianteExpediente = null;
+            init();
+          })
       }
 
       adminCtrl.buscaEditarCarrera = function(){

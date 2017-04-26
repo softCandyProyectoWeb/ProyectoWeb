@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
 <nav class="navbar navbar-default" id="navPrincipal">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -172,8 +173,8 @@
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Tipo de céedula</label>
-            <md-select required ng-model="homeCtrl.tipoCedula" name="tipoCedula">
+            <label>Tipo de cédula</label>
+            <md-select required ng-model="homeCtrl.tipoCedula" name="tipoCedula" id="selectCedula">
               <md-option value="Fisica">Fisica</md-option>
               <md-option value="Juridica">Juridica</md-option>
             </md-select>
@@ -188,7 +189,7 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Numero de Cédula</label>
-            <input required ng-model="homeCtrl.cedula" name="cedula" maxlength="9">
+            <input required ng-model="homeCtrl.cedula" name="cedula" maxlength="9" id="cedulaFisica">
             <div ng-messages="solicitudForm.cedula.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
             </div>
@@ -199,7 +200,7 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Seleccione una industria</label>
             <md-select required ng-model="homeCtrl.industria" name="industria">
-              <md-option ng-value="industria" ng-repeat="industria in homeCtrl.listaIndustrias">{{industria.nombre}}</md-option>
+              <md-option ng-value="industria" ng-repeat="industria in homeCtrl.industriasList">{{industria.nombre}}</md-option>
             </md-select>
             <div ng-messages="solicitudForm.industria.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar una clasificación
@@ -232,10 +233,20 @@
         </div>
 
         <div layout-gt-sm="row">
-          <md-input-container class="md-block">
-            <label>Adjuntar resumen ejecutivo (.doc, .docx o .pdf)</label>
-            <input type="file"  id="file" ng-model="solicitudForm.archivo">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Resumen ejecutivo (formato .doc , .docx o .pdf</label>
+            <input type="button" ng-click="homeCtrl.showPicker()" class="btn btn-default" value="Buscar archivo">
           </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block">
+          <input disabled ng-model="homeCtrl.resumenCliente" id="nombreArchivo" placeholder="Archivo cargado">
+          </md-input-container>
+        </div>
+
+        <div>
+        <input type="hidden" ng-model="homeCtrl.urlResumenCliente">
         </div>
 
         <md-button id="btnIngresar" ng-disabled="!solicitudForm.$valid" class="btn btn-success" aria-label="Ingresar" ng-click="homeCtrl.save()" data-dismiss="modal"><span class="menu-icon fa fa-sign-in"></span> ENVIAR SOLICITUD
@@ -356,10 +367,20 @@
 
 
         <div layout-gt-sm="row">
-          <md-input-container class="md-block">
-            <label>Adjuntar resumen ejecutivo (.doc, .docx o .pdf)</label>
-            <input type="file"  id="file" ng-model="homeCtrl.archivo">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Resumen ejecutivo (formato .doc , .docx o .pdf</label>
+            <input type="button" ng-click="homeCtrl.showPickerEstudiante()" class="btn btn-default" value="Buscar archivo">
           </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block">
+          <input disabled ng-model="homeCtrl.resumenEstudiante" id="nombreArchivo" placeholder="Archivo cargado">
+          </md-input-container>
+        </div>
+
+        <div>
+        <input type="hidden" ng-model="homeCtrl.urlResumenEstudiante">
         </div>
 
         <md-button id="btnIngresar" ng-disabled="!solicitudEstudianteForm.$valid" class="btn btn-success" aria-label="Ingresar" ng-click="homeCtrl.saveEstudiante()" data-dismiss="modal"><span class="menu-icon fa fa-sign-in"></span> ENVIAR SOLICITUD

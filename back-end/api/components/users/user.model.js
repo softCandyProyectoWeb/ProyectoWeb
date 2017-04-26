@@ -13,7 +13,9 @@ var UserSchema = new mongoose.Schema({
   genero: String,
   rol: String,
   estado: String,
-  foto: String
+  foto: String,
+  resumen: String,
+  comentario:String
 });
 
 

@@ -40,9 +40,9 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block">
             <label>ID de la carrera</label>
-            <input required ng-model="adminCtrl.idCarrera" name="idCarrera" maxlength="3">
+            <input required ng-model="adminCtrl.idCarrera" name="idCarrera" maxlength="8" placeholder="formato: WEB-XXXX">
             <div ng-messages="mantenimientoCarreraForm.idCarrera.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un ID</div>
+              <div ng-message="required" class="my-message">Debe ingresar un ID de carrera</div>
             </div>
           </md-input-container>
         </div>

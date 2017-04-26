@@ -410,7 +410,7 @@
 </section>
 </md-tab>
 
-<md-tab label="Editar perfiles">
+<md-tab label="Mantenimiento perfiles">
   <section>
   <md-content layout-padding>
     <div>
@@ -428,32 +428,21 @@
           <md-icon md-svg-src="vendor/img/icons/ic_search.svg"></md-icon>
           <md-tooltip md-direction="bottom">Buscar persona</md-tooltip>
         </md-button>
+        <md-button class="md-fab md-mini" aria-label="Borrar persona" ng-click="" >
+          <md-icon md-svg-src="vendor/img/icons/delete.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Borrar persona</md-tooltip>
+        </md-button>
         </div>
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Nombre Completo</label>
-            <input ng-model="adminCtrl.nombreEditar" name="nombreEditar">
+            <input required ng-model="adminCtrl.nombreEditar" name="nombreEditar">
             <div ng-messages="editarPerfilesForm.nombreEditar.$error" role="alert" multiple>
             <div ng-message="required" class="my-message">Debe ingresar el nombre completo</div>
             </div>
           </md-input-container>
         </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Contraseña</label>
-            <input required ng-model="adminCtrl.contrasenaEditar" name="contrasenaEditar"  maxlength=10>
-            <div ng-messages="agregarConsejoForm.contrasenaEditar.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la contraseña</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <md-input-container class="md-block" flex-gt-sm>
-            <label>Fecha de nac.</label>
-            <md-datepicker ng-model="adminCtrl.fechaNacimientoEditar"></md-datepicker>
-        </md-input-container>
 
          <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
@@ -478,23 +467,9 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Teléfono</label>
-            <input required ng-model="adminCtrl.numeroTelefonoEditar" name="numeroTelefonoEditar" type="number">
+            <input required ng-model="adminCtrl.numeroTelefonoEditar" name="numeroTelefonoEditar">
             <div ng-messages="editarPerfilesForm.numeroTelefonoEditar.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el numero</div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Genero</label>
-            <md-select required ng-model="adminCtrl.generoEditar" name="generoEditar">
-            <md-option value="Femenino">Femenino</md-option>
-            <md-option value="Masculino">Masculino</md-option>
-            </md-select>
-            <div ng-messages="editarPerfilesForm.generoEditar.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar un genero
-            </div>
             </div>
           </md-input-container>
         </div>

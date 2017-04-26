@@ -20,7 +20,9 @@ module.exports.save = function(req,res){ //exporta el controlador
           genero:req.body.genero,
           rol:req.body.rol,
           estado:req.body.estado,
-          foto: req.body.foto
+          foto: req.body.foto,
+          resumen:req.body.resumen,
+          comentario:req.body.comentario
         });
 
         newUser.save(function(err){

@@ -9,6 +9,10 @@ var config = require('./api/config/database');
 var connection = config.database;
 //Se declaran todos los accesos de las rutas
 userRoutes = require('./api/components/users/user.route');
+carreraRoutes = require('./api/components/carrera/carrera.route');
+industriaRoutes = require('./api/components/industria/industria.route');
+cursoRoutes = require('./api/components/curso/curso.route');
+clienteRoutes = require('./api/components/cliente/cliente.route');
 mongoose.Promise = require('bluebird');
 
 var app = express();
@@ -63,4 +67,9 @@ function handleError(res, reason, message, code) {
  */
 
 // Conexion a todas la rutas
-app.use('/api', userRoutes);//se define el versionamiento del api
+app.use('/api', userRoutes);
+app.use('/api', carreraRoutes);
+app.use('/api', industriaRoutes);
+app.use('/api', cursoRoutes);
+app.use('/api', clienteRoutes);
+//se define el versionamiento del api

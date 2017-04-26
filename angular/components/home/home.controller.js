@@ -8,41 +8,103 @@
       homeCtrl.cloudObj = ImageService.getConfiguration();
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
-        homeCtrl.solicitudList = homeService.getSolicitud();
-        homeCtrl.listaUsuarios = usuarioService.getUsuario();
-        homeCtrl.listaAdmin = usuarioService.getAdmin();
-        homeCtrl.listaIndustrias = usuarioService.getIndustria();
-        homeCtrl.listaCarreras = usuarioService.getCarrera();
-        homeCtrl.listaCursos = usuarioService.getCurso();
+        homeService.getSolicitud()
+          .success(function(data){
+            homeCtrl.solicitudList = data;
+
+          });
+        usuarioService.getUsuario()
+          .success(function(data){
+            homeCtrl.listaUsuarios = data;
+
+          });
+/*        usuarioService.getAdmin()
+          .success(function(data){
+            homeCtrl.listaAdmin = data;
+
+          });*/
+        usuarioService.getIndustria()
+          .success(function(data){
+            homeCtrl.industriasList = data;
+
+          });
+        usuarioService.getCarrera()
+          .success(function(data){
+            homeCtrl.listaCarreras = data;
+
+          });
+        usuarioService.getCurso()
+          .success(function(data){
+            homeCtrl.listaCursos = data;
+
+          });
       }
       init();
 
-       homeCtrl.save= function(){
+      var client = filestack.init('AnEFFwqe3SjCu3T9SjuGiz');
+      homeCtrl.showPicker = function () {
+          client.pick({
+            fromSources: ['local_file_system', 'imagesearch'],
+            lang: 'es',
+            maxFiles: 1,
+            accept: ['.doc', '.pdf', '.docx']
+          }).then(function(result) {
+              var urlResumen = result.filesUploaded[0].url;
+              console.log(JSON.stringify(urlResumen))
+              homeCtrl.resumenCliente = result.filesUploaded[0].filename;
+              homeCtrl.urlResumenCliente = result.filesUploaded[0].url;
+              init();
+          });
+      }
+
+      var client = filestack.init('AnEFFwqe3SjCu3T9SjuGiz');
+      homeCtrl.showPickerEstudiante = function () {
+          client.pick({
+            fromSources: ['local_file_system', 'imagesearch'],
+            lang: 'es',
+            maxFiles: 1,
+            accept: ['.doc', '.pdf', '.docx']
+          }).then(function(result) {
+              var urlResumen = result.filesUploaded[0].url;
+              console.log(JSON.stringify(urlResumen))
+              homeCtrl.resumenEstudiante = result.filesUploaded[0].filename;
+              homeCtrl.urlResumenEstudiante = result.filesUploaded[0].url;
+              init();
+          });
+      }
+
+      homeCtrl.save= function(){
         var newSolicitud ={
           nombreProyecto : homeCtrl.nombreProyecto,
           nombreSolicitante : homeCtrl.nombreCompleto,
           nombreEncargado : homeCtrl.nombreEncargado,
           cedula : homeCtrl.cedula,
-          industria : homeCtrl.industria,
+          industria : homeCtrl.industria.nombre,
           objetivos : homeCtrl.objetivos,
           capital : homeCtrl.capital,
+          resumen : homeCtrl.urlResumenCliente,
           estado : "Falta revisión del Consejo"
         }
 
-        homeService.addSolicitud(newSolicitud);
+        homeService.addSolicitud(newSolicitud)
+        .success(function(data){
+          console.log(data);
 
-        homeCtrl.nombreProyecto = null;
-        homeCtrl.nombreCompleto = null;
-        homeCtrl.nombreEncargado = null;
-        homeCtrl.tipoCedula = null;
-        homeCtrl.cedula = null;
-        homeCtrl.industria = null;
-        homeCtrl.objetivos = null;
-        homeCtrl.capital = null;
-        
+          homeCtrl.nombreProyecto = null;
+          homeCtrl.nombreCompleto = null;
+          homeCtrl.nombreEncargado = null;
+          homeCtrl.tipoCedula = null;
+          homeCtrl.cedula = null;
+          homeCtrl.industria = null;
+          homeCtrl.objetivos = null;
+          homeCtrl.capital = null;
+          homeCtrl.resumenCliente = null;
+          init();
+
+        })
       }
 
-       homeCtrl.saveEstudiante= function(){
+      homeCtrl.saveEstudiante= function(){
         var nuevoEstudiante ={
           nombre : homeCtrl.nombreCompletoEstudiante,
           fechaNacimiento : homeCtrl.fechaNacimientoEstudiante,
@@ -51,9 +113,9 @@
           correo : homeCtrl.correoSolicitudEstudiante,
           numeroTelefono : homeCtrl.numeroTelefonoEstudiante,
           genero : homeCtrl.generoEstudiante,
-          edad : homeCtrl.edadEstudiante,
-          carrera : homeCtrl.carreraEstudiante,
-          curso : homeCtrl.cursosAprobadosEstudiante,
+          carrera : homeCtrl.carreraEstudiante.nombre,
+          curso : homeCtrl.cursosAprobadosEstudiante.curso,
+          resumen : homeCtrl.urlResumenEstudiante,
           estado : "Inactivo",
           rol: "Estudiante"
           
@@ -70,6 +132,8 @@
         homeCtrl.generoEstudiante = null;
         homeCtrl.edadEstudiante = null;
         homeCtrl.carreraEstudiante = null;
+        homeCtrl.cursosAprobadosEstudiante = null;
+        homeCtrl.resumenEstudiante = null;
       
         
       }

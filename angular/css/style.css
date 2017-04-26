@@ -1,6 +1,6 @@
 @font-face{
   font-family: 'Novecento';
-  src: url('../fonts/Novecentowide-Bold.otf');
+  src: url('../vendor/fonts/Novecentowide-Bold.otf');
 }
 
 body{
@@ -177,4 +177,12 @@ i{
 a{
    font-family: 'Novecento';
    font-size: 12px;
+}
+
+#btnFileStack{
+  margin-left: 20px;
+}
+
+#divResumen{
+  margin: 20px 0; 
 }
