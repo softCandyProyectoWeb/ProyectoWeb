@@ -4,6 +4,7 @@ var Carrera = require('../models/carrera.model');
 var Industria = require('../models/industria.model');
 var Curso = require('../models/curso.model');
 var Cliente = require('../models/cliente.model');
+var Cita = require('../models/cita.model');
 var config = require('../config/database');
 
 module.exports = function(passport){
@@ -60,6 +61,17 @@ module.exports = function(passport){
       }
       if(cliente){
         done(null,cliente);
+      }else{
+        done(null,false);
+      }
+    });
+
+    Cita.find({id:jwt_payload.sub},function(err,cita){
+      if(err){
+        return done(err,false);
+      }
+      if(cita){
+        done(null,cita);
       }else{
         done(null,false);
       }

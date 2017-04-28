@@ -37,24 +37,34 @@
     <div>
       <form name="visualizarProyectoForm" id="visualizarProyectoForm">
 
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Proyecto a ver</label>
-            <md-select required ng-model="adminCtrl.proyectoVer" name="proyectoVer">
-            <md-option ng-value="proyecto" ng-repeat="proyecto in adminCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
-            </md-select>
-            <div ng-messages="visualizarProyectoForm.proyectoVer.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar un proyecto
-            </div>
-            </div>
-          </md-input-container>
-        </div>
-
-        <md-button class="md-fab md-mini" aria-label="Visualizar proyecto" ng-click="">
-          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Visualizar proyecto</md-tooltip>
-        </md-button>
-
+        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Nombre del proyecto</th>
+              <th>Nombre del solicitante</th>
+              <th>Nombre del encargado</th>
+              <th>Cédula</th>
+              <th>Industria</th>
+              <th>Objetivos</th>
+              <th>Posee capital</th>
+              <th>Profesor encargado</th>
+              <th>Resumen Ejecutivo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="solicitud in adminCtrl.solicitudList">
+              <td>{{solicitud.nombreProyecto}}</td>
+              <td>{{solicitud.nombreSolicitante}}</td>
+              <td>{{solicitud.nombreEncargado}}</td>
+              <td>{{solicitud.cedula}}</td>
+              <td>{{solicitud.industria}}</td>
+              <td>{{solicitud.objetivos}}</td>
+              <td>{{solicitud.capital}}</td>
+              <td>{{solicitud.profesorEncargado}}</td>
+              <td><a href="{{solicitud.resumen}}"><input type="button" value="Descargar" class="btn btn-primary"></a></td>
+            </tr>
+          </tbody>
+        </table>
 
       </form>
     </div>

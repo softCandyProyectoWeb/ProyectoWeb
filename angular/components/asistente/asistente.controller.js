@@ -8,8 +8,19 @@
       asistenteCtrl.cloudObj = ImageService.getConfiguration();
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
-        asistenteCtrl.usuariosList = usuarioService.getUsuario();
-        asistenteCtrl.solicitudList = homeService.getSolicitud();
+        //asistenteCtrl.usuariosList = usuarioService.getUsuario();
+
+        homeService.getSolicitud()
+          .success(function(data){
+            asistenteCtrl.solicitudList = data;
+
+          });
+
+        usuarioService.getUsuario()
+          .success(function(data){
+            asistenteCtrl.usuariosList = data;
+
+          });
       }
       init();
 
@@ -19,15 +30,20 @@
           profesor: asistenteCtrl.nombreProfesorCita.nombre,
           estudiante : asistenteCtrl.nombreEstudianteCita.nombre,
           fecha : asistenteCtrl.fechaCita,
-          asistente : asistenteCtrl.horaCita
+          hora : asistenteCtrl.horaCita
         }
 
-        usuarioService.agregarCita(nuevaCita);
+        usuarioService.agregarCita(nuevaCita)
+        .success(function(data){
+          console.log(data);
 
-        asistenteCtrl.nombreProfesorCita.nombre = null;
-        asistenteCtrl.nombreEstudianteCita.nombre = null;
-        asistenteCtrl.fechaCita = null;
-        asistenteCtrl.horaCita = null;
+            init();
+            asistenteCtrl.nombreProfesorCita.nombre = null;
+            asistenteCtrl.nombreEstudianteCita.nombre = null;
+            asistenteCtrl.fechaCita = null;
+            asistenteCtrl.horaCita = null;
+
+        })
       }
 
       asistenteCtrl.buscaAgregarComentarioEstudiante = function(){
@@ -48,15 +64,13 @@
       asistenteCtrl.agregarComentarioEstudiante = function(){
         var listaEstudiante = asistenteCtrl.usuariosList,
             nombreSelect = asistenteCtrl.nombreEstudianteExpediente.nombre;
-            aEstudiante = [];
 
           for (var i = 0; i < listaEstudiante.length; i++) {
             var nombreEstudiante = listaEstudiante[i].nombre;
 
             if (nombreEstudiante == nombreSelect) {
               var nuevoEstudiante = {
-                  $$mdSelectId : listaEstudiante[i].$$mdSelectId,
-                  $$hashKey : listaEstudiante[i].$$hashKey,
+                  _id : listaEstudiante[i]._id,
                   nombre : listaEstudiante[i].nombre,
                   cedula : listaEstudiante[i].cedula,
                   fechaNacimiento : listaEstudiante[i].fechaNacimiento,
@@ -69,22 +83,21 @@
                   estado: listaEstudiante[i].estado,
                   comentario: asistenteCtrl.comentarioEstudianteExpediente
               }
-
-              aEstudiante.push(nuevoEstudiante);
-            }else{
-              aEstudiante.push(listaEstudiante[i]);
             }
           }
 
-            usuarioService.setLocalUsuario(aEstudiante);
+            usuarioService.setLocalUsuario(nuevoEstudiante)
+            .success(function(data){
+              console.log(data);
 
-            init();
-            asistenteCtrl.nombreEstudianteExpediente = null;
-            asistenteCtrl.cedulaEstudianteExpediente = null;
-            asistenteCtrl.correoEstudianteExpediente = null;
-            asistenteCtrl.numeroTelefonoEstudianteExpediente = null;
-            asistenteCtrl.estadoEstudianteExpediente = null;
-            asistenteCtrl.comentarioEstudianteExpediente = null;
+                init();
+                asistenteCtrl.nombreEstudianteExpediente = null;
+                asistenteCtrl.cedulaEstudianteExpediente = null;
+                asistenteCtrl.correoEstudianteExpediente = null;
+                asistenteCtrl.numeroTelefonoEstudianteExpediente = null;
+                asistenteCtrl.estadoEstudianteExpediente = null;
+                asistenteCtrl.comentarioEstudianteExpediente = null;
+            })
       }
 
       asistenteCtrl.buscarClienteExpediente = function(){
@@ -111,8 +124,7 @@
 
             if (nombreCliente == nombreSelect) {
               var nuevaSolicitud = {
-                  $$mdSelectId : listaCliente[i].$$mdSelectId,
-                  $$hashKey : listaCliente[i].$$hashKey,
+                  _id : listaCliente[i]._id,
                   nombreProyecto : listaCliente[i].nombreProyecto,
                   nombreSolicitante : listaCliente[i].nombreSolicitante,
                   nombreEncargado : listaCliente[i].nombreEncargado,
@@ -124,20 +136,21 @@
                   profesorEncargado : listaCliente[i].profesorEncargado,
                   comentario: asistenteCtrl.comentarioExpediente
               }
-
-            aSolicitud.push(nuevaSolicitud);
-            }else{
-            aSolicitud.push(listaCliente[i]);
             }
           }
 
-            homeService.setLocalSolicitud(aSolicitud);
+            homeService.setLocalSolicitud(nuevaSolicitud)
+            .success(function(data){
+              console.log(data);
 
-            init();
-            asistenteCtrl.nombreProyectoExpediente = null;
-            asistenteCtrl.nombreClienteExpediente = null;
-            asistenteCtrl.nombreEncargadoExpediente = null;
-            asistenteCtrl.comentarioExpediente = null;
+              init();
+              asistenteCtrl.nombreProyectoExpediente = null;
+              asistenteCtrl.nombreClienteExpediente = null;
+              asistenteCtrl.nombreEncargadoExpediente = null;
+              asistenteCtrl.comentarioExpediente = null;
+
+            })
+
       }
 
 

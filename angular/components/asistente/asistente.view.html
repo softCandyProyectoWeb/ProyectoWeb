@@ -186,7 +186,7 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Teléfono</label>
-            <input disabled ng-model="asistenteCtrl.numeroTelefonoEstudianteExpediente" name="numeroTelefonoEstudianteExpediente" maxlength="8">
+            <input disabled ng-model="asistenteCtrl.numeroTelefonoEstudianteExpediente" name="numeroTelefonoEstudianteExpediente" >
           </md-input-container>
         </div>
 
@@ -243,7 +243,7 @@
               <td>{{solicitud.nombreSolicitante}}</td>
               <td>{{solicitud.nombreEncargado}}</td>
               <td>{{solicitud.cedula}}</td>
-              <td>{{solicitud.industria.nombre}}</td>
+              <td>{{solicitud.industria}}</td>
               <td>{{solicitud.objetivos}}</td>
               <td>{{solicitud.capital}}</td>
               <td>{{solicitud.profesorEncargado}}</td>

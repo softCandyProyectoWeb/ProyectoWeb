@@ -14,6 +14,8 @@ var UserSchema = new mongoose.Schema({
   rol: String,
   estado: String,
   foto: String,
+  carrera:String,
+  curos: String,
   resumen: String,
   comentario:String
 });

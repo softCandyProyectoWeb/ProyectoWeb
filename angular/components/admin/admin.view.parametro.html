@@ -118,6 +118,33 @@
     </div>
   </md-content>
 </section>
+
+<section class="col-lg-12">
+  <md-content layout-padding>
+    <div>
+      <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
+        <h3>Ver Carreras</h3>
+
+        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Id Carrera</th>
+              <th>Nombre</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="carrera in adminCtrl.carrerasList">
+              <td>{{carrera.idCarrera}}</td>
+              <td>{{carrera.nombre}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </form>
+    </div>
+  </md-content>
+</section>
+
 </md-tab>
 
 <md-tab label="Mantenimiento cursos">
@@ -154,6 +181,32 @@
           <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
           <md-tooltip md-direction="bottom">Agregar curso</md-tooltip>
         </md-button>
+
+        <section class="col-lg-12">
+          <md-content layout-padding>
+            <div>
+              <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
+                <h3>Ver Cursos</h3>
+
+                <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+                  <thead>
+                    <tr>
+                      <th>Carrera</th>
+                      <th>Curso</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="curso in adminCtrl.cursosList">
+                      <td>{{curso.carrera}}</td>
+                      <td>{{curso.curso}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </form>
+            </div>
+          </md-content>
+        </section>
 
       </form>
     </div>
@@ -225,6 +278,32 @@
           <md-tooltip md-direction="bottom">Borrar industria</md-tooltip>
         </md-button>
 
+        <section class="col-lg-12">
+          <md-content layout-padding>
+            <div>
+              <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
+                <h3>Ver Industrias</h3>
+
+                <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+                  <thead>
+                    <tr>
+                      <th>Id Industria</th>
+                      <th>Nombre</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="carrera in adminCtrl.industriasList">
+                      <td>{{carrera._id}}</td>
+                      <td>{{carrera.nombre}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </form>
+            </div>
+          </md-content>
+        </section>
+
       </form>
     </div>
   </md-content>
@@ -267,6 +346,31 @@
           <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
           <md-tooltip md-direction="bottom">Asignar profesor al proyecto</md-tooltip>
         </md-button>
+
+        <section class="col-lg-12">
+          <md-content layout-padding>
+            <div>
+            <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+              <thead>
+                <tr>
+                  <th>Nombre del proyecto</th>
+                  <th>Nombre del solicitante</th>
+                  <th>Nombre del encargado</th>
+                  <th>Profesor encargado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="solicitud in adminCtrl.solicitudList">
+                  <td>{{solicitud.nombreProyecto}}</td>
+                  <td>{{solicitud.nombreSolicitante}}</td>
+                  <td>{{solicitud.nombreEncargado}}</td>
+                  <td>{{solicitud.profesorEncargado}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </md-content>
+      </section>
 
       </form>
     </div>

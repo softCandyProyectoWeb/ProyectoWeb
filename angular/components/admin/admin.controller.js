@@ -13,12 +13,25 @@
             adminCtrl.industriasList = data;
 
           });
+
         usuarioService.getCarrera()
           .success(function(data){
             adminCtrl.carrerasList = data;
 
           });
-        adminCtrl.solicitudList = homeService.getSolicitud();
+
+        usuarioService.getCurso()
+          .success(function(data){
+            adminCtrl.cursosList = data;
+
+          });
+
+        homeService.getSolicitud()
+          .success(function(data){
+            adminCtrl.solicitudList = data;
+
+          });
+
         usuarioService.getUsuario()
           .success(function(data){
             adminCtrl.usuarioList = data;
@@ -195,6 +208,7 @@
         }
 
         usuarioService.agregarCurso(nuevoCurso);
+        init();
         adminCtrl.carreraCurso = null;
         adminCtrl.nombreCurso = null;
       }
@@ -227,19 +241,22 @@
 
       adminCtrl.borrarIndustria = function(){
         var listaIndustria = adminCtrl.industriasList;
-        var industriaSelect = adminCtrl.industriaEditar.nombre;
+        var industriaSelect = adminCtrl.industriaEditar._id;
 
         for (var i = 0; i < listaIndustria.length; i++) {
-            var nombreIndustria = listaIndustria[i].nombre;
-              if (nombreIndustria == industriaSelect) {
-                listaIndustria.splice(i,1);
-                usuarioService.setLocalIndustria(listaIndustria);
-          }
-        }
+          idIndustria = listaIndustria[i]._id;
+          if (industriaSelect == idIndustria) {
+            usuarioService.deleteIndustria(idIndustria)
+            .success(function(data){
+        
+              init();
+              adminCtrl.industriaEditar = null;
+              adminCtrl.nombreIndustriaEditar = null;
 
-        adminCtrl.industriaEditar = null;
-        adminCtrl.nombreIndustriaEditar = null;
+        })
       }
+    }
+  }
 
       adminCtrl.editarIndustria = function(){
         var listaIndustria = adminCtrl.industriasList,
@@ -376,27 +393,29 @@
             var nombreCarrera = listaCarrera[i].nombre;
               if (nombreCarrera == carreraSelect) {
                 adminCtrl.nombreCarreraEditar = listaCarrera[i].nombre;
-                adminCtrl.idCarreraEditar = listaCarrera[i].id;
+                adminCtrl.idCarreraEditar = listaCarrera[i].idCarrera;
           }
         }
       }
 
       adminCtrl.borrarCarrera = function(){
         var listaCarrera = adminCtrl.carrerasList;
-        var carreraSelect = adminCtrl.carreraSelect.nombre;
+        var carreraSelect = adminCtrl.carreraSelect._id;
 
         for (var i = 0; i < listaCarrera.length; i++) {
-            var nombreCarrera = listaCarrera[i].nombre;
-              if (nombreCarrera == carreraSelect) {
-                listaCarrera.splice(i,1);
-                usuarioService.setLocalCarrera(listaCarrera);
-          }
-        }
-
-        adminCtrl.carerraSelect = null;
-        adminCtrl.nombreCarreraEditar = null;
-        adminCtrl.idCarreraEditar = null;
+          idCarrera = listaCarrera[i]._id;
+          if (carreraSelect == idCarrera) {
+            usuarioService.deleteCarrera(idCarrera)
+            .success(function(data){
+        
+              init();
+              adminCtrl.carreraSelect = null;
+              adminCtrl.nombreCarreraEditar = null;
+              adminCtrl.idCarreraEditar = null;
+        })
       }
+    }
+  }
 
       adminCtrl.editarCarrera = function(){
         var listaCarrera = adminCtrl.carrerasList,
@@ -408,8 +427,6 @@
 
             if (nombreCarrera == carreraSelect) {
               var nuevaCarrera = {
-                  $$mdSelectId : listaCarrera[i].$$mdSelectId,
-                  $$hashKey : listaCarrera[i].$$hashKey,
                   id : adminCtrl.idCarreraEditar,
                   nombre : adminCtrl.nombreCarreraEditar,
               }
@@ -481,16 +498,15 @@
 
       adminCtrl.asignarProfesorProyecto = function(){
         var listaCliente = adminCtrl.solicitudList,
-            nombreSelect = adminCtrl.proyectoAsignar.nombreProyecto;
-            aSolicitud = [];
+            nombreSelect = adminCtrl.proyectoAsignar.nombreProyecto,
+            nombreProfesor = adminCtrl.profesorProyecto.nombre;
 
           for (var i = 0; i < listaCliente.length; i++) {
             var nombreCliente = listaCliente[i].nombreProyecto;
 
             if (nombreCliente == nombreSelect) {
               var nuevaSolicitud = {
-                  $$mdSelectId : listaCliente[i].$$mdSelectId,
-                  $$hashKey : listaCliente[i].$$hashKey,
+                  _id : listaCliente[i]._id,
                   nombreProyecto : listaCliente[i].nombreProyecto,
                   nombreSolicitante : listaCliente[i].nombreSolicitante,
                   nombreEncargado : listaCliente[i].nombreEncargado,
@@ -500,26 +516,24 @@
                   capital : listaCliente[i].capital,
                   comentario: listaCliente[i].comentario,
                   estado : listaCliente[i].estado,
-                  profesorEncargado : adminCtrl.profesorProyecto.nombre
+                  profesorEncargado : nombreProfesor
               }
-
-              aSolicitud.push(nuevaSolicitud);
-            }else{
-              aSolicitud.push(listaCliente[i]);
             }
           }
 
-            homeService.setLocalSolicitud(aSolicitud);
+            homeService.setLocalSolicitud(nuevaSolicitud)
+            .success(function(data){
+              console.log(data);
 
-            init();
-            adminCtrl.profesorProyecto = null;
-            adminCtrl.proyectoAsignar = null;
+              init();
+              adminCtrl.profesorProyecto = null;
+              adminCtrl.proyectoAsignar = null;
+            })
       }
 
       adminCtrl.activarDesactivar = function(){
         var listaUsuario = adminCtrl.usuarioList,
             cedulaSelect = adminCtrl.cedulaPersona;
-            aUsuario = [];
 
           for (var i = 0; i < listaUsuario.length; i++) {
             var cedulaCliente = listaUsuario[i].cedula;
@@ -550,6 +564,46 @@
             adminCtrl.nombrePersona = null;
             adminCtrl.rolPersona = null;
             adminCtrl.estadoPersona = null;
+      }
+
+
+      adminCtrl.asignarContrasenaEstudiante = function(){
+        var listaUsuarios = adminCtrl.usuarioList,
+            estudianteSelect = adminCtrl.estudianteAsignar._id,
+            password = 'my-password';
+            preContrasena = adminCtrl.contrasenaEstudiante;
+
+          for (var i = 0; i < listaUsuarios.length; i++) {
+            var idEstudiante = listaUsuarios[i]._id;
+
+            if (idEstudiante == estudianteSelect) {
+              var nuevoUsuario = {
+                  _id : listaUsuarios[i]._id,
+                  nombre : listaUsuarios[i].nombre,
+                  contrasena : CryptoJS.AES.encrypt(preContrasena, password).toString(),
+                  cedula : listaUsuarios[i].cedula,
+                  fechaNacimiento : listaUsuarios[i].fechaNacimiento,
+                  direccion : listaUsuarios[i].direccion,
+                  correo : listaUsuarios[i].correo,
+                  telefono : listaUsuarios[i].telefono,
+                  genero: listaUsuarios[i].genero,
+                  rol: listaUsuarios[i].rol,
+                  carrera : listaUsuarios[i].carrera,
+                  curso : listaUsuarios[i].curso,
+                  estado: listaUsuarios[i].estado,
+                  resumen: listaUsuarios[i].resumen
+                }
+              }
+            }
+
+            usuarioService.setLocalUsuario(nuevoUsuario)
+            .success(function(data){
+            console.log(data);
+
+            init();
+            adminCtrl.estudianteAsignar = null;
+            adminCtrl.contrasenaEstudiante = null;
+          })
       }
 
 

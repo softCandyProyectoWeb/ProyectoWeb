@@ -1,17 +1,13 @@
 //Requerimos el modelo  de usuarios
 var User = require('./user.model.js');
 var config = require('../../config/database');
-var bcrypt = require('bcrypt');
 
 module.exports.save = function(req,res){ //exporta el controlador
-  var currentPass;
-  bcrypt.genSalt(10,function(err,salt){
-      bcrypt.hash(req.body.contrasena,salt,function(err,hash){
-        currentPass = hash;
+
 
         var newUser = new User({
           nombre:req.body.nombre,
-          contrasena:currentPass,
+          contrasena:req.body.contrasena,
           cedula:req.body.cedula,
           fechaNacimiento:req.body.fechaNacimiento,
           direccion:req.body.direccion,
@@ -32,8 +28,6 @@ module.exports.save = function(req,res){ //exporta el controlador
             res.json({success:true,msg:'El usuario se ha registrado correctamente.'});
           }
         });
-    });
-  });
 }
 
 module.exports.findAll = function(req,res){

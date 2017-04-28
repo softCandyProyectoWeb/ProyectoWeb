@@ -4,13 +4,6 @@
   .service('usuarioService', usuarioService);
 
 function usuarioService($http){
-	var usuario = [],
-      admin = [{"nombre":"Admin", "contrasena":"admin123", 
-      "correo":"admin@ucenfotec.ac.cr","rol":"Administrador"}];
-      carrera = [],
-      curso = [],
-      cita = [],
-      industria = [];
 
   var publicAPI = {
   	  agregarUsuario : _agregarUsuario,
@@ -19,13 +12,14 @@ function usuarioService($http){
       agregarCurso : _agregarCurso,
       agregarCita : _agregarCita,
       getUsuario : _getUsuario,
-      getAdmin : _getAdmin,
       getCarrera : _getCarrera,
       getCurso : _getCurso,
       getIndustria : _getIndustria,
       setLocalIndustria : localStorageIndustria,
       setLocalCarrera : localStorageCarrera,
-      setLocalUsuario : localStorageUsuario
+      setLocalUsuario : localStorageUsuario,
+      deleteCarrera : _deleteCarrera,
+      deleteIndustria : _deleteIndustria
     };
     return publicAPI;
 
@@ -47,17 +41,11 @@ function usuarioService($http){
   }
 
     function _agregarCita(pCita){
-    cita.push(pCita);
-    console.log(pCita);
-    localStorageCita(cita);
+    return $http.post('http://localhost:3000/api/cita',pCita);
   }
 
     function _getUsuario(){
       return $http.get('http://localhost:3000/api/users');
-    }
-
-    function _getAdmin(){
-      return admin;
     }
 
     function _getIndustria(){
@@ -91,6 +79,29 @@ function usuarioService($http){
 
     function localStorageCita(pCita){
       localStorage.setItem(['localCita'], JSON.stringify(pCita));
+    }
+
+    function _deleteCarrera(id){
+      return $http.delete('http://localhost:3000/api/carrera/' + id);
+    }
+
+    function _deleteIndustria(id){
+      return $http.delete('http://localhost:3000/api/industria/' + id);
+    }
+
+    function _getId(){
+      var id = Number(localStorage.getItem('id'));
+      if(id==null){
+        id = 0;
+      }else{
+        id++;
+      }
+      return id;
+    }
+    
+    function _setId(pid){
+    localStorage.setItem('id', pid);
+
     }
 
 }

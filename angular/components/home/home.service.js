@@ -4,8 +4,6 @@
   .service('homeService', homeService);
 
 function homeService($http){
-	var solicitud = [];
-  var estudiante = [];
 
   var publicAPI = {
   	  addSolicitud : _addSolicitud,
@@ -23,7 +21,7 @@ function homeService($http){
     }
 
     function localStorageSolicitud(pSolicitud){
-      return $http.put('http://localhost:3000/api/cliente');
+      return $http.put('http://localhost:3000/api/cliente', pSolicitud);
     }
 
 }

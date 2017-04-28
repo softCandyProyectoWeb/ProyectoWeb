@@ -13,7 +13,9 @@ module.exports.save = function(req,res){ //exporta el controlador
             objetivos:req.body.objetivos,
             capital:req.body.capital,
             resumen:req.body.resumen,
-            estado:req.body.estado
+            estado:req.body.estado,
+            profesorEncargado:req.body.profesorEncargado,
+            comentario: req.body.comentario
           });
 
         newCliente.save(function(err){

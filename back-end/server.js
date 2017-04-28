@@ -13,6 +13,7 @@ carreraRoutes = require('./api/components/carrera/carrera.route');
 industriaRoutes = require('./api/components/industria/industria.route');
 cursoRoutes = require('./api/components/curso/curso.route');
 clienteRoutes = require('./api/components/cliente/cliente.route');
+citaRoutes = require('./api/components/cita/cita.route');
 mongoose.Promise = require('bluebird');
 
 var app = express();
@@ -72,4 +73,5 @@ app.use('/api', carreraRoutes);
 app.use('/api', industriaRoutes);
 app.use('/api', cursoRoutes);
 app.use('/api', clienteRoutes);
+app.use('/api', citaRoutes);
 //se define el versionamiento del api

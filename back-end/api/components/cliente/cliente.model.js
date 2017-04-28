@@ -11,7 +11,9 @@ var ClienteSchema = new mongoose.Schema({
   objetivos: String,
   capital: String,
   resumen : String,
-  estado: String
+  estado: String,
+  profesorEncargado : String,
+  comentario: String
 });
 
 

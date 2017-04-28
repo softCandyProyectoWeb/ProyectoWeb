@@ -18,11 +18,6 @@
             homeCtrl.listaUsuarios = data;
 
           });
-/*        usuarioService.getAdmin()
-          .success(function(data){
-            homeCtrl.listaAdmin = data;
-
-          });*/
         usuarioService.getIndustria()
           .success(function(data){
             homeCtrl.industriasList = data;
@@ -111,7 +106,7 @@
           cedula : homeCtrl.cedulaEstudiante,
           direccion : homeCtrl.direccionEstudiante,
           correo : homeCtrl.correoSolicitudEstudiante,
-          numeroTelefono : homeCtrl.numeroTelefonoEstudiante,
+          telefono : homeCtrl.numeroTelefonoEstudiante,
           genero : homeCtrl.generoEstudiante,
           carrera : homeCtrl.carreraEstudiante.nombre,
           curso : homeCtrl.cursosAprobadosEstudiante.curso,
@@ -142,14 +137,18 @@
         var correoUsuario = homeCtrl.correoLogin,
             contrasennaUsuario = homeCtrl.contrasenaLogin,
             listaUsuario = homeCtrl.listaUsuarios;
-            listaAdmin = homeCtrl.listaAdmin;
+            var password = 'my-password';
+            var error = true;
+
 
         for (var i = 0; i < listaUsuario.length; i++) {
           var correo = listaUsuario[i].correo,
               contrasena = listaUsuario[i].contrasena,
+              contrasenaDes = CryptoJS.AES.decrypt(contrasena, password).toString(CryptoJS.enc.Utf8);
               estado = listaUsuario[i].estado,
               rol = listaUsuario[i].rol;
-          if (correo == correoUsuario && contrasena == contrasennaUsuario && estado == "Activo") {
+          if (correo == correoUsuario && contrasenaDes == contrasennaUsuario && estado == "Activo") {
+            error = false;
             if (rol == "Profesor") {
               location.href = '#/profesor';
             }
@@ -162,19 +161,29 @@
             else if(rol == "Estudiante") {
               location.href = '#/estudiante';
             }
+
           }
         }
 
-        for (var i = 0; i < listaAdmin.length; i++) {
+        for (var i = 0; i < listaUsuario.length; i++) {
           var correoUsuario = homeCtrl.correoLogin,
               contrasennaUsuario = homeCtrl.contrasenaLogin;
           if (correoUsuario == "admin@ucenfotec.ac.cr" && contrasennaUsuario == "admin123") {
+            error = false;
             location.href = '#/admin';
           }
         }
+
+        if (error == true) {
+        alert('Datos incorrectos o su estado es inactivo, por favor verifique con el Administrador');
+        }else{
+          alert('Bienvenido');
+        }
+
       }
+
+    
+
     }
-
-
      //se establece un objeto de angular normal
 })();

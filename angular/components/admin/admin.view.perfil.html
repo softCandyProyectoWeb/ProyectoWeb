@@ -499,5 +499,44 @@
 </section>
 </md-tab>
 
+<md-tab label="Asignar contraseña del estudiante">
+  <section>
+  <md-content layout-padding>
+    <div>
+      <form name="estudianteAsignarForm" id="estudianteAsignarForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Estudiante</label>
+            <md-select required ng-model="adminCtrl.estudianteAsignar" name="estudianteAsignar">
+            <md-option ng-value="estudiante" ng-repeat="estudiante in adminCtrl.usuarioList | filter:{rol:'Estudiante'}">{{estudiante.nombre}}</md-option>
+            </md-select>
+            <div ng-messages="estudianteAsignarForm.estudianteAsignar.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un estudiante
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nueva Contraseña</label>
+            <input required ng-model="adminCtrl.contrasenaEstudiante" name="contrasenaEstudiante" type="password">
+            <div ng-messages="estudianteAsignarForm.contrasenaEstudiante.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la contraseña</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button class="md-fab md-primary" aria-label="Editar persona" ng-click="adminCtrl.asignarContrasenaEstudiante()">
+          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Asignar contraseña al estudiante</md-tooltip>
+        </md-button>
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
 </md-tabs>
 </div>
