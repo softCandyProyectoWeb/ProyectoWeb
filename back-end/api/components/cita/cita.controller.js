@@ -6,9 +6,13 @@ module.exports.save = function(req,res){ //exporta el controlador
 
         var newCita = new Cita({
           profesor:req.body.profesor,
+          idProfesor:req.body.idProfesor,
           estudiante:req.body.estudiante,
+          idEstudiante:req.body.idEstudiante,
           fecha:req.body.fecha,
-          hora:req.body.hora
+          hora:req.body.hora,
+          estadoEstudiante:req.body.estadoEstudiante,
+          estadoProfesor:req.body.estadoProfesor
         });
 
         newCita.save(function(err){

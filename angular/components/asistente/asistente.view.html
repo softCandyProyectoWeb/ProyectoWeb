@@ -64,8 +64,9 @@
       <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Fecha Cita</label>
-            <md-datepicker required ng-model="asistenteCtrl.fechaCita" name="fechaCita"></md-datepicker>
-            <div ng-messages="solicitudEstudianteForm.fechaCita.$error" role="alert" multiple>
+            <md-datepicker required ng-model="asistenteCtrl.fechaCita" name="fechaCita" ng-focus="asistenteCtrl.validarFecha()" md-min-date="asistenteCtrl.fechaCita.minDate" 
+               md-max-date="asistenteCtrl.fechaCita.maxDate"></md-datepicker>
+            <div ng-messages="crearCitaForm.fechaCita.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar la fecha de la cita</div>
             </div>
           </md-input-container>
@@ -74,18 +75,15 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Hora de la cita</label>
-            <input ng-model="asistenteCtrl.horaCita" name="horaCita" type="time" required>
+            <input ng-model="asistenteCtrl.horaCita" name="horaCita" type="time" required min="08:00:00" max="17:00:00">
             <div ng-messages="crearCitaForm.horaCita.$error" role="alert" multiple>
+              <div ng-message="min" class="my-message">La hora de la cita debe ser solo de 8:00 am a 5:00 pm</div>
+              <div ng-message="max" class="my-message">La hora de la cita debe ser solo de 8:00 am a 5:00 pm</div>
             </div>
           </md-input-container>
         </div>
 
-
-        <md-button class="md-fab md-primary" aria-label="Crear cita" ng-click="asistenteCtrl.agregarCita()">
-          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Crear cita</md-tooltip>
-        </md-button>
-
+        <md-button id="btnIngresar" ng-disabled="!crearCitaForm.$valid" class="btn btn-success" aria-label="CrearCita" ng-click="asistenteCtrl.agregarCita()"><span class="menu-icon fa fa-calendar"></span> Crear cita</md-button>
 
       </form>
     </div>

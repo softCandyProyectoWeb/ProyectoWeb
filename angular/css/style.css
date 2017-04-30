@@ -186,3 +186,17 @@ a{
 #divResumen{
   margin: 20px 0; 
 }
+
+#columnaPerfil{
+  background-color: #cecece;
+  height: 640px;
+  width: 20%;
+}
+
+#sectionPerfil{
+  margin-top: 50px;
+}
+
+md-content{
+  background-color: #fff;
+}

@@ -21,30 +21,70 @@
             asistenteCtrl.usuariosList = data;
 
           });
+
+        usuarioService.getCita()
+          .success(function(data){
+            asistenteCtrl.citaList = data;
+
+          });
       }
       init();
 
 
       asistenteCtrl.agregarCita = function(){
+        var listaCita = asistenteCtrl.citaList;
+
         var nuevaCita = {
           profesor: asistenteCtrl.nombreProfesorCita.nombre,
+          idProfesor : asistenteCtrl.nombreProfesorCita._id,
           estudiante : asistenteCtrl.nombreEstudianteCita.nombre,
-          fecha : asistenteCtrl.fechaCita,
-          hora : asistenteCtrl.horaCita
+          idEstudiante : asistenteCtrl.nombreEstudianteCita._id,
+          fecha : asistenteCtrl.fechaCita.getUTCDate() + '/' + (asistenteCtrl.fechaCita.getMonth()+1) + '/' + 
+          asistenteCtrl.fechaCita.getFullYear(),
+          hora : asistenteCtrl.horaCita.getHours() + ':' + asistenteCtrl.horaCita.getMinutes(),
+          estadoEstudiante : "No aceptada",
+          estadoProfesor : "No aceptada"
         }
 
-        usuarioService.agregarCita(nuevaCita)
-        .success(function(data){
-          console.log(data);
+        var correoCitaEstudiante = {
+          correo : asistenteCtrl.nombreEstudianteCita.correo,
+          fecha : asistenteCtrl.fechaCita.getUTCDate() + '/' + (asistenteCtrl.fechaCita.getMonth()+1) + '/' + 
+          asistenteCtrl.fechaCita.getFullYear(),
+          hora : asistenteCtrl.horaCita.getHours() + ':' + asistenteCtrl.horaCita.getMinutes(),
+          asunto : 'Convocatoria de Cita de ' + asistenteCtrl.nombreEstudianteCita.nombre
+        }
+
+        var correoCitaProfesor = {
+          correo : asistenteCtrl.nombreProfesorCita.correo,
+          fecha : asistenteCtrl.fechaCita.getUTCDate() + '/' + (asistenteCtrl.fechaCita.getMonth()+1) + '/' + 
+          asistenteCtrl.fechaCita.getFullYear(),
+          hora : asistenteCtrl.horaCita.getHours() + ':' + asistenteCtrl.horaCita.getMinutes(),
+          asunto : 'Convocatoria de Cita de ' + asistenteCtrl.nombreProfesorCita.nombre
+        }
+
+        for (var i = 0; i < listaCita.length; i++) {
+          var horaCitaDB = listaCita[i].hora,
+              fechaCitaDB = listaCita[i].fecha;
+
+          if (horaCitaDB == nuevaCita.hora && fechaCitaDB == nuevaCita.fecha) {
+            alert('La fecha y hora elegidas para la cita ya estan ocupadas por otra cita');
+          }
+        }
+
+          usuarioService.agregarCita(nuevaCita)
+            .success(function(data){
+              console.log(data);
+            })
 
             init();
             asistenteCtrl.nombreProfesorCita.nombre = null;
             asistenteCtrl.nombreEstudianteCita.nombre = null;
             asistenteCtrl.fechaCita = null;
             asistenteCtrl.horaCita = null;
+            usuarioService.enviarCorreo(correoCitaEstudiante);
+            usuarioService.enviarCorreo(correoCitaProfesor);
 
-        })
-      }
+        }
 
       asistenteCtrl.buscaAgregarComentarioEstudiante = function(){
         var listaPersona = asistenteCtrl.usuariosList;
@@ -152,6 +192,20 @@
             })
 
       }
+
+         asistenteCtrl.validarFecha = function () {
+            asistenteCtrl.fechaCita = new Date();
+            
+            asistenteCtrl.fechaCita.minDate = new Date(
+               asistenteCtrl.fechaCita.getFullYear(),
+               asistenteCtrl.fechaCita.getMonth(),
+               asistenteCtrl.fechaCita.getDate());
+
+            asistenteCtrl.fechaCita.maxDate = new Date(
+               asistenteCtrl.fechaCita.getFullYear(),
+               asistenteCtrl.fechaCita.getMonth() + 2,
+               asistenteCtrl.fechaCita.getDate());
+         }  
 
 
       

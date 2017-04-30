@@ -8,120 +8,98 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img src="images/logo.png" alt="" width="200px"></a>
+      <img src="images/logo.png" alt="" width="200px">
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Proceso</a></li>
-        <li><a href="#">Solicitud</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="" data-toggle="modal" data-target="#myModal">Ingresar</a></li>
-        <li><a href="#">Registrarse</a></li>
+      <ul class="nav navbar-nav navbar-right" id="navLogin">
+        <a href="#home"><li><button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-in"></span>  Cerrar Sesion</button></li></a>  
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
-<div>
 
+<div class="col-lg-3" id="columnaPerfil">
+    <form name="sectionPerfil" id="sectionPerfil">
+      <h3>Perfil</h3>
+      <section ng-repeat="estudiante in estudianteCtrl.usuarioList | filter:{_id: estudianteCtrl.estudianteActivo}">
+        {{estudiante.nombre}}
+      </section>
+      <section ng-repeat="estudiante in estudianteCtrl.usuarioList | filter:{_id: estudianteCtrl.estudianteActivo}">
+        {{estudiante.correo}}
+      </section>
+      <section ng-repeat="estudiante in estudianteCtrl.usuarioList | filter:{_id: estudianteCtrl.estudianteActivo}">
+        {{estudiante.cedula}}
+      </section>
+    </form>
 </div>
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+<div class="col-lg-9">
+    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+      <div class="col-lg-12">
+        
+        <md-tab label="Proyectos">
+          <section>
+            <md-content>
+              <div layout-padding>
+                <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Iniciar Sesión</h4>
-      </div>
-      <div class="modal-body">
-          <md-content layout-padding>
-    <div>
-      <form name="estudianteForm">
+            </form>
+          </div>
+        </md-content>
+      </section>
+    </md-tab>
+  
+<md-tab label="Citas">
+  <section>
+    <md-content>
+      <div layout-padding>
+        <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
+          <h3>Ver citas a entrevista</h3>
+                  
+          <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+            <thead>
+              <tr>
+                <th>Cita con el profesor</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Estado de la cita</th>
+                <th>Enviar Respuesta</th>
 
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Correo electronico</label>
-            <input required ng-model="estudianteCtrl.correoEstudiante" name="correoElectronico">
-            <div ng-messages="estudianteForm.correoElectrico.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un correo electronico</div>
-            </div>
-          </md-input-container>
-        </div>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="cita in estudianteCtrl.citaList | filter:{idEstudiante: estudianteCtrl.estudianteActivo}">
+                <td>{{cita.profesor}}</td>
+                <td>{{cita.fecha}}</td>
+                <td>{{cita.hora}}</td>
+                <td>{{cita.estadoEstudiante}}</td>
+                <td><md-button class="btn btn-primary" ng-disabled="cita.estadoEstudiante=='Aceptada'" ng-click="estudianteCtrl.aceptaEntrevista(cita._id)">Aceptar cita</md-button></a></td>
+              </tr>
+            </tbody>
+          </table>
 
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Contraseña</label>
-            <input type= "password" required ng-model="estudianteCtrl.contrasena" name="contrasena" type="password">
-            <div ng-messages="estudianteForm.contrasena.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar una contraseña</div>
-            </div>
-          </md-input-container>
-        </div>
-      </form>
-    </div>
-  </md-content>
+        </form>
       </div>
-      <div class="modal-footer">
-      <md-button class="md-fab md-primary" aria-label="Ingresar" ng-click="estudianteCtrl.login()">
-          <md-icon md-svg-src="vendor/img/icons/ic_check_white_24px.svg"></md-icon>
-          <md-tooltip md-direction="right">Ingresar</md-tooltip>
-        </md-button>
-      </div>
-    </div>
+    </md-content>
+  </section>
+</md-tab>
+
+      <md-tab label="Reporte de horas">
+          <section>
+            <md-content>
+              <div layout-padding>
+                <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
+            </form>
+          </div>
+        </md-content>
+      </section>
+    </md-tab>
 
   </div>
-</div>
-
-
-<div class="col-lg-12 text-center">
-  <h1>¡Bienvenido!</h1>
-</div>
-
-<div class="col-lg-12 text-center" ng-repeat="estudiante in estudianteCtrl.ListEstudiantes | filter:{rol: 'Estudiante'}">
-   <h3>{{estudiante.nombre}}</h3>
-</div>
-
-
-<div class="col-lg-12">
-<md-tabs>
-  <md-tab label="Perfil" >
-      <form name="tablaSolicitudes" id="tablaSolicitudes">
-        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
-          <thead>
-            <tr>
-              <th>Nombre del estudiante</th>
-              <th>Numero de cédula</th>
-              <th>Fecha de Nacimiento</th>
-              <th>Correo Electronico</th>
-              <th>Dirección</th>
-              <th>Número de teléfono</th>
-              <th>Genero</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="estudiante in estudianteCtrl.ListEstudiantes | filter: {rol:'Estudiante'}">
-              <td>{{estudiante.nombre}}</td>
-              <td>{{estudiante.cedula}}</td>
-              <td>{{estudiante.fechaNacimiento}}</td>
-              <td>{{estudiante.correo}}</td>
-              <td>{{estudiante.direccion}}</td>
-              <td>{{estudiante.telefono}}</td>
-              <td>{{estudiante.genero}}</td>
-            </tr>
-          </tbody>
-        </table>
-
-      </form>
-    </md-tab>
-  </md-tabs>
+</md-tabs>
 </div>
 
 

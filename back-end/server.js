@@ -16,6 +16,8 @@ clienteRoutes = require('./api/components/cliente/cliente.route');
 citaRoutes = require('./api/components/cita/cita.route');
 mongoose.Promise = require('bluebird');
 
+var correoRoutes = require('./api/components/correo/correo.route');
+
 var app = express();
 app.use(express.static(__dirname + "/client"));//maneja archivos estáticos como un app web
 app.use(express.static(__dirname + "/client/content/css/bootstrap.css.map"));
@@ -74,4 +76,5 @@ app.use('/api', industriaRoutes);
 app.use('/api', cursoRoutes);
 app.use('/api', clienteRoutes);
 app.use('/api', citaRoutes);
+app.use('/api', correoRoutes);
 //se define el versionamiento del api

@@ -11,38 +11,45 @@ function usuarioService($http){
       agregarCarrera : _agregarCarrera,
       agregarCurso : _agregarCurso,
       agregarCita : _agregarCita,
+      enviarCorreo : _enviarCorreo,
       getUsuario : _getUsuario,
       getCarrera : _getCarrera,
       getCurso : _getCurso,
+      getCita : _getCita,
       getIndustria : _getIndustria,
       setLocalIndustria : localStorageIndustria,
       setLocalCarrera : localStorageCarrera,
+      setLocalCita : localStorageCita,
       setLocalUsuario : localStorageUsuario,
       deleteCarrera : _deleteCarrera,
       deleteIndustria : _deleteIndustria
     };
     return publicAPI;
 
- function _agregarUsuario(pUsuario){
-  
-      return $http.post('http://localhost:3000/api/users',pUsuario);
+   function _agregarUsuario(pUsuario){
+    
+        return $http.post('http://localhost:3000/api/users',pUsuario);
+      }
+
+    function _agregarIndustria(pIndustria){
+      return $http.post('http://localhost:3000/api/industria',pIndustria);
     }
 
-  function _agregarIndustria(pIndustria){
-    return $http.post('http://localhost:3000/api/industria',pIndustria);
-  }
+    function _agregarCarrera(pCarrera){
+      return $http.post('http://localhost:3000/api/carrera',pCarrera);
+    }
 
-  function _agregarCarrera(pCarrera){
-    return $http.post('http://localhost:3000/api/carrera',pCarrera);
-  }
+    function _agregarCurso(pCurso){
+      return $http.post('http://localhost:3000/api/curso',pCurso);
+    }
 
-  function _agregarCurso(pCurso){
-    return $http.post('http://localhost:3000/api/curso',pCurso);
-  }
+      function _agregarCita(pCita){
+      return $http.post('http://localhost:3000/api/cita',pCita);
+    }
 
-    function _agregarCita(pCita){
-    return $http.post('http://localhost:3000/api/cita',pCita);
-  }
+    function _enviarCorreo(pCorreo){
+      return $http.post('http://localhost:3000/api/correo', pCorreo);
+    }
 
     function _getUsuario(){
       return $http.get('http://localhost:3000/api/users');
@@ -59,6 +66,10 @@ function usuarioService($http){
 
     function _getCurso(){
       return $http.get('http://localhost:3000/api/curso');
+    }
+
+    function _getCita(){
+      return $http.get('http://localhost:3000/api/cita');
     }
 
     function localStorageUsuario(pUsuario){
@@ -78,7 +89,7 @@ function usuarioService($http){
     }
 
     function localStorageCita(pCita){
-      localStorage.setItem(['localCita'], JSON.stringify(pCita));
+      return $http.put('http://localhost:3000/api/cita',pCita);
     }
 
     function _deleteCarrera(id){

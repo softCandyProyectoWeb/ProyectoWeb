@@ -143,6 +143,7 @@
 
         for (var i = 0; i < listaUsuario.length; i++) {
           var correo = listaUsuario[i].correo,
+              id = listaUsuario[i]._id,
               contrasena = listaUsuario[i].contrasena,
               contrasenaDes = CryptoJS.AES.decrypt(contrasena, password).toString(CryptoJS.enc.Utf8);
               estado = listaUsuario[i].estado,
@@ -160,6 +161,8 @@
             }
             else if(rol == "Estudiante") {
               location.href = '#/estudiante';
+              document.cookie = id;
+
             }
 
           }
