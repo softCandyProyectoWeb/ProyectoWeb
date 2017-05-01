@@ -83,7 +83,9 @@
           </md-input-container>
         </div>
 
-        <md-button id="btnIngresar" ng-disabled="!crearCitaForm.$valid" class="btn btn-success" aria-label="CrearCita" ng-click="asistenteCtrl.agregarCita()"><span class="menu-icon fa fa-calendar"></span> Crear cita</md-button>
+        <md-button id="btnIngresar" ng-disabled="!crearCitaForm.$valid" class="btn btn-success" aria-label="CrearCita" ng-click="asistenteCtrl.agregarCita()"><span class="menu-icon fa fa-calendar"></span> Crear cita
+        <md-tooltip md-direction="right">Crear la cita</md-tooltip>
+        </md-button>
 
       </form>
     </div>
@@ -131,17 +133,19 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Comentarios</label>
-            <textarea ng-model="asistenteCtrl.comentarioExpediente" name="comentarioExpediente" ng-maxlength="100"></textarea>
+            <textarea md-no-resize md-no-autogrow ng-model="asistenteCtrl.comentarioExpediente" name="comentarioExpediente" md-maxlength="300" maxlength="300" md-minlength="15" minlength="15" rows="2" cols="1" required></textarea>
             <div ng-messages="editarExpedienteClienteForm.comentarioExpediente.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe escribir uno o varios comentarios
+              </div>
+              <div ng-message="minlength" class="my-message">Los comentarios deben tener más de 15 caracteres.
+              </div>
             </div>
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Editar expediente cliente" ng-click="asistenteCtrl.agregarComentarioCliente()">
-          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Agregar comentarios</md-tooltip>
+        <md-button id="btnIngresar" ng-disabled="!editarExpedienteClienteForm.$valid" class="btn btn-success" aria-label="Agregar comentarios" ng-click="asistenteCtrl.agregarComentarioCliente()"><span class="menu-icon fa fa-comment-o"></span> Agregar Comentarios
+        <md-tooltip md-direction="right">Agregar comentarios al expediente</md-tooltip>
         </md-button>
-
 
       </form>
     </div>
@@ -198,16 +202,18 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Comentarios</label>
-            <textarea required ng-model="asistenteCtrl.comentarioEstudianteExpediente" name="comentarioEstudianteExpediente" maxlength="100"></textarea>
+            <textarea md-no-resize md-no-autogrow required ng-model="asistenteCtrl.comentarioEstudianteExpediente" name="comentarioEstudianteExpediente" md-maxlength="300" maxlength="300" md-minlength="15" minlength="15" rows="2" cols="1"></textarea>
             <div ng-messages="agregarComentarioEstudiante.comentarioEstudianteExpediente.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar un comentario</div>
+              <div ng-message="required" class="my-message">Debe escribir uno o varios comentarios
+              </div>
+              <div ng-message="minlength" class="my-message">Los comentarios deben tener más de 15 caracteres.
+              </div>
             </div>
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Agregar comentarios" ng-click="asistenteCtrl.agregarComentarioEstudiante()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Agregar comentarios</md-tooltip>
+        <md-button id="btnIngresar" ng-disabled="!agregarComentarioEstudiante.$valid" class="btn btn-success" aria-label="Agregar comentarios" ng-click="asistenteCtrl.agregarComentarioEstudiante()"><span class="menu-icon fa fa-comment-o"></span> Agregar Comentarios
+        <md-tooltip md-direction="right">Agregar comentarios al expediente</md-tooltip>
         </md-button>
 
       </form>

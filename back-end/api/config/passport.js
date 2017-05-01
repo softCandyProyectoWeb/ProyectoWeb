@@ -77,5 +77,16 @@ module.exports = function(passport){
       }
     });
 
+    Bitacora.find({id:jwt_payload.sub},function(err,bitacora){
+      if(err){
+        return done(err,false);
+      }
+      if(bitacora){
+        done(null,bitacora);
+      }else{
+        done(null,false);
+      }
+    });
+
   }));
 };

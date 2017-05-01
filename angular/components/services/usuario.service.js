@@ -11,6 +11,7 @@ function usuarioService($http){
       agregarCarrera : _agregarCarrera,
       agregarCurso : _agregarCurso,
       agregarCita : _agregarCita,
+      agregarBitacora : _agregarBitacora,
       enviarCorreo : _enviarCorreo,
       getUsuario : _getUsuario,
       getCarrera : _getCarrera,
@@ -21,6 +22,7 @@ function usuarioService($http){
       setLocalCarrera : localStorageCarrera,
       setLocalCita : localStorageCita,
       setLocalUsuario : localStorageUsuario,
+      deleteUsuario : _deleteUsuario,
       deleteCarrera : _deleteCarrera,
       deleteIndustria : _deleteIndustria
     };
@@ -43,12 +45,16 @@ function usuarioService($http){
       return $http.post('http://localhost:3000/api/curso',pCurso);
     }
 
-      function _agregarCita(pCita){
+    function _agregarCita(pCita){
       return $http.post('http://localhost:3000/api/cita',pCita);
     }
 
     function _enviarCorreo(pCorreo){
       return $http.post('http://localhost:3000/api/correo', pCorreo);
+    }
+
+    function _agregarBitacora(pRegistro){
+      return $http.post('http://localhost:3000/api/bitacora',pRegistro);
     }
 
     function _getUsuario(){
@@ -98,6 +104,10 @@ function usuarioService($http){
 
     function _deleteIndustria(id){
       return $http.delete('http://localhost:3000/api/industria/' + id);
+    }
+
+    function _deleteUsuario(id){
+      return $http.delete('http://localhost:3000/api/users/' + id);
     }
 
     function _getId(){

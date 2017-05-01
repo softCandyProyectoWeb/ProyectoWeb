@@ -11,6 +11,9 @@
         usuarioService.getIndustria()
           .success(function(data){
             adminCtrl.industriasList = data;
+            $('#tblProyectosEspera').hide();
+            $('#tblProyectosCapital').hide();
+            $('#tblProyectosProfesor').hide();
 
           });
 
@@ -37,7 +40,7 @@
             adminCtrl.usuarioList = data;
 
           });
-        
+
       }
       init();
 
@@ -66,6 +69,12 @@
       }
 
       adminCtrl.saveProfesor= function(pFoto){
+        var listaUsuarios =  adminCtrl.usuarioList,
+            error = false;
+            var fechaActual = new Date();
+            var horaActual = new Date();
+
+
         var nuevoProfesor ={
           nombre : adminCtrl.nombreProfesor,
           contrasena : adminCtrl.contrasenaProfesor,
@@ -81,7 +90,17 @@
           
         }
 
-        usuarioService.agregarUsuario(nuevoProfesor)
+        for (var i = 0; i < listaUsuarios.length; i++) {
+          var cedulaBD = listaUsuarios[i].cedula;
+
+          if (cedulaBD == nuevoProfesor.cedula) {
+            error = true;
+          }
+        }
+
+        if (error == false) {
+
+          usuarioService.agregarUsuario(nuevoProfesor)
           .success(function(data){
           console.log(data);
 
@@ -92,14 +111,38 @@
           adminCtrl.direccionProfesor = null;
           adminCtrl.correoProfesor = null;
           adminCtrl.numeroTelefonoProfesor = null;
-          adminCtrl.generoProfesor = null;  
+          adminCtrl.generoProfesor = null;
+          adminCtrl.fotoProfesor = null;  
           init();
         })
 
-  
-      }
+        } else {
+            alert('No se pudo insertar el usuario.\nYa existe un registro con la cedula: '
+             + nuevoProfesor.cedula);
+            adminCtrl.cedulaProfesor = null;
+        }
+
+        var nuevoRegistro = {
+            accion: "Agregar usuario tipo: Profesor",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
+        }
+
+      
 
       adminCtrl.saveAsistente= function(pFoto){
+        var listaUsuarios =  adminCtrl.usuarioList,
+        error = false;
+        var fechaActual = new Date();
+        var horaActual = new Date();
+
         var nuevoAsistente ={
           nombre : adminCtrl.nombreAsistente,
           contrasena : adminCtrl.contrasenaAsistente,
@@ -115,7 +158,19 @@
           
         }
 
-        usuarioService.agregarUsuario(nuevoAsistente);
+        for (var i = 0; i < listaUsuarios.length; i++) {
+          var cedulaBD = listaUsuarios[i].cedula;
+
+          if (cedulaBD == nuevoAsistente.cedula) {
+            error = true;
+          }
+        }
+
+        if (error == false) {
+
+        usuarioService.agregarUsuario(nuevoAsistente)
+          .success(function(data){
+            console.log(data);
 
           adminCtrl.nombreAsistente = null;
           adminCtrl.contrasenaAsistente = null;
@@ -125,9 +180,36 @@
           adminCtrl.correoAsistente = null;
           adminCtrl.numeroTelefonoAsistente = null;
           adminCtrl.generoAsistente = null;    
+          init();
+        })
       }
 
+      else {
+            alert('No se pudo insertar el usuario.\nYa existe un registro con la cedula: '
+             + nuevoAsistente.cedula);
+            adminCtrl.cedulaAsistente = null;
+        }
+
+        var nuevoRegistro = {
+            accion: "Agregar usuario tipo: Asistente",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
+        }
+      
+
       adminCtrl.saveConsejo= function(pFoto){
+        var listaUsuarios =  adminCtrl.usuarioList,
+        error = false;
+        var fechaActual = new Date();
+        var horaActual = new Date();
+
         var nuevoConsejo ={
           nombre : adminCtrl.nombreConsejo,
           contrasena : adminCtrl.contrasenaConsejo,
@@ -143,7 +225,19 @@
           
         }
 
-        usuarioService.agregarUsuario(nuevoConsejo);
+        for (var i = 0; i < listaUsuarios.length; i++) {
+          var cedulaBD = listaUsuarios[i].cedula;
+
+          if (cedulaBD == nuevoConsejo.cedula) {
+            error = true;
+          }
+        }
+
+        if (error == false) {
+
+        usuarioService.agregarUsuario(nuevoConsejo)
+          .success(function(data){
+            console.log(data);
 
           adminCtrl.nombreConsejo = null;
           adminCtrl.contrasenaConsejo = null;
@@ -153,7 +247,69 @@
           adminCtrl.correoConsejo = null;
           adminCtrl.numeroTelefonoConsejo = null;
           adminCtrl.generoConsejo = null;    
+          init();
+        })
       }
+
+      else {
+          alert('No se pudo insertar el usuario.\nYa existe un registro con la cedula: '
+            + nuevoConsejo.cedula);
+            adminCtrl.cedulaConsejo = null;
+        }
+
+        var nuevoRegistro = {
+            accion: "Agregar usuario tipo: Consejo",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
+      }
+
+
+      adminCtrl.borrarUsuario = function(){
+        var listaUsuarios =  adminCtrl.usuarioList;
+        var usuarioSelect = adminCtrl.cedulaPersonaEditar;
+        var fechaActual = new Date();
+        var horaActual = new Date();
+
+        for (var i = 0; i < listaUsuarios.length; i++) {
+          idUsuario = listaUsuarios[i].cedula;
+          if (usuarioSelect == idUsuario) {
+            idUsuario = listaUsuarios[i]._id;
+            usuarioService.deleteUsuario(idUsuario)
+            .success(function(data){
+        
+              init();
+              alert('Usuario borrado exitosamente');
+              adminCtrl.cedulaPersonaEditar = null;
+              adminCtrl.nombreEditar = null;
+              adminCtrl.correoEditar = null;
+              adminCtrl.numeroTelefonoEditar = null;
+              adminCtrl.direccionEditar = null;
+              adminCtrl.rolPersonaEditar = null;
+        })
+      }
+    }
+
+        var nuevoRegistro = {
+            accion: "Borrar Usuario",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
+  }
+
+
 
       adminCtrl.preActivarPerfil = function(){
         var listaPersona = adminCtrl.usuarioList;
@@ -186,46 +342,99 @@
       }
 
       adminCtrl.agregarCarrera = function(){
-        //var listaCarrera = adminCtrl.carrerasList;
+        var listaCarrera = adminCtrl.carrerasList,
+            error = false;
+            var fechaActual = new Date();
+            var horaActual = new Date();
+
         var nuevaCarrera = {
-          idCarrera: adminCtrl.idCarrera,
+          idCarrera : "WEB-" + adminCtrl.nombreCarrera,
           nombre : adminCtrl.nombreCarrera
         }
-        
-        usuarioService.agregarCarrera(nuevaCarrera)
-        .success(function(data){
-          console.log(data);
-        adminCtrl.idCarrera = null;
-        adminCtrl.nombreCarrera = null;
-        init();
-      })
-    }
 
-      adminCtrl.agregarCurso = function(){
-        var nuevoCurso ={
-          carrera : adminCtrl.carreraCurso.nombre,
-          curso : adminCtrl.nombreCurso,
+        for (var i = 0; i < listaCarrera.length; i++) {
+          var idCarrera = listaCarrera[i].idCarrera,
+              nombreCarrera = listaCarrera[i].nombre
+
+          if (nuevaCarrera.idCarrera == idCarrera || nombreCarrera == nuevaCarrera.nombre) {
+            error = true;
+          }
         }
 
-        usuarioService.agregarCurso(nuevoCurso);
-        init();
-        adminCtrl.carreraCurso = null;
-        adminCtrl.nombreCurso = null;
+        if (error == false) {
+
+          usuarioService.agregarCarrera(nuevaCarrera)
+          .success(function(data){
+            console.log(data);
+          
+            alert('Carrera agregada exitosamente');
+            adminCtrl.nombreCarrera = null;
+            init();
+          })
+
+        }else {
+          alert('No se pudo insertar la carrera.\nYa existe un registro con ese nombre.');
+        }
+
+        var nuevoRegistro = {
+            accion: "Agregar carrera",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
       }
 
       adminCtrl.agregarIndustria = function(){
+
+        var listaIndustria = adminCtrl.industriasList,
+            error = false;
+            var fechaActual = new Date();
+            var horaActual = new Date();
+
         var nuevaIndustria ={
           nombre : adminCtrl.nombreIndustria
         }
 
-        usuarioService.agregarIndustria(nuevaIndustria)
-        .success(function(data){
-          console.log(data);
-        })
+        for (var i = 0; i < listaIndustria.length; i++) {
+          var nombreCarrera = listaIndustria[i].nombre;
 
-        init();
-        adminCtrl.nombreIndustria = null;
-      }
+          if (nombreCarrera == nuevaIndustria.nombre) {
+            error = true;
+          }
+        }
+
+        if (error == false) {
+
+        usuarioService.agregarIndustria(nuevaIndustria)
+          .success(function(data){
+            console.log(data);
+
+            init();
+            alert('Industria agregada exitosamente');
+            adminCtrl.nombreIndustria = null;
+          })
+      
+        }else {
+            alert('No se pudo insertar la industria.\nYa existe un registro con ese nombre.');
+          }
+
+          var nuevoRegistro = {
+            accion: "Agregar industria",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
+        }
 
       adminCtrl.buscaEditarIndustria = function(){
         var listaIndustria = adminCtrl.industriasList;
@@ -242,6 +451,8 @@
       adminCtrl.borrarIndustria = function(){
         var listaIndustria = adminCtrl.industriasList;
         var industriaSelect = adminCtrl.industriaEditar._id;
+        var fechaActual = new Date();
+        var horaActual = new Date();
 
         for (var i = 0; i < listaIndustria.length; i++) {
           idIndustria = listaIndustria[i]._id;
@@ -250,17 +461,32 @@
             .success(function(data){
         
               init();
+              alert('Industria borrada exitosamente');
               adminCtrl.industriaEditar = null;
               adminCtrl.nombreIndustriaEditar = null;
 
         })
       }
     }
+
+        var nuevoRegistro = {
+            accion: "Borrar industria",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
   }
 
       adminCtrl.editarIndustria = function(){
         var listaIndustria = adminCtrl.industriasList,
-            industriaSelect = adminCtrl.industriaEditar.nombre
+            industriaSelect = adminCtrl.industriaEditar.nombre;
+            var fechaActual = new Date();
+            var horaActual = new Date();
 
         for (var i = 0; i < listaIndustria.length; i++) {
           var nombreIndustria = listaIndustria[i].nombre;
@@ -278,16 +504,30 @@
             console.log(data);
 
           init();
+          alert('Industria editada exitosamente');
           adminCtrl.industriaEditar = null;
           adminCtrl.nombreIndustriaEditar = null;
         
           })
+
+          var nuevoRegistro = {
+            accion: "Editar industria",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
         }
 
       adminCtrl.editarPerfil = function(){
         var listaUsuarios = adminCtrl.usuarioList,
-            cedulaSelect = adminCtrl.cedulaPersonaEditar,
-            aUsuario = [];
+            cedulaSelect = adminCtrl.cedulaPersonaEditar;
+            var fechaActual = new Date();
+            var horaActual = new Date();
 
           for (var i = 0; i < listaUsuarios.length; i++) {
             var cedula = listaUsuarios[i].cedula;
@@ -316,6 +556,8 @@
             .success(function(data){
             console.log(data);
 
+            alert('Usuario editado exitosamente');
+
             adminCtrl.cedulaPersonaEditar = null;
             adminCtrl.nombreEditar = null;
             adminCtrl.direccionEditar = null;
@@ -325,6 +567,19 @@
             adminCtrl.rolPersonaEditar = null;
             init();
           })
+
+            var nuevoRegistro = {
+            accion: "Editar perfil",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
+
       }
 
       adminCtrl.buscarEstudianteExpediente = function(){
@@ -401,6 +656,8 @@
       adminCtrl.borrarCarrera = function(){
         var listaCarrera = adminCtrl.carrerasList;
         var carreraSelect = adminCtrl.carreraSelect._id;
+        var fechaActual = new Date();
+        var horaActual = new Date();
 
         for (var i = 0; i < listaCarrera.length; i++) {
           idCarrera = listaCarrera[i]._id;
@@ -409,40 +666,67 @@
             .success(function(data){
         
               init();
+              alert('Carrera borrada exitosamente');
               adminCtrl.carreraSelect = null;
               adminCtrl.nombreCarreraEditar = null;
               adminCtrl.idCarreraEditar = null;
         })
       }
     }
+
+          var nuevoRegistro = {
+            accion: "Borrar carrera",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
   }
 
       adminCtrl.editarCarrera = function(){
         var listaCarrera = adminCtrl.carrerasList,
             carreraSelect = adminCtrl.carreraSelect.nombre;
-            aCarrera = [];
+            var fechaActual = new Date();
+            var horaActual = new Date();
 
           for (var i = 0; i < listaCarrera.length; i++) {
-            var nombreCarrera = listaCarrera[i].nombre;
+            var idCarrera = listaCarrera[i]._id;
 
             if (nombreCarrera == carreraSelect) {
               var nuevaCarrera = {
-                  id : adminCtrl.idCarreraEditar,
-                  nombre : adminCtrl.nombreCarreraEditar,
+                  _id : listaCarrera[i]._id,
+                  nombre : adminCtrl.nombreCarreraEditar
+                }
               }
-
-              aCarrera.push(nuevaCarrera);
-            }else{
-              aCarrera.push(listaCarrera[i]);
             }
-          }
 
-            usuarioService.setLocalCarrera(aCarrera);
+            usuarioService.setLocalCarrera(nuevaCarrera)
+            .success(function(data){
+              console.log(data);
 
-            init();
-            adminCtrl.carreraSelect = null;
-            adminCtrl.idCarreraEditar = null;
-            adminCtrl.nombreCarreraEditar = null;
+              init();
+              alert('Carrera editada exitosamente');
+              adminCtrl.carreraSelect = null;
+              adminCtrl.idCarreraEditar = null;
+              adminCtrl.nombreCarreraEditar = null;
+            })
+
+
+            var nuevoRegistro = {
+            accion: "Editar carrera",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })  
       }
 
       adminCtrl.buscarClienteExpediente = function(){
@@ -469,8 +753,7 @@
 
             if (nombreCliente == nombreSelect) {
               var nuevaSolicitud = {
-                  $$mdSelectId : listaCliente[i].$$mdSelectId,
-                  $$hashKey : listaCliente[i].$$hashKey,
+                  _id: listaCliente[i]._id,
                   nombreProyecto : listaCliente[i].nombreProyecto,
                   nombreSolicitante : listaCliente[i].nombreSolicitante,
                   nombreEncargado : listaCliente[i].nombreEncargado,
@@ -480,26 +763,27 @@
                   capital : listaCliente[i].capital,
                   comentario: adminCtrl.comentarioExpediente
               }
-
-              aSolicitud.push(nuevaSolicitud);
-            }else{
-              aSolicitud.push(listaCliente[i]);
             }
           }
 
-            homeService.setLocalSolicitud(aSolicitud);
+            homeService.setLocalSolicitud(nuevaSolicitud)
+              .success(function(data){
+                console.log(data);
 
-            init();
-            adminCtrl.nombreProyectoExpediente = null;
-            adminCtrl.nombreClienteExpediente = null;
-            adminCtrl.nombreEncargadoExpediente = null;
-            adminCtrl.comentarioExpediente = null;
+                init();
+                adminCtrl.nombreProyectoExpediente = null;
+                adminCtrl.nombreClienteExpediente = null;
+                adminCtrl.nombreEncargadoExpediente = null;
+                adminCtrl.comentarioExpediente = null;
+              })
       }
 
       adminCtrl.asignarProfesorProyecto = function(){
         var listaCliente = adminCtrl.solicitudList,
             nombreSelect = adminCtrl.proyectoAsignar.nombreProyecto,
             nombreProfesor = adminCtrl.profesorProyecto.nombre;
+            var fechaActual = new Date();
+            var horaActual = new Date();
 
           for (var i = 0; i < listaCliente.length; i++) {
             var nombreCliente = listaCliente[i].nombreProyecto;
@@ -518,12 +802,39 @@
                   estado : listaCliente[i].estado,
                   profesorEncargado : nombreProfesor
               }
-            }
+            } 
           }
 
             homeService.setLocalSolicitud(nuevaSolicitud)
             .success(function(data){
               console.log(data);
+
+            var correoAsignacion = {
+              correo : "softcandy123@gmail.com",
+              fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+              hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+              asunto : 'Ha sido asignado a un proyecto',
+              correo : adminCtrl.profesorProyecto.correo,
+              text : 'Ha sido asignado al siguiente proyecto: ' + nuevaSolicitud.nombreProyecto + 
+               '\nPor favor no responder a este correo.'
+            }
+
+            usuarioService.enviarCorreo(correoAsignacion)
+            .success(function(data){
+              console.log(data);
+            })
+
+            var nuevoRegistro = {
+            accion: "Asignar a profesor a proyecto",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
 
               init();
               adminCtrl.profesorProyecto = null;
@@ -534,6 +845,8 @@
       adminCtrl.activarDesactivar = function(){
         var listaUsuario = adminCtrl.usuarioList,
             cedulaSelect = adminCtrl.cedulaPersona;
+            var fechaActual = new Date();
+            var horaActual = new Date();
 
           for (var i = 0; i < listaUsuario.length; i++) {
             var cedulaCliente = listaUsuario[i].cedula;
@@ -557,7 +870,22 @@
         }
       }
 
-            usuarioService.setLocalUsuario(nuevoUsuario);
+            usuarioService.setLocalUsuario(nuevoUsuario)
+            .success(function(data){
+              console.log(data);
+            })
+
+          var nuevoRegistro = {
+            accion: "Cambio de estado perfil",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: 'admin@ucenfotec.ac.cr'
+          }
+
+          usuarioService.agregarBitacora(nuevoRegistro)
+          .success(function(data){
+            console.log(data);
+          })
 
             init();
             adminCtrl.cedulaPersona = null;
@@ -572,6 +900,8 @@
             estudianteSelect = adminCtrl.estudianteAsignar._id,
             password = 'my-password';
             preContrasena = adminCtrl.contrasenaEstudiante;
+            var fechaActual = new Date();
+            var horaActual = new Date();
 
           for (var i = 0; i < listaUsuarios.length; i++) {
             var idEstudiante = listaUsuarios[i]._id;
@@ -600,14 +930,75 @@
             .success(function(data){
             console.log(data);
 
+            var nuevoRegistro = {
+            accion: "Asigna contraseña a estudiante",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: nuevoUsuario.correo
+            
+            }
+
+          usuarioService.agregarBitacora(nuevoRegistro)
+          .success(function(data){
+            console.log(data);
+            })
+
             init();
             adminCtrl.estudianteAsignar = null;
             adminCtrl.contrasenaEstudiante = null;
           })
       }
 
+    adminCtrl.buscarEstudianteContrasena = function(){
+        var listaCliente = adminCtrl.usuarioList,
+            estudianteSelect = adminCtrl.estudianteAsignar._id;
+
+            for (var i = 0; i < listaCliente.length; i++) {
+              var idEstudianteBD = listaCliente[i]._id;
+
+              if (idEstudianteBD == estudianteSelect) {
+                adminCtrl.CedulaEstudiante = listaCliente[i].cedula;
+              }
+            }
+      }
 
 
-    }
+    adminCtrl.validarFecha = function () {
+            adminCtrl.fechaNacimientoProfesor = new Date();
+            
+            adminCtrl.fechaNacimientoProfesor.minDate = new Date(
+               adminCtrl.fechaNacimientoProfesor.getFullYear()-99,
+               adminCtrl.fechaNacimientoProfesor.getMonth(),
+               adminCtrl.fechaNacimientoProfesor.getDate());
+
+            adminCtrl.fechaNacimientoProfesor.maxDate = new Date(
+               adminCtrl.fechaNacimientoProfesor.getFullYear()-19,
+               adminCtrl.fechaNacimientoProfesor.getMonth(),
+               adminCtrl.fechaNacimientoProfesor.getDate());
+         }
+
+
+      adminCtrl.filtrarProyecto = function () {
+        var filtro = adminCtrl.filtroProyecto;
+
+        if (filtro == "proyectosEspera") {
+          $('#tblProyectosEspera').show();
+          $('#tblProyectosCapital').hide();
+          $('#tblProyectosCapital').hide();
+
+        }else if (filtro == "proyectosCapital") {
+          $('#tblProyectosEspera').hide();
+          $('#tblProyectosCapital').show();
+          $('#tblProyectosProfesor').hide();
+
+        }else if (filtro == "proyectosProfesor") {
+          $('#tblProyectosProfesor').show();
+          $('#tblProyectosEspera').hide();
+          $('#tblProyectosCapital').hide();
+
+        }
+      }  
+
+    }    
      //se establece un objeto de angular normal
 })();

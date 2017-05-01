@@ -69,17 +69,35 @@
       }
 
       homeCtrl.save= function(){
+        var listaClientes = homeCtrl.solicitudList,
+            error = false;
+            var fechaActual = new Date();
+            var horaActual = new Date();
+
         var newSolicitud ={
           nombreProyecto : homeCtrl.nombreProyecto,
           nombreSolicitante : homeCtrl.nombreCompleto,
           nombreEncargado : homeCtrl.nombreEncargado,
           cedula : homeCtrl.cedula,
+          correo : homeCtrl.correo,
           industria : homeCtrl.industria.nombre,
           objetivos : homeCtrl.objetivos,
           capital : homeCtrl.capital,
           resumen : homeCtrl.urlResumenCliente,
-          estado : "Falta revisión del Consejo"
+          estado : "Falta revisión del Consejo",
+          profesorEncargado : "No asignado"
         }
+
+        for (var i = 0; i < listaClientes.length; i++) {
+          var cedulaCliente = listaClientes[i].cedula,
+              proyecto = listaClientes[i].nombreProyecto;
+
+          if (cedulaCliente == newSolicitud.cedula || proyecto == newSolicitud.nombreProyecto) {
+            error = true;
+          }
+        }
+
+        if (error == false) {
 
         homeService.addSolicitud(newSolicitud)
         .success(function(data){
@@ -89,17 +107,55 @@
           homeCtrl.nombreCompleto = null;
           homeCtrl.nombreEncargado = null;
           homeCtrl.tipoCedula = null;
+          homeCtrl.correo = null;
           homeCtrl.cedula = null;
           homeCtrl.industria = null;
           homeCtrl.objetivos = null;
           homeCtrl.capital = null;
           homeCtrl.resumenCliente = null;
           init();
-
         })
+
+        } else {
+            alert('Error al enviar la solicitud.\nYa existe un registro con ese numero de cedula o nombre de proyecto.');
+        }
+
+        var correoProfesor = {
+          fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+          hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+          asunto : 'Solicitud de proyecto Cliente',
+          correo : homeCtrl.correo,
+          text : 'Se ha recibido una solicitud de realizacion de proyecto del siguiente correo: ' 
+          + newSolicitud.correo + ' el dia: ' + fechaActual + ' a la hora: ' 
+          + newSolicitud.horaActual + '\nPor favor no responder a este correo.'
+        }
+
+        usuarioService.enviarCorreo(correoProfesor)
+        .success(function(data){
+          console.log(data);
+        })
+
+        var nuevoRegistro = {
+          accion: "Solicitud de proyecto",
+          fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+          hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+          usuario: homeCtrl.correo
+        }
+
+        usuarioService.agregarBitacora(nuevoRegistro)
+        .success(function(data){
+          console.log(data);
+        })
+
+
       }
 
       homeCtrl.saveEstudiante= function(){
+        var listaEstudiante = homeCtrl.listaUsuarios,
+            error = false;
+            var fechaActual = new Date();
+            var horaActual = new Date();
+
         var nuevoEstudiante ={
           nombre : homeCtrl.nombreCompletoEstudiante,
           fechaNacimiento : homeCtrl.fechaNacimientoEstudiante,
@@ -116,7 +172,20 @@
           
         }
 
-        usuarioService.agregarUsuario(nuevoEstudiante);
+        for (var i = 0; i < listaEstudiante.length; i++) {
+          var cedulaEstudiante = listaEstudiante[i].cedula,
+              correoU = listaEstudiante[i].correo;
+
+          if (cedulaEstudiante == nuevoEstudiante.cedula || correoU == nuevoEstudiante.correo) {
+            error = true;
+          }
+        }
+
+        if (error == false) {
+
+        usuarioService.agregarUsuario(nuevoEstudiante)
+          .success(function(data){
+            console.log(data);
 
         homeCtrl.nombreCompletoEstudiante = null;
         homeCtrl.fechaNacimientoEstudiante = null;
@@ -129,8 +198,40 @@
         homeCtrl.carreraEstudiante = null;
         homeCtrl.cursosAprobadosEstudiante = null;
         homeCtrl.resumenEstudiante = null;
-      
-        
+        init();
+      })
+
+        } else {
+            alert('Error al enviar la solicitud.\nYa existe un registro con ese numero de cedula o correo.');
+        }
+
+        var correoEstudiante = {
+          correo : "softcandy123@gmail.com",
+          fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+          hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+          asunto : 'Solicitud de ingreso de Estudiante',
+          correo : homeCtrl.correoSolicitudEstudiante,
+          text : 'Se ha recibido una solicitud de ingreso del siguiente correo: ' + nuevoEstudiante.correo + 
+          ' el dia: ' + fechaActual + ' a la hora: ' + nuevoEstudiante.horaActual + '\nPor favor no responder a este correo.'
+        }
+
+        usuarioService.enviarCorreo(correoEstudiante)
+        .success(function(data){
+          console.log(data);
+        })
+
+        var nuevoRegistro = {
+          accion: "Solicitud de ingreso estudiante",
+          fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+          hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+          usuario: homeCtrl.correoSolicitudEstudiante
+        }
+
+        usuarioService.agregarBitacora(nuevoRegistro)
+        .success(function(data){
+          console.log(data);
+        })
+
       }
 
      homeCtrl.login = function(){
@@ -139,6 +240,8 @@
             listaUsuario = homeCtrl.listaUsuarios;
             var password = 'my-password';
             var error = true;
+            var fechaActual = new Date();
+            var horaActual = new Date();
 
 
         for (var i = 0; i < listaUsuario.length; i++) {
@@ -183,7 +286,34 @@
           alert('Bienvenido');
         }
 
+        var nuevoRegistro = {
+          accion: "Ingreso al sistema",
+          fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+          hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+          usuario: correoUsuario
+        }
+
+        usuarioService.agregarBitacora(nuevoRegistro)
+        .success(function(data){
+          console.log(data);
+        })
+
       }
+
+
+      homeCtrl.validarFecha = function () {
+          homeCtrl.fechaNacimientoEstudiante = new Date();
+            
+          homeCtrl.fechaNacimientoEstudiante.minDate = new Date(
+            homeCtrl.fechaNacimientoEstudiante.getFullYear()-99,
+            homeCtrl.fechaNacimientoEstudiante.getMonth(),
+            homeCtrl.fechaNacimientoEstudiante.getDate());
+
+          homeCtrl.fechaNacimientoEstudiante.maxDate = new Date(
+            homeCtrl.fechaNacimientoEstudiante.getFullYear()-19,
+            homeCtrl.fechaNacimientoEstudiante.getMonth(),
+            homeCtrl.fechaNacimientoEstudiante.getDate());
+         }
 
     
 

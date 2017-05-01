@@ -40,7 +40,7 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Estudiante</label>
-            <md-select required ng-model="adminCtrl.estudianteAsignar" name="estudianteAsignar">
+            <md-select required ng-model="adminCtrl.estudianteAsignar" name="estudianteAsignar" ng-change="adminCtrl.buscarEstudianteContrasena()">
             <md-option ng-value="estudiante" ng-repeat="estudiante in adminCtrl.usuarioList | filter:{rol:'Estudiante'}">{{estudiante.nombre}}</md-option>
             </md-select>
             <div ng-messages="estudianteAsignarForm.estudianteAsignar.$error" role="alert" multiple>
@@ -52,18 +52,26 @@
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
+            <label>Cédula del estudiante</label>
+            <input disabled ng-model="adminCtrl.CedulaEstudiante" name="CedulaEstudiante">
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
             <label>Nueva Contraseña</label>
-            <input required ng-model="adminCtrl.contrasenaEstudiante" name="contrasenaEstudiante" type="password">
+            <input required ng-model="adminCtrl.contrasenaEstudiante" name="contrasenaEstudiante" type="password" pattern="[A-Za-z]{6}[0-9]{2}" maxlength="15" md-max-length="15">
             <div ng-messages="estudianteAsignarForm.contrasenaEstudiante.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la contraseña</div>
+              <div ng-message="required" class="my-message">Debe ingresar una contraseña</div>
+              <div ng-message="pattern" class="my-message">La contraseña debe estar formada por mínimo 6 letras y 2 números. No se aceptan caracteres especiales y/o signos.</div>
             </div>
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Editar persona" ng-click="adminCtrl.asignarContrasenaEstudiante()">
-          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Asignar contraseña al estudiante</md-tooltip>
+        <md-button id="btnIngresar" ng-disabled="!estudianteAsignarForm.$valid" class="btn btn-success" aria-label="Crear Contrasena" ng-click="adminCtrl.asignarContrasenaEstudiante()"><span class="menu-icon fa fa-key"></span> Aceptar
+        <md-tooltip md-direction="right">Asignar contraseña al estudiante.</md-tooltip>
         </md-button>
+
       </form>
     </div>
   </md-content>
@@ -122,9 +130,9 @@
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Activar estudiante" ng-click="adminCtrl.activarDesactivar()">
-          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Cambiar estado</md-tooltip>
+
+        <md-button id="btnIngresar" ng-disabled="!activarPerfilesForm.$valid" class="btn btn-success" aria-label="Activar estudiante" ng-click="adminCtrl.activarDesactivar()"><span class="menu-icon fa fa-check"></span> Aceptar
+          <md-tooltip md-direction="right">Cambia el estado del usuario.</md-tooltip>
         </md-button>
 
 
@@ -143,19 +151,20 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Nombre Completo</label>
-            <input required ng-model="adminCtrl.nombreProfesor" name="nombreProfesor">
+            <input required ng-model="adminCtrl.nombreProfesor" name="nombreProfesor" md-maxlength="25" maxlength="25">
             <div ng-messages="agregarProfesorForm.nombreProfesor.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar el nombre completo</div>
+              <div ng-message="required" class="my-message">Debe ingresar el nombre completo.</div>
             </div>
           </md-input-container>
         </div>
 
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Cédula</label>
-            <input required ng-model="adminCtrl.cedulaProfesor" name="cedulaProfesor"  maxlength=9>
+        <div id="divCedulaFisica">
+          <md-input-container id="txtcedulaFisica" class="md-block" flex-gt-sm>
+            <label>Cédula Fisica</label>
+            <input required id="inputCedulaFisica" ng-model="adminCtrl.cedulaProfesor" name="cedulaProfesor" maxlength="9" md-maxlength="9" pattern="^[1-7]{1}[0-9]{8}">
             <div ng-messages="agregarProfesorForm.cedulaProfesor.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la cedula</div>
+              <div ng-message="required" class="my-message">Debe ingresar el número de cédula.</div>
+              <div ng-message="pattern" class="my-message">El formato de cédula de identidad física esta incorrecto. La cedula no puede llevar letras, ni tampoco iniciar con 0.</div>
             </div>
           </md-input-container>
         </div>
@@ -163,25 +172,28 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Contraseña</label>
-            <input required ng-model="adminCtrl.contrasenaProfesor" name="contrasenaProfesor"  maxlength=10>
+            <input required ng-model="adminCtrl.contrasenaProfesor" name="contrasenaProfesor" type="password" maxlength="15" md-maxlength="15" pattern="[A-Za-z]{6,}[0-9]{2,}">
             <div ng-messages="agregarProfesorForm.contrasenaProfesor.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la contraseña</div>
+              <div ng-message="required" class="my-message">Debe ingresar una contraseña</div>
+              <div ng-message="pattern" class="my-message">La contraseña debe estar formada por mínimo 6 letras y 2 números. No se aceptan caracteres especiales y/o signos.</div>
             </div>
           </md-input-container>
         </div>
 
 
         <md-input-container class="md-block" flex-gt-sm>
-            <label>Fecha de nac.</label>
-            <md-datepicker ng-model="adminCtrl.fechaNacimientoProfesor"></md-datepicker>
+          <label>Fecha de nac.</label>
+            <md-datepicker  ng-model="adminCtrl.fechaNacimientoProfesor" md-min-date="adminCtrl.fechaNacimientoProfesor.minDate" md-max-date="adminCtrl.fechaNacimientoProfesor.maxDate" ng-focus="adminCtrl.validarFecha()">
+            </md-datepicker>
         </md-input-container>
 
          <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Dirección</label>
-            <input required ng-model="adminCtrl.direccionProfesor" name="direccionProfesor">
+            <input required ng-model="adminCtrl.direccionProfesor" name="direccionProfesor" maxlength="50" md-maxlength="100" minlength="15">
             <div ng-messages="agregarProfesorForm.direccionProfesor.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la dirección</div>
+              <div ng-message="required" class="my-message">Debe ingresar la dirección.</div>
+              <div ng-message="minlength" class="my-message">La dirección debe tener como minimo 15 caracteres.</div>
             </div>
           </md-input-container>
         </div>
@@ -189,9 +201,11 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Correo</label>
-            <input required ng-model="adminCtrl.correoProfesor" name="correoProfesor" type="email">
+            <input required ng-model="adminCtrl.correoProfesor" name="correoProfesor" type="email" pattern="[A-Za-z]+@ucenfotec\.ac\.cr">
             <div ng-messages="agregarProfesorForm.correoProfesor.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el correo electronico</div>
+              <div ng-message="email" class="my-message">El formato del correo electronico no es valido.</div>
+              <div ng-message="pattern" class="my-message">Solo se permiten correos de la Universidad Cenfotec.</div>
             </div>
           </md-input-container>
         </div>
@@ -199,9 +213,10 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Teléfono</label>
-            <input required ng-model="adminCtrl.numeroTelefonoProfesor" name="numeroTelefonoProfesor" type="number">
+            <input required ng-model="adminCtrl.numeroTelefonoProfesor" name="numeroTelefonoProfesor" type="text" maxlength="8" md-maxlength="8" pattern="^[2|6|7|8]{1}[0-9]{7}">
             <div ng-messages="agregarProfesorForm.numeroTelefonoProfesor.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el numero</div>
+              <div ng-message="pattern" class="my-message">El formato del numero de telefono no es valido.</div>
             </div>
           </md-input-container>
         </div>
@@ -214,7 +229,7 @@
             <md-option value="Masculino">Masculino</md-option>
             </md-select>
             <div ng-messages="agregarProfesorForm.genero.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar un genero
+              <div ng-message="required" class="my-message">Debe seleccionar un genero.
             </div>
             </div>
           </md-input-container>
@@ -224,13 +239,12 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block">
             <label>Fotografia</label>
-            <input type="file"  id="photoProfesor" ng-model="adminCtrl.fotoProfesor">
+            <input type="file"  id="photoProfesor" ng-model="adminCtrl.fotoProfesor" name="fotoProfesor"  accept="image/*">
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Agregar Profesor" ng-click="adminCtrl.preSaveProfesor()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Agregar profesor</md-tooltip>
+        <md-button id="btnIngresar" ng-disabled="!agregarProfesorForm.$valid" class="btn btn-success" aria-label="Agregar Perfil" ng-click="adminCtrl.preSaveProfesor()"><span class="menu-icon fa fa-check"></span> Agregar Profesor
+          <md-tooltip md-direction="right">Agregar al usuario.</md-tooltip>
         </md-button>
 
       </form>
@@ -248,7 +262,7 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Nombre Completo</label>
-            <input required ng-model="adminCtrl.nombreAsistente" name="nombreAsistente">
+            <input required ng-model="adminCtrl.nombreAsistente" name="nombreAsistente" md-maxlength="25" maxlength="25">
             <div ng-messages="agregarAsistenteForm.nombreProfesor.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el nombre completo</div>
             </div>
@@ -258,9 +272,10 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Cédula</label>
-            <input required ng-model="adminCtrl.cedulaAsistente" name="cedulaAsistente"  maxlength=9>
+            <input required ng-model="adminCtrl.cedulaAsistente" name="cedulaAsistente" maxlength="9" md-maxlength="9" pattern="^[1-7]{1}[0-9]{8}">
             <div ng-messages="agregarAsistenteForm.cedulaAsistente.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar la cedula</div>
+              <div ng-message="pattern" class="my-message">El formato de cédula de identidad física esta incorrecto. La cedula no puede llevar letras, ni tampoco iniciar con 0.</div>
             </div>
           </md-input-container>
         </div>
@@ -268,9 +283,10 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Contraseña</label>
-            <input required ng-model="adminCtrl.contrasenaAsistente" name="contrasenaAsistente"  maxlength=10>
+            <input required ng-model="adminCtrl.contrasenaAsistente" name="contrasenaAsistente" type="password" maxlength="15" md-maxlength="15" pattern="[A-Za-z]{6,}[0-9]{2,}">
             <div ng-messages="agregarAsistenteForm.contrasenaAsistente.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar la contraseña</div>
+              <div ng-message="pattern" class="my-message">La contraseña debe estar formada por mínimo 6 letras y 2 números. No se aceptan caracteres especiales y/o signos.</div>
             </div>
           </md-input-container>
         </div>
@@ -278,15 +294,16 @@
 
         <md-input-container class="md-block" flex-gt-sm>
             <label>Fecha de nac.</label>
-            <md-datepicker ng-model="adminCtrl.fechaNacimientoAsistente"></md-datepicker>
+            <md-datepicker ng-model="adminCtrl.fechaNacimientoAsistente" md-min-date="adminCtrl.fechaNacimientoProfesor.minDate" md-max-date="adminCtrl.fechaNacimientoProfesor.maxDate" ng-focus="adminCtrl.validarFecha()"></md-datepicker>
         </md-input-container>
 
          <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Dirección</label>
-            <input required ng-model="adminCtrl.direccionAsistente" name="direccionAsistente">
+            <input required ng-model="adminCtrl.direccionAsistente" name="direccionAsistente" maxlength="50" md-maxlength="100" minlength="15">
             <div ng-messages="agregarAsistenteForm.direccionAsistente.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar la dirección</div>
+              <div ng-message="minlength" class="my-message">La dirección debe tener como minimo 15 caracteres.</div>
             </div>
           </md-input-container>
         </div>
@@ -294,9 +311,11 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Correo</label>
-            <input required ng-model="adminCtrl.correoAsistente" name="correoAsistente" type="email">
+            <input required ng-model="adminCtrl.correoAsistente" name="correoAsistente" type="email" pattern="[A-Za-z]+@ucenfotec\.ac\.cr">
             <div ng-messages="agregarAsistenteForm.correoAsistente.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el correo electronico</div>
+              <div ng-message="email" class="my-message">El formato del correo electronico no es valido.</div>
+              <div ng-message="pattern" class="my-message">Solo se permiten correos de la Universidad Cenfotec.</div>
             </div>
           </md-input-container>
         </div>
@@ -304,9 +323,10 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Teléfono</label>
-            <input required ng-model="adminCtrl.numeroTelefonoAsistente" name="numeroTelefonoAsistente" type="number">
+            <input required ng-model="adminCtrl.numeroTelefonoAsistente" name="numeroTelefonoAsistente" type="text" maxlength="8" md-maxlength="8" pattern="^[2|6|7|8]{1}[0-9]{7}">
             <div ng-messages="agregarAsistenteForm.numeroTelefonoAsistente.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el numero</div>
+              <div ng-message="pattern" class="my-message">El formato del numero de telefono no es valido.</div>
             </div>
           </md-input-container>
         </div>
@@ -333,9 +353,8 @@
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Agregar Asistente" ng-click="adminCtrl.preSaveAsistente()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Agregar asistente</md-tooltip>
+        <md-button id="btnIngresar" ng-disabled="!agregarAsistenteForm.$valid" class="btn btn-success" aria-label="Agregar Perfil" ng-click="adminCtrl.preSaveAsistente()"><span class="menu-icon fa fa-check"></span> Agregar Asistente
+          <md-tooltip md-direction="right">Agregar al usuario.</md-tooltip>
         </md-button>
 
       </form>
@@ -353,7 +372,7 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Nombre Completo</label>
-            <input required ng-model="adminCtrl.nombreConsejo" name="nombreConsejo">
+            <input required ng-model="adminCtrl.nombreConsejo" name="nombreConsejo" md-maxlength="25" maxlength="25">
             <div ng-messages="agregarConsejoForm.nombreProfesor.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el nombre completo</div>
             </div>
@@ -363,9 +382,10 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Cédula</label>
-            <input required ng-model="adminCtrl.cedulaConsejo" name="cedulaConsejo"  maxlength=9>
+            <input required ng-model="adminCtrl.cedulaConsejo" name="cedulaConsejo" maxlength="9" md-maxlength="9" pattern="^[1-7]{1}[0-9]{8}">
             <div ng-messages="agregarConsejoForm.cedulaConsejo.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar la cedula</div>
+              <div ng-message="pattern" class="my-message">El formato de cédula de identidad física esta incorrecto. La cedula no puede llevar letras, ni tampoco iniciar con 0.</div>
             </div>
           </md-input-container>
         </div>
@@ -373,9 +393,10 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Contraseña</label>
-            <input required ng-model="adminCtrl.contrasenaConsejo" name="contrasenaConsejo"  maxlength=10>
+            <input required ng-model="adminCtrl.contrasenaConsejo" name="contrasenaConsejo" type="password" maxlength="15" md-maxlength="15" pattern="[A-Za-z]{6,}[0-9]{2,}">
             <div ng-messages="agregarConsejoForm.contrasenaConsejo.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar la contraseña</div>
+              <div ng-message="pattern" class="my-message">La contraseña debe estar formada por mínimo 6 letras y 2 números. No se aceptan caracteres especiales y/o signos.</div>
             </div>
           </md-input-container>
         </div>
@@ -383,15 +404,16 @@
 
         <md-input-container class="md-block" flex-gt-sm>
             <label>Fecha de nac.</label>
-            <md-datepicker required ng-model="adminCtrl.fechaNacimientoConsejo"></md-datepicker>
+            <md-datepicker required ng-model="adminCtrl.fechaNacimientoConsejo" md-min-date="adminCtrl.fechaNacimientoProfesor.minDate" md-max-date="adminCtrl.fechaNacimientoProfesor.maxDate" ng-focus="adminCtrl.validarFecha()"></md-datepicker>
         </md-input-container>
 
          <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Dirección</label>
-            <input required ng-model="adminCtrl.direccionConsejo" name="direccionConsejo" maxlength="25">
+            <input required ng-model="adminCtrl.direccionConsejo" name="direccionConsejo" maxlength="50" md-maxlength="100" minlength="15">
             <div ng-messages="agregarConsejoForm.direccionConsejo.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar la dirección</div>
+              <div ng-message="minlength" class="my-message">La dirección debe tener como minimo 15 caracteres.</div>
             </div>
           </md-input-container>
         </div>
@@ -399,9 +421,11 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Correo</label>
-            <input required ng-model="adminCtrl.correoConsejo" name="correoConsejo" type="email" maxlength="25">
+            <input required ng-model="adminCtrl.correoConsejo" name="correoConsejo" type="email" pattern="[A-Za-z0-9]+@ucenfotec\.ac\.cr">
             <div ng-messages="agregarConsejoForm.correoConsejo.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el correo electronico</div>
+              <div ng-message="email" class="my-message">El formato del correo electronico no es valido.</div>
+              <div ng-message="pattern" class="my-message">Solo se permiten correos de la Universidad Cenfotec.</div>
             </div>
           </md-input-container>
         </div>
@@ -409,9 +433,10 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Teléfono</label>
-            <input required ng-model="adminCtrl.numeroTelefonoConsejo" name="numeroTelefonoConsejo" type="number" maxlength="8">
+            <input required ng-model="adminCtrl.numeroTelefonoConsejo" name="numeroTelefonoConsejo" type="text" maxlength="8" md-maxlength="8" pattern="^[2|6|7|8]{1}[0-9]{7}">
             <div ng-messages="agregarConsejoForm.numeroTelefonoConsejo.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el numero</div>
+              <div ng-message="pattern" class="my-message">El formato del numero de telefono no es valido.</div>
             </div>
           </md-input-container>
         </div>
@@ -438,9 +463,8 @@
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Agregar miembro del consejo" ng-click="adminCtrl.preSaveConsejo()">
-          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Agregar miembro del consejo</md-tooltip>
+        <md-button id="btnIngresar" ng-disabled="!agregarConsejoForm.$valid" class="btn btn-success" aria-label="Agregar Perfil" ng-click="adminCtrl.preSaveConsejo()"><span class="menu-icon fa fa-check"></span> Agregar Usuario
+          <md-tooltip md-direction="right">Agregar al usuario.</md-tooltip>
         </md-button>
 
       </form>
@@ -467,7 +491,8 @@
           <md-icon md-svg-src="vendor/img/icons/ic_search.svg"></md-icon>
           <md-tooltip md-direction="bottom">Buscar persona</md-tooltip>
         </md-button>
-        <md-button class="md-fab md-mini" aria-label="Borrar persona" ng-click="" >
+
+        <md-button class="md-fab md-mini" aria-label="Borrar persona" ng-click="adminCtrl.borrarUsuario()" ng-disabled="!editarPerfilesForm.$valid">
           <md-icon md-svg-src="vendor/img/icons/delete.svg"></md-icon>
           <md-tooltip md-direction="bottom">Borrar persona</md-tooltip>
         </md-button>
@@ -476,19 +501,9 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Nombre Completo</label>
-            <input required ng-model="adminCtrl.nombreEditar" name="nombreEditar">
+            <input required ng-model="adminCtrl.nombreEditar" name="nombreEditar" md-maxlength="25" maxlength="25">
             <div ng-messages="editarPerfilesForm.nombreEditar.$error" role="alert" multiple>
             <div ng-message="required" class="my-message">Debe ingresar el nombre completo</div>
-            </div>
-          </md-input-container>
-        </div>
-
-         <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Dirección</label>
-            <input required ng-model="adminCtrl.direccionEditar" name="direccionEditar">
-            <div ng-messages="editarPerfilesForm.direccionEditar.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la dirección</div>
             </div>
           </md-input-container>
         </div>
@@ -496,9 +511,11 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Correo</label>
-            <input required ng-model="adminCtrl.correoEditar" name="correoEditar" type="email">
+            <input required ng-model="adminCtrl.correoEditar" name="correoEditar" type="email" pattern="[A-Za-z]+@ucenfotec\.ac\.cr">
             <div ng-messages="editarPerfilesForm.correoEditar.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el correo electronico</div>
+              <div ng-message="email" class="my-message">El formato del correo electronico no es valido.</div>
+              <div ng-message="pattern" class="my-message">Solo se permiten correos de la Universidad Cenfotec.</div>
             </div>
           </md-input-container>
         </div>
@@ -506,9 +523,21 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Teléfono</label>
-            <input required ng-model="adminCtrl.numeroTelefonoEditar" name="numeroTelefonoEditar">
+            <input required ng-model="adminCtrl.numeroTelefonoEditar" name="numeroTelefonoEditar" ype="text" maxlength="8" md-maxlength="8" pattern="^[2|6|7|8]{1}[0-9]{7}">
             <div ng-messages="editarPerfilesForm.numeroTelefonoEditar.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el numero</div>
+              <div ng-message="pattern" class="my-message">El formato del numero de telefono no es valido.</div>
+            </div>
+          </md-input-container>
+        </div>
+
+         <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Dirección</label>
+            <input required ng-model="adminCtrl.direccionEditar" name="direccionEditar" maxlength="50" md-maxlength="100" minlength="15">
+            <div ng-messages="editarPerfilesForm.direccionEditar.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la dirección</div>
+              <div ng-message="minlength" class="my-message">La dirección debe tener como minimo 15 caracteres.</div>
             </div>
           </md-input-container>
         </div>
@@ -527,10 +556,10 @@
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Editar persona" ng-click="adminCtrl.editarPerfil()">
-          <md-icon md-svg-src="vendor/img/icons/ic_border_color_white_24px.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Editar persona</md-tooltip>
+        <md-button id="btnIngresar" ng-disabled="!editarPerfilesForm.$valid" class="btn btn-success" aria-label="Agregar Perfil" ng-click="adminCtrl.editarPerfil()"><span class="menu-icon fa fa-pencil-square-o"></span> Editar Usuario
+          <md-tooltip md-direction="right">Edita la informacion del usuario.</md-tooltip>
         </md-button>
+
       </form>
     </div>
   </md-content>

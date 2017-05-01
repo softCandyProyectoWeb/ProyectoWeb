@@ -144,7 +144,7 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Nombre del Proyecto</label>
-            <input required ng-model="homeCtrl.nombreProyecto" name="nombreProyecto" maxlength="50">
+            <input required ng-model="homeCtrl.nombreProyecto" name="nombreProyecto" md-maxlength="50" maxlength="50">
             <div ng-messages="solicitudForm.nombreProyecto.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar un nombre de proyecto</div>
             </div>
@@ -154,7 +154,7 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Nombre completo del solicitante</label>
-            <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto" maxlength="50">
+            <input required ng-model="homeCtrl.nombreCompleto" name="NombreCompleto" md-maxlength="50" maxlength="50">
             <div ng-messages="solicitudForm.nombre.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el nombre completo</div>
             </div>
@@ -164,34 +164,32 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Nombre de Encargado</label>
-            <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado" maxlength="50">
+            <input required ng-model="homeCtrl.nombreEncargado" name="NombreEncargado" md-maxlength="50" maxlength="50">
             <div ng-messages="solicitudForm.nombreEncargado.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar un el nombre de encargado</div>
             </div>
           </md-input-container>
         </div>
 
+
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Tipo de cédula</label>
-            <md-select required ng-model="homeCtrl.tipoCedula" name="tipoCedula" id="selectCedula">
-              <md-option value="Fisica">Fisica</md-option>
-              <md-option value="Juridica">Juridica</md-option>
-            </md-select>
-            <div ng-messages="solicitudForm.tipoCedula.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe elegir un tipo de cédula
-            </div>
+            <label>Cédula Fisica</label>
+            <input required ng-model="homeCtrl.cedula" name="cedula" id="cedulaFisica" maxlength="9" md-maxlength="9" pattern="^[1-7]{1}[0-9]{8}">
+            <div ng-messages="solicitudForm.cedula.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
+              <div ng-message="pattern" class="my-message">El formato de cédula de identidad física esta incorrecto. La cedula no puede llevar letras, ni tampoco iniciar con 0.</div>
             </div>
           </md-input-container>
         </div>
 
-
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Numero de Cédula</label>
-            <input required ng-model="homeCtrl.cedula" name="cedula" maxlength="9" id="cedulaFisica">
-            <div ng-messages="solicitudForm.cedula.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la cédula</div>
+            <label>Correo</label>
+            <input required ng-model="homeCtrl.correo" name="correo" type="email">
+            <div ng-messages="solicitudForm.correo.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar el correo</div>
+              <div ng-message="email" class="my-message">El formato del correo electronico no es valido.</div>
             </div>
           </md-input-container>
         </div>
@@ -203,7 +201,7 @@
               <md-option ng-value="industria" ng-repeat="industria in homeCtrl.industriasList">{{industria.nombre}}</md-option>
             </md-select>
             <div ng-messages="solicitudForm.industria.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar una clasificación
+              <div ng-message="required" class="my-message">Debe seleccionar una industria
             </div>
             </div>
           </md-input-container>
@@ -211,8 +209,8 @@
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Objetivos</label>
-            <input required ng-model="homeCtrl.objetivos" name="objetivos">
+            <label>Objetivo principal</label>
+            <input required ng-model="homeCtrl.objetivos" name="objetivos" md-maxlength="25" maxlength="25">
             <div ng-messages="solicitudForm.objetivos.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar los objetivos</div>
             </div>
@@ -234,7 +232,7 @@
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Resumen ejecutivo (formato .doc , .docx o .pdf</label>
+            <label>Resumen ejecutivo (formato .doc , .docx o .pdf)</label>
             <input type="button" ng-click="homeCtrl.showPicker()" class="btn btn-default" value="Buscar archivo">
           </md-input-container>
         </div>
@@ -253,7 +251,6 @@
         <md-tooltip md-direction="bottom">Enviar Solicitud Cliente</md-tooltip>
         </md-button>
 
-
       </form>
     </div>
   </md-content>
@@ -268,7 +265,7 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Nombre Completo</label>
-            <input required ng-model="homeCtrl.nombreCompletoEstudiante" name="nombreCompletoEstudiante" maxlength="50">
+            <input required ng-model="homeCtrl.nombreCompletoEstudiante" name="nombreCompletoEstudiante" md-maxlength="50" maxlength="50">
             <div ng-messages="solicitudEstudianteForm.nombreCompletoEstudiante.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar un el nombre Completo</div>
             </div>
@@ -278,7 +275,7 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Fecha Nac.</label>
-            <md-datepicker required ng-model="homeCtrl.fechaNacimientoEstudiante" name="fechaNacimientoEstudiante"></md-datepicker>
+            <md-datepicker required ng-model="homeCtrl.fechaNacimientoEstudiante" md-min-date="homeCtrl.fechaNacimientoProfesor.minDate" md-max-date="homeCtrl.fechaNacimientoProfesor.maxDate" ng-focus="homeCtrl.validarFecha()"></md-datepicker>
             <div ng-messages="solicitudEstudianteForm.fechaNacimientoEstudiante.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar la fecha de nacimiento</div>
             </div>
@@ -288,9 +285,10 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Cédula</label>
-            <input required ng-model="homeCtrl.cedulaEstudiante" name="cedulaEstudiante" maxlength="9">
+            <input required ng-model="homeCtrl.cedulaEstudiante" name="cedulaEstudiante" maxlength="9" md-maxlength="9" pattern="^[1-7]{1}[0-9]{8}">
             <div ng-messages="solicitudEstudianteForm.cedulaEstudiante.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la cedula</div>
+              <div ng-message="required" class="my-message">Debe ingresar el número de cédula.</div>
+              <div ng-message="pattern" class="my-message">El formato de cédula de identidad física esta incorrecto. La cedula no puede llevar letras, ni tampoco iniciar con 0.</div>
             </div>
           </md-input-container>
         </div>
@@ -298,9 +296,10 @@
          <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Dirección</label>
-            <input required ng-model="homeCtrl.direccionEstudiante" name="direccionEstudiante" maxlength="50">
+            <input required ng-model="homeCtrl.direccionEstudiante" name="direccionEstudiante" maxlength="50" md-maxlength="100" minlength="15">
             <div ng-messages="solicitudEstudianteForm.direccionEstudiante.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe ingresar la dirección</div>
+              <div ng-message="required" class="my-message">Debe ingresar la dirección.</div>
+              <div ng-message="minlength" class="my-message">La dirección debe tener como minimo 15 caracteres.</div>
             </div>
           </md-input-container>
         </div>
@@ -308,9 +307,11 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Correo</label>
-            <input required ng-model="homeCtrl.correoSolicitudEstudiante" name="correoSolicitudEstudiante" type="email">
+            <input required ng-model="homeCtrl.correoSolicitudEstudiante" name="correoSolicitudEstudiante" type="email" pattern="[A-Za-z]+@ucenfotec\.ac\.cr">
             <div ng-messages="solicitudEstudianteForm.correoSolicitudEstudiante.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el correo</div>
+              <div ng-message="email" class="my-message">El formato del correo electronico no es valido.</div>
+              <div ng-message="pattern" class="my-message">Solo se permiten correos de la Universidad Cenfotec.</div>
             </div>
           </md-input-container>
         </div>
@@ -318,9 +319,10 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Teléfono</label>
-            <input required ng-model="homeCtrl.numeroTelefonoEstudiante" name="numeroTelefonoEstudiante" maxlength="8">
+            <input required ng-model="homeCtrl.numeroTelefonoEstudiante" name="numeroTelefonoEstudiante" type="text" maxlength="8" md-maxlength="8" pattern="^[2|6|7|8]{1}[0-9]{7}">
             <div ng-messages="solicitudEstudianteForm.numeroTelefonoEstudiante.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe ingresar el numero</div>
+              <div ng-message="pattern" class="my-message">El formato del numero de telefono no es valido.</div>
             </div>
           </md-input-container>
         </div>
@@ -340,7 +342,7 @@
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Seleccione una carrera</label>
+            <label>Carrera actual</label>
             <md-select required ng-model="homeCtrl.carreraEstudiante" name="carreraEstudiante">
               <md-option ng-value="carrera" ng-repeat="carrera in homeCtrl.listaCarreras">{{carrera.nombre}}</md-option>
             </md-select>
@@ -351,24 +353,10 @@
           </md-input-container>
         </div>
 
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Seleccione cursos aprobados</label>
-            <md-select required ng-model="homeCtrl.cursosAprobadosEstudiante" name="cursosAprobadosEstudiante">
-              <md-option ng-value="curso" ng-repeat="curso in homeCtrl.listaCursos">{{curso.curso}}</md-option>
-            </md-select>
-          
-            <div ng-messages="solicitudEstudianteForm.cursosAprobadosEstudiante.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe seleccionar una carrera
-            </div>
-            </div>
-          </md-input-container>
-        </div>
-
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Resumen ejecutivo (formato .doc , .docx o .pdf</label>
+            <label>Resumen ejecutivo (formato .doc , .docx o .pdf)</label>
             <input type="button" ng-click="homeCtrl.showPickerEstudiante()" class="btn btn-default" value="Buscar archivo">
           </md-input-container>
         </div>

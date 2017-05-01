@@ -37,6 +37,18 @@
     <div>
       <form name="visualizarProyectoForm" id="visualizarProyectoForm">
 
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Filtrar</label>
+            <md-select ng-model="adminCtrl.filtroProyecto" name="filtroProyecto" ng-change="adminCtrl.filtrarProyecto()">
+            <md-option value="proyectosEspera">Proyectos en espera</md-option>
+            <md-option value="proyectosCapital">Proyectos con capital</md-option>
+            <md-option value="proyectosProfesor">Proyectos con profesor asignado</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+
+        <div id="tblProyectosEspera">
         <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
           <thead>
             <tr>
@@ -46,13 +58,44 @@
               <th>Cédula</th>
               <th>Industria</th>
               <th>Objetivos</th>
-              <th>Posee capital</th>
+              <th>Estado</th>
               <th>Profesor encargado</th>
               <th>Resumen Ejecutivo</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="solicitud in adminCtrl.solicitudList">
+            <tr ng-repeat="solicitud in adminCtrl.solicitudList | filter:{estado:'Falta revisión del Consejo'}">
+              <td>{{solicitud.nombreProyecto}}</td>
+              <td>{{solicitud.nombreSolicitante}}</td>
+              <td>{{solicitud.nombreEncargado}}</td>
+              <td>{{solicitud.cedula}}</td>
+              <td>{{solicitud.industria}}</td>
+              <td>{{solicitud.objetivos}}</td>
+              <td>{{solicitud.estado}}</td>
+              <td>{{solicitud.profesorEncargado}}</td>
+              <td><a href="{{solicitud.resumen}}"><input type="button" value="Descargar" class="btn btn-primary"></a></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+      <div id="tblProyectosCapital">
+        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Nombre del proyecto</th>
+              <th>Nombre del solicitante</th>
+              <th>Nombre del encargado</th>
+              <th>Cédula</th>
+              <th>Industria</th>
+              <th>Objetivos</th>
+              <th>Capital</th>
+              <th>Profesor encargado</th>
+              <th>Resumen Ejecutivo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="solicitud in adminCtrl.solicitudList | filter:{capital:'Sí'}">
               <td>{{solicitud.nombreProyecto}}</td>
               <td>{{solicitud.nombreSolicitante}}</td>
               <td>{{solicitud.nombreEncargado}}</td>
@@ -65,6 +108,36 @@
             </tr>
           </tbody>
         </table>
+        </div>
+
+      <div id="tblProyectosProfesor">
+        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Nombre del proyecto</th>
+              <th>Nombre del solicitante</th>
+              <th>Nombre del encargado</th>
+              <th>Cédula</th>
+              <th>Industria</th>
+              <th>Objetivos</th>
+              <th>Profesor encargado</th>
+              <th>Resumen Ejecutivo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="solicitud in adminCtrl.solicitudList | filter:{profesorEncargado:'!No asignado'}">
+              <td>{{solicitud.nombreProyecto}}</td>
+              <td>{{solicitud.nombreSolicitante}}</td>
+              <td>{{solicitud.nombreEncargado}}</td>
+              <td>{{solicitud.cedula}}</td>
+              <td>{{solicitud.industria}}</td>
+              <td>{{solicitud.objetivos}}</td>
+              <td>{{solicitud.profesorEncargado}}</td>
+              <td><a href="{{solicitud.resumen}}"><input type="button" value="Descargar" class="btn btn-primary"></a></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
 
       </form>
     </div>

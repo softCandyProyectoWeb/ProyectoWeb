@@ -7,6 +7,7 @@ var ClienteSchema = new mongoose.Schema({
   nombreSolicitante:String,
   nombreEncargado:String,
   cedula: String,
+  correo:String,
   industria: String,
   objetivos: String,
   capital: String,

@@ -18,8 +18,7 @@ var mailOptions = {
     from: 'Cenfotec Software House',
     to: req.body.correo,
     subject: req.body.asunto,
-    text: 'Ha sido convocado a una entrevista el dia: ' 
-    + req.body.fecha + ' a la hora: ' + req.body.hora + '. Por favor estar 10 minutos antes del tiempo limite.'
+    text: req.body.text
 };
 
 

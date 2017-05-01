@@ -32,7 +32,8 @@
 
 
       asistenteCtrl.agregarCita = function(){
-        var listaCita = asistenteCtrl.citaList;
+        var listaCita = asistenteCtrl.citaList,
+            error = false;
 
         var nuevaCita = {
           profesor: asistenteCtrl.nombreProfesorCita.nombre,
@@ -51,7 +52,9 @@
           fecha : asistenteCtrl.fechaCita.getUTCDate() + '/' + (asistenteCtrl.fechaCita.getMonth()+1) + '/' + 
           asistenteCtrl.fechaCita.getFullYear(),
           hora : asistenteCtrl.horaCita.getHours() + ':' + asistenteCtrl.horaCita.getMinutes(),
-          asunto : 'Convocatoria de Cita de ' + asistenteCtrl.nombreEstudianteCita.nombre
+          asunto : 'Convocatoria de Cita de ' + asistenteCtrl.nombreEstudianteCita.nombre,
+          text: 'Buenos dias.\nHa sido convocado a una cita de entrevista el dia: ' + nuevaCita.fecha +
+          ' a la hora: ' + nuevaCita.hora + '\nPor favor no responder a este correo.'
         }
 
         var correoCitaProfesor = {
@@ -59,7 +62,9 @@
           fecha : asistenteCtrl.fechaCita.getUTCDate() + '/' + (asistenteCtrl.fechaCita.getMonth()+1) + '/' + 
           asistenteCtrl.fechaCita.getFullYear(),
           hora : asistenteCtrl.horaCita.getHours() + ':' + asistenteCtrl.horaCita.getMinutes(),
-          asunto : 'Convocatoria de Cita de ' + asistenteCtrl.nombreProfesorCita.nombre
+          asunto : 'Convocatoria de Cita de ' + asistenteCtrl.nombreProfesorCita.nombre,
+          text: 'Buenos dias.\nHa sido convocado a una cita de entrevista el dia: ' + nuevaCita.fecha +
+          ' a la hora: ' + nuevaCita.hora + '\nPor favor no responder a este correo.'
         }
 
         for (var i = 0; i < listaCita.length; i++) {
@@ -67,14 +72,15 @@
               fechaCitaDB = listaCita[i].fecha;
 
           if (horaCitaDB == nuevaCita.hora && fechaCitaDB == nuevaCita.fecha) {
-            alert('La fecha y hora elegidas para la cita ya estan ocupadas por otra cita');
+            error = true;
           }
         }
+
+        if (error == false) {
 
           usuarioService.agregarCita(nuevaCita)
             .success(function(data){
               console.log(data);
-            })
 
             init();
             asistenteCtrl.nombreProfesorCita.nombre = null;
@@ -83,8 +89,14 @@
             asistenteCtrl.horaCita = null;
             usuarioService.enviarCorreo(correoCitaEstudiante);
             usuarioService.enviarCorreo(correoCitaProfesor);
+            
+          })
 
+        } else {
+            alert('La fecha y hora elegidas para la cita ya estan ocupadas por otra cita');
         }
+
+      }
 
       asistenteCtrl.buscaAgregarComentarioEstudiante = function(){
         var listaPersona = asistenteCtrl.usuariosList;

@@ -71,15 +71,16 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Comentarios</label>
-            <textarea ng-model="adminCtrl.comentarioExpediente" name="comentarioExpediente" ng-maxlength="100"></textarea>
+            <textarea required ng-model="adminCtrl.comentarioExpediente" name="comentarioExpediente" maxlength="50" md-maxlength="100" minlength="15"></textarea>
             <div ng-messages="editarExpedienteClienteForm.comentarioExpediente.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe anotar un comentario.</div>
+              <div ng-message="minlength" class="my-message">El comentario debe tener como minimo 15 caracteres.</div>
             </div>
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Editar expediente cliente" ng-click="adminCtrl.agregarComentarioCliente()">
-          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Agregar comentarios</md-tooltip>
+        <md-button id="btnIngresar" ng-disabled="!editarExpedienteClienteForm.$valid" class="btn btn-success" aria-label="Agregar Perfil" ng-click="adminCtrl.agregarComentarioCliente()"><span class="menu-icon fa fa-comment-o"></span> Agregar comentario
+          <md-tooltip md-direction="right">Agregar comentario al expediente del cliente.</md-tooltip>
         </md-button>
 
 
@@ -101,7 +102,7 @@
             <md-select required ng-model="adminCtrl.nombreEstudianteSelect" name="nombreEstudianteSelect" ng-change="adminCtrl.buscarEstudianteExpediente()">
             <md-option ng-value="estudiante" ng-repeat="estudiante in adminCtrl.usuarioList | filter:{rol:'Estudiante'}">{{estudiante.nombre}}</md-option>
             </md-select>
-            <div ng-messages="activarPerfilesForm.nombreEstudianteSelect.$error" role="alert" multiple>
+            <div ng-messages="editarExpedienteEstudiante.nombreEstudianteSelect.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe elegir un estudiante</div>
             </div>
           </md-input-container>
@@ -146,16 +147,16 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Comentarios</label>
-            <textarea ng-model="adminCtrl.comentarioEstudianteExpediente" name="comentarioEstudianteExpediente" maxlength="100"></textarea>
-            <div ng-messages="editarExpedienteEstudiante.comentarioEstudianteExpediente.$error" role="alert" multiple>
-              <div ng-message="required" class="my-message">Debe agregar un comentario</div>
+            <textarea required ng-model="adminCtrl.comentarioEstudianteExpediente" name="comentarioEstudianteExpediente" maxlength="50" md-maxlength="100" minlength="15"></textarea>
+            <div ng-messages="editarExpedienteEstudiante.comentarioExpediente.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe anotar un comentario.</div>
+              <div ng-message="minlength" class="my-message">El comentario debe tener como minimo 15 caracteres.</div>
             </div>
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-primary" aria-label="Editar expediente cliente" ng-click="adminCtrl.agregarComentarioEstudiante()">
-          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Agregar comentarios</md-tooltip>
+        <md-button id="btnIngresar" ng-disabled="!editarExpedienteEstudiante.$valid" class="btn btn-success" aria-label="Agregar Perfil" ng-click="adminCtrl.agregarComentarioEstudiante()"><span class="menu-icon fa fa-comment-o"></span> Agregar comentario
+          <md-tooltip md-direction="right">Agregar comentario al expediente del estudiante.</md-tooltip>
         </md-button>
 
       </form>

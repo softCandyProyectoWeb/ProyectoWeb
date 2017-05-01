@@ -14,6 +14,7 @@ industriaRoutes = require('./api/components/industria/industria.route');
 cursoRoutes = require('./api/components/curso/curso.route');
 clienteRoutes = require('./api/components/cliente/cliente.route');
 citaRoutes = require('./api/components/cita/cita.route');
+bitacoraRoutes = require('./api/components/bitacora/bitacora.route');
 mongoose.Promise = require('bluebird');
 
 var correoRoutes = require('./api/components/correo/correo.route');
@@ -77,4 +78,5 @@ app.use('/api', cursoRoutes);
 app.use('/api', clienteRoutes);
 app.use('/api', citaRoutes);
 app.use('/api', correoRoutes);
+app.use('/api', bitacoraRoutes);
 //se define el versionamiento del api

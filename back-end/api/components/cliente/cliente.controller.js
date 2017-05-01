@@ -9,6 +9,7 @@ module.exports.save = function(req,res){ //exporta el controlador
             nombreSolicitante:req.body.nombreSolicitante,
             nombreEncargado:req.body.nombreEncargado,
             cedula:req.body.cedula,
+            correo:req.body.correo,
             industria:req.body.industria,
             objetivos:req.body.objetivos,
             capital:req.body.capital,
