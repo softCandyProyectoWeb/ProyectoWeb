@@ -39,26 +39,57 @@
 
 
 
-<div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
-<span class="md-subhead">{{profesor.nombre}}</span>
-</div>
+<div class="col-lg-4" id="cardMiInformacion">
 
+<div flex-xs flex-gt-xs="70" layout="column">
+      <md-card id="cardInfoPerfil">
+        <md-card-title>
+
+          <md-card-title-text>
+            <img class="notificacionImagen" src="images/8bc804d8f728a4040b48ee6d5fafd12c.jpg" alt="" width="200px">
+
+            <span class="md-headline"><div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}"><span class="md-subhead">{{profesor.nombre}}</span></div></span>
+            <span class="md-subhead">Profesor CENFOTEC</span>
+
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        
+      </md-card>
+      </div>
+  </div>
+
+      <div class="col-lg-6" id="miInformacion">
+<p>¡Bienvenido a tu perfil de CENFOTEC SOFTWARE HOUSUE!
+</p>
+<p>Su casa para recibir servicios profesionales en tecnologías de información, de gran calidad, diseñados y construidos por estudiantes y profesores de la Universidad Cenfotec para la comunidad.
+</p>
+<p>
  <span class="md-headline">Cédula</span>
 <div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
 <span class="md-subhead">{{profesor.cedula}}</span>
 </div>
+</p>
+<p>
 <span class="md-headline">Fecha de nacimiento</span>
 <div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
 <span class="md-subhead">{{profesor.fechaNacimiento}}</span>
 </div>
+</p>
+<p>
 <span class="md-headline">Dirección</span>
 <div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
 <span class="md-subhead">{{profesor.direccion}}</span>
 </div>
-
+</p>
+<p>
 <span class="md-headline">Teléfono</span>
 <div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
 <span class="md-subhead">{{profesor.telefono}}</span>
+</div>
+</p>
 </div>
 
 
@@ -116,72 +147,142 @@
 </md-tab>
 
 <md-tab label="Asignar profesor responsable a proyecto">
- <section>
-  
-    
-     <md-content layout-padding>
+<section>
+  <md-content layout-padding>
     <div>
-      <form name="visualizarProyectoForm" id="visualizarProyectoForm">
+      <form name="agregarConsejoForm" id="agregarConsejoForm">
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Proyecto a ver</label>
-            <md-select required ng-model="adminCtrl.proyectoVer" name="proyectoVer">
+            <label>Profesor</label>
+            <md-select required ng-model="profesorCtrl.profesorProyecto" name="profesorProyecto">
+            <md-option ng-value="profesor" ng-repeat="profesor in profesorCtrl.usuarioList | filter:{rol:'Profesor'}">{{profesor.nombre}}</md-option>
+            </md-select>
+            <div ng-messages="agregarConsejoForm.profesorProyecto.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un profesor
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+        
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Proyecto</label>
+            <md-select required ng-model="profesorCtrl.proyectoAsignar" name="proyectoAsignar">
             <md-option ng-value="proyecto" ng-repeat="proyecto in profesorCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
             </md-select>
-            <div ng-messages="visualizarProyectoForm.proyectoVer.$error" role="alert" multiple>
+            <div ng-messages="agregarConsejoForm.proyectoAsignar.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar un proyecto
             </div>
             </div>
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-mini" aria-label="Visualizar proyecto" ng-click="">
-          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Visualizar proyecto</md-tooltip>
+        <md-button class="md-fab md-primary" aria-label="Asignar profesor al proyecto" ng-click="profesorCtrl.asignarProfesorProyecto()">
+          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Asignar profesor responsable al proyecto</md-tooltip>
         </md-button>
 
+        <section class="col-lg-12">
+          <md-content layout-padding>
+            <div>
+            <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+              <thead>
+                <tr>
+                  <th>Nombre del proyecto</th>
+                  <th>Nombre del solicitante</th>
+                  <th>Nombre del encargado</th>
+                  <th>Profesor encargado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="solicitud in profesorCtrl.solicitudList">
+                  <td>{{solicitud.nombreProyecto}}</td>
+                  <td>{{solicitud.nombreSolicitante}}</td>
+                  <td>{{solicitud.nombreEncargado}}</td>
+                  <td>{{solicitud.profesorEncargado}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </md-content>
+      </section>
 
       </form>
     </div>
   </md-content>
-
-  
-</section> 
+</section>
 </md-tab>
 
 
 
 <md-tab label="Asignar estudiante a proyecto">
- <section>
-  
-    
-     <md-content layout-padding>
+<section>
+  <md-content layout-padding>
     <div>
-      <form name="visualizarProyectoForm" id="visualizarProyectoForm">
+      <form name="agregarConsejoForm" id="agregarConsejoForm">
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Proyecto a ver</label>
-            <md-select required ng-model="adminCtrl.proyectoVer" name="proyectoVer">
+            <label>Estudiante</label>
+            <md-select required ng-model="profesorCtrl.profesorProyecto" name="profesorProyecto">
+            <md-option ng-value="estudiante" ng-repeat="profesor in profesorCtrl.usuarioList | filter:{rol:'Estudiante'}">{{estudiante.nombre}}</md-option>
+            </md-select>
+            <div ng-messages="agregarConsejoForm.profesorProyecto.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un estudiante
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+        
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Proyecto</label>
+            <md-select required ng-model="profesorCtrl.proyectoAsignar" name="proyectoAsignar">
             <md-option ng-value="proyecto" ng-repeat="proyecto in profesorCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
             </md-select>
-            <div ng-messages="visualizarProyectoForm.proyectoVer.$error" role="alert" multiple>
+            <div ng-messages="agregarConsejoForm.proyectoAsignar.$error" role="alert" multiple>
               <div ng-message="required" class="my-message">Debe seleccionar un proyecto
             </div>
             </div>
           </md-input-container>
         </div>
 
-        <md-button class="md-fab md-mini" aria-label="Visualizar proyecto" ng-click="">
-          <md-icon md-svg-src="vendor/img/icons/check.svg"></md-icon>
-          <md-tooltip md-direction="bottom">Visualizar proyecto</md-tooltip>
+        <md-button class="md-fab md-primary" aria-label="Asignar profesor al proyecto" ng-click="adminCtrl.asignarProfesorProyecto()">
+          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Asignar profesor responsable al proyecto</md-tooltip>
         </md-button>
 
+        <section class="col-lg-12">
+          <md-content layout-padding>
+            <div>
+            <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+              <thead>
+                <tr>
+                  <th>Nombre del proyecto</th>
+                  <th>Nombre del solicitante</th>
+                  <th>Nombre del encargado</th>
+                  <th>Profesor encargado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="solicitud in profesorCtrl.solicitudList">
+                  <td>{{solicitud.nombreProyecto}}</td>
+                  <td>{{solicitud.nombreSolicitante}}</td>
+                  <td>{{solicitud.nombreEncargado}}</td>
+                  <td>{{solicitud.profesorEncargado}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </md-content>
+      </section>
 
       </form>
     </div>
   </md-content>
+</section>
+</md-tab>
 
   
 </section> 
@@ -245,6 +346,44 @@
 </section>
 </md-tab>
 
+<md-tab label="Citas">
+ <section>
+  
+    
+     <md-content layout-padding>
+
+
+
+<div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
+<span class="md-subhead">{{profesor.nombre}}</span>
+</div>
+
+ <span class="md-headline">Cédula</span>
+<div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
+<span class="md-subhead">{{profesor.cedula}}</span>
+</div>
+<span class="md-headline">Fecha de nacimiento</span>
+<div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
+<span class="md-subhead">{{profesor.fechaNacimiento}}</span>
+</div>
+<span class="md-headline">Dirección</span>
+<div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
+<span class="md-subhead">{{profesor.direccion}}</span>
+</div>
+
+<span class="md-headline">Teléfono</span>
+<div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">
+<span class="md-subhead">{{profesor.telefono}}</span>
+</div>
+
+
+</md-tab>
+  </md-content>
+
+   
+</section> 
+</md-tab>
+
 
 
 
@@ -275,12 +414,6 @@
 
 
 </div>
-
-
-
-
-
-
 
 
 

@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right" id="navLogin">
         
-        <li><<a class="navbar-brand" href="#"><img src="images/pngsImgsApp-1-07.png" alt="" width="200px"></a></li>
+        <li><img class="notificacionImagen" src="images/pngsImgsApp-1-07.png" alt="" width="200px"></li>
         <li> <a href="#home"><li><button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-in"></span>  Salir</button></li></a> </li>
         
       </ul>
@@ -32,6 +32,75 @@
 
 <div class="col-lg-12">
 <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+
+<md-tab label="Mi información de perfil">
+ <section>
+  
+    
+     <md-content layout-padding>
+
+
+
+<div class="col-lg-4" id="cardMiInformacion">
+
+<div flex-xs flex-gt-xs="70" layout="column">
+      <md-card id="cardInfoPerfil">
+        <md-card-title>
+
+          <md-card-title-text>
+            <img class="notificacionImagen" src="images/61SD+etGnDL._SX357_BO1,204,203,200_.jpg" alt="" width="200px">
+
+            <span class="md-headline"><div ng-repeat="asistente in asistenteCtrl.asistentesList | filter:{rol:'Asistente'}"><span class="md-subhead">{{asistente.nombre}}</span></div></span>
+            <span class="md-subhead">Asistente CENFOTEC</span>
+
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        
+      </md-card>
+      </div>
+  </div>
+
+      <div class="col-lg-6" id="miInformacionAsistente">
+<p>¡Bienvenido a tu perfil de CENFOTEC SOFTWARE HOUSUE!
+</p>
+<p>Su casa para recibir servicios profesionales en tecnologías de información, de gran calidad, diseñados y construidos por estudiantes y profesores de la Universidad Cenfotec para la comunidad.
+</p>
+<p>
+ <span class="md-headline">Cédula</span>
+<div ng-repeat="asistente in asistenteCtrl.asistentesList | filter:{rol:'Asistente'}">
+<span class="md-subhead">asistente.cedula}}</span>
+</div>
+</p>
+<p>
+<span class="md-headline">Fecha de nacimiento</span>
+<div ng-repeat="asistente in asistenteCtrl.asistentesList | filter:{rol:'Asistente'}">
+<span class="md-subhead">{{asistente.fechaNacimiento}}</span>
+</div>
+</p>
+<p>
+<span class="md-headline">Dirección</span>
+<div ng-repeat="asistente in asistenteCtrl.asistentesList | filter:{rol:'Asistente'}">
+<span class="md-subhead">{{asistente.direccion}}</span>
+</div>
+</p>
+<p>
+<span class="md-headline">Teléfono</span>
+<div ng-repeat="asistente in asistenteCtrl.asistentesList | filter:{rol:'Asistente'}">
+<span class="md-subhead">{{asistente.telefono}}</span>
+</div>
+</p>
+</div>
+
+
+</md-tab>
+  </md-content>
+
+   
+</section> 
+</md-tab>
 
 <md-tab label="Crear citas">
   <section>

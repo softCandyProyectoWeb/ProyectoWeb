@@ -29,42 +29,94 @@
   <h1 id="sitioEstudiante">Sitio de Estudiante</h1>
 </div>
 
-<div class="col-lg-12" ng-repeat="estudiante in estudianteCtrl.ListEstudiantes | filter:{rol: 'Estudiante'}">
-   <h3>{{estudiante.nombre}}</h3>
+
+<div class="col-lg-12">
+<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+
+<md-tab label="Mi información de perfil">
+ <section>
+  
+    
+     <md-content layout-padding>
+
+
+
+<div class="col-lg-4" id="cardMiInformacion">
+
+<div flex-xs flex-gt-xs="70" layout="column">
+      <md-card id="cardInfoPerfil">
+        <md-card-title>
+
+          <md-card-title-text>
+            <img class="notificacionImagen" src="images/8bc804d8f728a4040b48ee6d5fafd12c.jpg" alt="" width="200px">
+
+            <span class="md-headline"><div ng-repeat="estudiante in estudianteCtrl.estudiantesList | filter:{rol:'Estudiante'}"><span class="md-subhead">{{estudiante.nombre}}</span></div></span>
+            <span class="md-subhead">Estudiante CENFOTEC</span>
+
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        
+      </md-card>
+      </div>
+  </div>
+
+      <div class="col-lg-6" id="miInformacionEstudiante">
+<p>¡Bienvenido a tu perfil de CENFOTEC SOFTWARE HOUSUE!
+</p>
+<p>Su casa para recibir servicios profesionales en tecnologías de información, de gran calidad, diseñados y construidos por estudiantes y profesores de la Universidad Cenfotec para la comunidad.
+</p>
+<p>
+ <span class="md-headline">Cédula</span>
+<div ng-repeat="estudiante in estudianteCtrl.estudiantesList | filter:{rol:'Estudiante'}">
+<span class="md-subhead">{{estudiante.cedula}}</span>
+</div>
+</p>
+<p>
+<span class="md-headline">Fecha de nacimiento</span>
+<div ng-repeat="estudiante in estudianteCtrl.estudiantesList | filter:{rol:'Estudiante'}">
+<span class="md-subhead">{{estudiante.fechaNacimiento}}</span>
+</div>
+</p>
+<p>
+<span class="md-headline">Correo Electrónico</span>
+<div ng-repeat="estudiante in estudianteCtrl.estudiantesList | filter:{rol:'Estudiante'}">
+<span class="md-subhead">{{estudiante.correo}}</span>
+</div>
+</p>
+<p>
+<span class="md-headline">Dirección</span>
+<div ng-repeat="estudiante in estudianteCtrl.estudiantesList | filter:{rol:'Estudiante'}">
+<span class="md-subhead">{{estudiante.direccion}}</span>
+</div>
+</p>
+<p>
+<span class="md-headline">Teléfono</span>
+<div ng-repeat="estudiante in estudianteCtrl.estudiantesList | filter:{rol:'Estudiante'}">
+<span class="md-subhead">{{estudiante.telefono}}</span>
+</div>
+</p>
+<p>
+<span class="md-headline">Género</span>
+<div ng-repeat="estudiante in estudianteCtrl.estudiantesList | filter:{rol:'Estudiante'}">
+<span class="md-subhead">{{estudiante.genero}}</span>
+</div>
+</p>
+
 </div>
 
 
-<div class="col-lg-12">
-<md-tabs>
-  <md-tab label="Perfil" >
-      <form name="tablaSolicitudes" id="tablaSolicitudes">
-        <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
-          <thead>
-            <tr>
-              <th>Nombre del estudiante</th>
-              <th>Numero de cédula</th>
-              <th>Fecha de Nacimiento</th>
-              <th>Correo Electronico</th>
-              <th>Dirección</th>
-              <th>Número de teléfono</th>
-              <th>Genero</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="estudiante in estudianteCtrl.ListEstudiantes | filter: {rol:'Estudiante'}">
-              <td>{{estudiante.nombre}}</td>
-              <td>{{estudiante.cedula}}</td>
-              <td>{{estudiante.fechaNacimiento}}</td>
-              <td>{{estudiante.correo}}</td>
-              <td>{{estudiante.direccion}}</td>
-              <td>{{estudiante.telefono}}</td>
-              <td>{{estudiante.genero}}</td>
-            </tr>
-          </tbody>
-        </table>
+</md-tab>
+  </md-content>
 
-      </form>
-    </md-tab>
+   
+</section> 
+</md-tab>
+
+
+
   </md-tabs>
 
 
@@ -94,7 +146,5 @@
 
 
 </div>
-
-
-
+</div>
 

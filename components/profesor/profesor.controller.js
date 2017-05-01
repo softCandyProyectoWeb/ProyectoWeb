@@ -127,43 +127,6 @@
             profesorCtrl.comentarioExpediente = null;
       }
 
-      profesorCtrl.asignarProfesorResponsableProyecto = function(){
-        var listaCliente = profesorCtrl.solicitudList,
-            nombreSelect = profesorCtrl.proyectoAsignar.nombreProyecto;
-            aSolicitud = [];
-
-          for (var i = 0; i < listaCliente.length; i++) {
-            var nombreCliente = listaCliente[i].nombreProyecto;
-
-            if (nombreCliente == nombreSelect) {
-              var nuevaSolicitud = {
-                  $$mdSelectId : listaCliente[i].$$mdSelectId,
-                  $$hashKey : listaCliente[i].$$hashKey,
-                  nombreProyecto : listaCliente[i].nombreProyecto,
-                  nombreSolicitante : listaCliente[i].nombreSolicitante,
-                  nombreEncargado : listaCliente[i].nombreEncargado,
-                  cedula : listaCliente[i].cedula,
-                  industria : listaCliente[i].industria,
-                  objetivos : listaCliente[i].objetivos,
-                  capital : listaCliente[i].capital,
-                  comentario: listaCliente[i].comentario,
-                  estado : listaCliente[i].estado,
-                  profesorEncargado : adminCtrl.profesorProyecto.nombre
-              }
-
-              aSolicitud.push(nuevaSolicitud);
-            }else{
-              aSolicitud.push(listaCliente[i]);
-            }
-          }
-
-            homeService.setLocalSolicitud(aSolicitud);
-
-            init();
-            adminCtrl.profesorProyecto = null;
-            adminCtrl.proyectoAsignar = null;
-      }
-
 
 
 

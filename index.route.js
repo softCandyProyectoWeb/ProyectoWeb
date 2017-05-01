@@ -33,6 +33,7 @@
         $stateProvider
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -47,6 +48,8 @@
 >>>>>>> origin/master
 =======
 >>>>>>> master
+=======
+>>>>>>> master
         .state('parametro',{
           url: '/parametro',
           templateUrl: 'components/admin/admin.view.parametro.html',
@@ -57,12 +60,15 @@
         $stateProvider
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> origin/master
 >>>>>>> origin/master
+=======
+>>>>>>> master
 =======
 >>>>>>> master
         .state('reporte',{
@@ -83,6 +89,7 @@
         $stateProvider
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -95,6 +102,8 @@
 >>>>>>> origin/master
 >>>>>>> origin/master
 >>>>>>> origin/master
+=======
+>>>>>>> master
 =======
 >>>>>>> master
         .state('asistente',{

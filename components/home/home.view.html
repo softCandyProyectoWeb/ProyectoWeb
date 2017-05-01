@@ -25,10 +25,15 @@
         <li><a href="#home#sectionContacto"><div align="center"><span class="menu-icon fa fa-envelope-o"></span></div>
             Contacto</a></li>
       </ul>
+<<<<<<< HEAD
       <ul class="nav navbar-nav navbar-right" id="navLogin">
         <li><a href="https://www.facebook.com/Cenfotec" target="_blank"><div align="center"><span class="menu-icon fa fa fa-facebook" id="navSocial"></span></div></a></li>
         <li><a href="https://twitter.com/UCenfotec" target="_blank"><div align="center"><span class="menu-icon fa fa fa-twitter" id="navSocial"></span></div></a></li>
         <li><button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span>  Ingresar</button></li>
+=======
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="" data-toggle="modal" data-target="#myModal">Ingresar</a></li>
+>>>>>>> master
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -52,17 +57,26 @@
           <md-content layout-padding>
     <div>
       <form name="loginForm">
+<<<<<<< HEAD
 
     <div id="imgLogin">
       <img src="images/login.png" width="180px" height="180px" alt="imagenLogin">
     </div>
+=======
+>>>>>>> master
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Correo electronico</label>
+<<<<<<< HEAD
             <input required="" ng-model="homeCtrl.correoLogin" type ="email" name="correoLogin" />
             <div ng-messages="loginForm.correoLogin.$error" role="alert">
               <div ng-message="required">Debe ingresar un correo electronico</div>
+=======
+            <input required ng-model="homeCtrl.correoLogin" type ="email" name="correoLogin">
+            <div ng-messages="loginForm.correoLogin.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar un correo electronico</div>
+>>>>>>> master
             </div>
           </md-input-container>
         </div>
@@ -71,8 +85,13 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Contraseña</label>
             <input type= "password" required ng-model="homeCtrl.contrasenaLogin" name="contrasenaLogin" type="password">
+<<<<<<< HEAD
             <div ng-messages="loginForm.contrasenaLogin.$error" role="alert">
               <div ng-message="required">Debe ingresar una contraseña</div>
+=======
+            <div ng-messages="loginForm.contrasenaLogin.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar una contraseña</div>
+>>>>>>> master
             </div>
           </md-input-container>
 
@@ -82,8 +101,15 @@
   </md-content>
       </div>
       <div class="modal-footer">
+<<<<<<< HEAD
       <md-button id="btnIngresar" ng-disabled="!loginForm.$valid" class="btn btn-success" aria-label="Ingresar" ng-click="homeCtrl.login()" data-dismiss="modal"><span class="menu-icon fa fa-sign-in"></span> INGRESAR</md-button>
       <md-button id="btnSalir" class="btn btn-danger" aria-label="Salir" data-dismiss="modal"><span class="menu-icon fa fa-sign-out"></span> SALIR</md-button>
+=======
+      <md-button class="md-fab md-primary" aria-label="Ingresar" ng-click="homeCtrl.login()" data-dismiss="modal">
+          <md-icon md-svg-src="vendor/img/icons/ic_check_white_24px.svg"></md-icon>
+          <md-tooltip md-direction="right">Ingresar</md-tooltip>
+        </md-button>
+>>>>>>> master
       </div>
     </div>
 
@@ -129,6 +155,9 @@
   <img src="images/solicitud.jpg" alt="" width="100%">
 </div>
 
+<div class="col-lg-12">
+<h2>Seleccione una opción:</h2>
+</div>
 <div class="col-lg-12">
 <h2>Seleccione una opción:</h2>
 </div>
@@ -201,7 +230,11 @@
             <md-select required ng-model="homeCtrl.industria" name="industria">
               <md-option ng-value="industria" ng-repeat="industria in homeCtrl.listaIndustrias">{{industria.nombre}}</md-option>
             </md-select>
+<<<<<<< HEAD
             <div ng-messages="solicitudForm.industria.$error" role="alert" multiple>
+=======
+            <div ng-messages="movieForm.industria.$error" role="alert" multiple>
+>>>>>>> master
               <div ng-message="required" class="my-message">Debe seleccionar una clasificación
             </div>
             </div>
@@ -329,11 +362,28 @@
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
+<<<<<<< HEAD
+=======
+            <label>Edad</label>
+            <input required ng-model="homeCtrl.edadEstudiante" name="edadEstudiante" type="number" max="99" min="17">
+            <div ng-messages="solicitudEstudianteForm.edadEstudiante.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe ingresar el la edad</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+>>>>>>> master
             <label>Seleccione una carrera</label>
             <md-select required ng-model="homeCtrl.carreraEstudiante" name="carreraEstudiante">
               <md-option ng-value="carrera" ng-repeat="carrera in homeCtrl.listaCarreras">{{carrera.nombre}}</md-option>
             </md-select>
+<<<<<<< HEAD
             <div ng-messages="solicitudEstudianteForm.carreraEstudiante.$error" role="alert" multiple>
+=======
+            <div ng-messages="movieForm.carreraEstudiante.$error" role="alert" multiple>
+>>>>>>> master
               <div ng-message="required" class="my-message">Debe seleccionar una carrera
             </div>
             </div>
@@ -347,7 +397,11 @@
               <md-option ng-value="curso" ng-repeat="curso in homeCtrl.listaCursos">{{curso.curso}}</md-option>
             </md-select>
           
+<<<<<<< HEAD
             <div ng-messages="solicitudEstudianteForm.cursosAprobadosEstudiante.$error" role="alert" multiple>
+=======
+            <div ng-messages="movieForm.cursosAprobadosEstudiante.$error" role="alert" multiple>
+>>>>>>> master
               <div ng-message="required" class="my-message">Debe seleccionar una carrera
             </div>
             </div>
@@ -362,8 +416,14 @@
           </md-input-container>
         </div>
 
+<<<<<<< HEAD
         <md-button id="btnIngresar" ng-disabled="!solicitudEstudianteForm.$valid" class="btn btn-success" aria-label="Ingresar" ng-click="homeCtrl.saveEstudiante()" data-dismiss="modal"><span class="menu-icon fa fa-sign-in"></span> ENVIAR SOLICITUD
         <md-tooltip md-direction="bottom">Enviar Solicitud Estudiante</md-tooltip>
+=======
+        <md-button class="md-fab md-primary" aria-label="Enviar Solicitud" ng-click="homeCtrl.saveEstudiante()">
+          <md-icon md-svg-src="vendor/img/icons/ic_add.svg"></md-icon>
+          <md-tooltip md-direction="bottom">Enviar Solicitud Estudiante</md-tooltip>
+>>>>>>> master
         </md-button>
 
 

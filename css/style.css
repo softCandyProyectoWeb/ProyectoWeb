@@ -1,3 +1,4 @@
+
 @font-face{
   font-family: 'Novecento';
   src: url('../fonts/Novecentowide-Bold.otf');
@@ -23,6 +24,11 @@ body{
     border:0;
     background-color: #010920; /*negro azulado*/
     font-family: 'Novecento';
+}
+
+#imgNosotros, #imgProceso, #imgContacto{
+  padding-left: 0;
+  margin-top: 80px;
 }
 
 li{
@@ -89,6 +95,30 @@ li{
 
 #sitioProfesor h1{
   color: #80a8bb;
+}
+
+
+#miInformacionAsistente{
+  width: 650px;
+  color: #F6AF1D;
+  font-family: helvetica;
+}
+#miInformacionEstudiante{
+  width: 650px;
+  color: #F5A30C;
+  font-family: helvetica;
+
+}
+
+#miInformacion{
+  width: 650px;
+  color: #80a8bb;
+  font-family: helvetica;
+}
+
+#cardInfoPerfil{
+  text-align: right;
+
 }
 
 #cuadrado{
@@ -250,3 +280,19 @@ a{
    font-family: 'Novecento';
    font-size: 12px;
 }
+
+#sectionNosotros h2, #sectionProceso h2, #sectionContacto h2{
+  font-family: 'Novecento';
+  margin-bottom: 40px;
+  color: #282828;
+  margin-top: 100px;
+}
+
+#sectionNosotros p, #sectionProceso p, #sectionContacto p{
+  text-align: justify;
+  color: #282828;
+}
+
+#imgNosotros, #imgProceso, #imgContacto{
+  padding-left: 0;
+  margin-top: 80px;
