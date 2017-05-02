@@ -73,11 +73,13 @@
             error = false;
             var fechaActual = new Date();
             var horaActual = new Date();
+            var password = 'my-password';
+            var preContrasena = adminCtrl.contrasenaProfesor;
 
 
         var nuevoProfesor ={
           nombre : adminCtrl.nombreProfesor,
-          contrasena : adminCtrl.contrasenaProfesor,
+          contrasena : CryptoJS.AES.encrypt(preContrasena, password).toString(),
           cedula : adminCtrl.cedulaProfesor,
           fechaNacimiento : adminCtrl.fechaNacimientoProfesor,
           direccion : adminCtrl.direccionProfesor,
@@ -103,6 +105,8 @@
           usuarioService.agregarUsuario(nuevoProfesor)
           .success(function(data){
           console.log(data);
+
+          alert('El usuario se creo correctamente');
 
           adminCtrl.nombreProfesor = null;
           adminCtrl.contrasenaProfesor = null;
@@ -142,10 +146,12 @@
         error = false;
         var fechaActual = new Date();
         var horaActual = new Date();
+        var password = 'my-password';
+        var preContrasena = adminCtrl.contrasenaAsistente;
 
         var nuevoAsistente ={
           nombre : adminCtrl.nombreAsistente,
-          contrasena : adminCtrl.contrasenaAsistente,
+          contrasena : CryptoJS.AES.encrypt(preContrasena, password).toString(),
           cedula : adminCtrl.cedulaAsistente,
           fechaNacimiento : adminCtrl.fechaNacimientoAsistente,
           direccion : adminCtrl.direccionAsistente,
@@ -171,6 +177,8 @@
         usuarioService.agregarUsuario(nuevoAsistente)
           .success(function(data){
             console.log(data);
+
+          alert('El usuario se creo correctamente');
 
           adminCtrl.nombreAsistente = null;
           adminCtrl.contrasenaAsistente = null;
@@ -209,10 +217,12 @@
         error = false;
         var fechaActual = new Date();
         var horaActual = new Date();
+        var password = 'my-password';
+        var preContrasena = adminCtrl.contrasenaConsejo;
 
         var nuevoConsejo ={
           nombre : adminCtrl.nombreConsejo,
-          contrasena : adminCtrl.contrasenaConsejo,
+          contrasena : CryptoJS.AES.encrypt(preContrasena, password).toString(),
           cedula : adminCtrl.cedulaConsejo,
           fechaNacimiento : adminCtrl.fechaNacimientoConsejo,
           direccion : adminCtrl.direccionConsejo,
@@ -238,6 +248,8 @@
         usuarioService.agregarUsuario(nuevoConsejo)
           .success(function(data){
             console.log(data);
+
+          alert('El usuario se creo correctamente');
 
           adminCtrl.nombreConsejo = null;
           adminCtrl.contrasenaConsejo = null;
@@ -800,7 +812,8 @@
                   capital : listaCliente[i].capital,
                   comentario: listaCliente[i].comentario,
                   estado : listaCliente[i].estado,
-                  profesorEncargado : nombreProfesor
+                  profesorEncargado : nombreProfesor,
+                  idProfesor : adminCtrl.profesorProyecto._id
               }
             } 
           }

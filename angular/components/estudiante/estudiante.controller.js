@@ -18,8 +18,17 @@
         usuarioService.getCita()
         .success(function(data){
           estudianteCtrl.citaList = data;
+          estudianteCtrl.cargarDatos();
 
           });
+
+        homeService.getSolicitud()
+        .success(function(data){
+          estudianteCtrl.clientList = data;
+
+          });
+
+
 
 
         estudianteCtrl.estudianteActivo = document.cookie;
@@ -56,6 +65,73 @@
                 alert('Cita aceptada');
                 init();
             })
+      }
+
+      estudianteCtrl.editarPerfil = function(){
+        var listaUsuarios = estudianteCtrl.usuarioList,
+            idEstudianteActivo = estudianteCtrl.estudianteActivo;
+            var fechaActual = new Date();
+            var horaActual = new Date();
+
+          for (var i = 0; i < listaUsuarios.length; i++) {
+            var idEstudiante = listaUsuarios[i]._id;
+
+            if (idEstudiante == idEstudianteActivo) {
+              var nuevoUsuario = {
+                  _id : listaUsuarios[i]._id,
+                  nombre : listaUsuarios[i].nombre,
+                  contrasena : listaUsuarios[i].contrasena,
+                  cedula : listaUsuarios[i].cedula,
+                  fechaNacimiento : listaUsuarios[i].fechaNacimiento,
+                  direccion : estudianteCtrl.direccionEditar,
+                  correo : estudianteCtrl.correoEditar,
+                  telefono : estudianteCtrl.numeroTelefonoEditar,
+                  genero: listaUsuarios[i].genero,
+                  rol: listaUsuarios[i].rolPersonaEditar,
+                  carrera : listaUsuarios[i].carrera,
+                  estado: listaUsuarios[i].estado,
+                  resumen : listaUsuarios[i].resumen
+                }
+              }
+            }
+
+            usuarioService.setLocalUsuario(nuevoUsuario)
+            .success(function(data){
+            console.log(data);
+
+            alert('Usuario editado exitosamente');
+            init();
+          })
+
+            var nuevoRegistro = {
+            accion: "Editar perfil",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: nuevoUsuario.correo
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
+
+      }
+
+      estudianteCtrl.cargarDatos = function(){
+        var estudianteActivo = estudianteCtrl.estudianteActivo,
+            listaEstudiante = estudianteCtrl.usuarioList;
+
+        for (var i = 0; i < listaEstudiante.length; i++) {
+          var idEstudiante = listaEstudiante[i]._id;
+
+          if (estudianteActivo == idEstudiante) {
+            estudianteCtrl.correoEditar = listaEstudiante[i].correo;
+            estudianteCtrl.numeroTelefonoEditar = listaEstudiante[i].telefono;
+            estudianteCtrl.direccionEditar = listaEstudiante[i].direccion;
+          }
+        }
+
+
       }
 
 

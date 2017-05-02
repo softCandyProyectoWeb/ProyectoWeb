@@ -2,23 +2,417 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      
-      <a class="navbar-brand" href="#"><img src="images/logo.png" alt="" width="200px"></a>
-      <a class="navbar-brand" href="#"><img src="images/pngsImgsApp-1-07.png" alt="" width="200px"></a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="images/logo.png" alt="" width="200px">
     </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="#/informacionProfesor">Mi información</a></li>
-        <li><a href="#/reporteProfesor">Reportes</a></li>
-        <li><a href="#/proyectoProfesor">Proyectos</a></li>
-        <li><a href="#/expedienteClienteProfesor">Expedientes Cliente</a></li>
+      <ul class="nav navbar-nav navbar-right" id="navLogin">
+        
+        <li><img class="notificacionImagen" src="images/pngsImgsApp-1-07.png" alt="" width="200px"></li>
+        <li> <a href="#home"><li><button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-in"></span>  Salir</button></li></a> </li>
+        
       </ul>
+        
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<div class="col-lg-12">
+  <h1 id="sitioProfesor">Sitio de Profesor</h1>
+</div>
 
 <div class="col-lg-12">
-<h2>Bienvenidos</h2>
+
+<md-tabs md-dynamic-height md-border-bottom md-selected="">
+
+<md-tab label="Mi información de perfil">
+ <section>
+  
+    
+     <md-content layout-padding>
+
+
+
+<div class="col-lg-4" id="cardMiInformacion">
+
+<div flex-xs flex-gt-xs="70" layout="column">
+      <md-card id="cardInfoPerfil">
+        <md-card-title>
+
+          <md-card-title-text>
+            <div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{_id: profesorCtrl.usuarioActivo}">
+              <img src="{{profesor.foto}}" width="200px">
+            </div>
+
+            <span class="md-headline"><div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{_id: profesorCtrl.usuarioActivo}"><span class="md-subhead">{{profesor.nombre}}</span></div></span>
+            <span class="md-subhead">Profesor CENFOTEC</span>
+
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        
+      </md-card>
+      </div>
+  </div>
+
+      <div class="col-lg-6" id="miInformacion">
+        <p>¡Bienvenido a su perfil de CENFOTEC SOFTWARE HOUSE!</p>
+        
+          <p>Su casa para recibir servicios profesionales en tecnologías de información, de gran calidad, diseñados y construidos por estudiantes y profesores de la Universidad Cenfotec para la comunidad.
+          </p>
+            <p>
+             <span class="md-headline">Cédula</span>
+            <div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{_id: profesorCtrl.usuarioActivo}">
+            <span class="md-subhead">{{profesor.cedula}}</span>
+            </div>
+            </p>
+        <p>
+        </p>
+            <p>
+            <span class="md-headline">Dirección</span>
+            <div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{_id: profesorCtrl.usuarioActivo}">
+            <span class="md-subhead">{{profesor.direccion}}</span>
+            </div>
+            </p>
+        <p>
+            <span class="md-headline">Teléfono</span>
+            <div ng-repeat="profesor in profesorCtrl.profesoresList | filter:{_id: profesorCtrl.usuarioActivo}">
+            <span class="md-subhead">{{profesor.telefono}}</span>
+            </div>
+            </p>
+    </div>
+
+
+</md-tab>
+  </md-content>
+
+   
+</section> 
+</md-tab>
+
+<md-tab label="Proyectos">
+ <section>
+  
+    
+     <md-content layout-padding>
+
+
+     <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+          <thead>
+            <tr>
+              <th>Nombre del proyecto</th>
+              <th>Nombre del solicitante</th>
+              <th>Nombre del encargado</th>
+              <th>Cédula</th>
+              <th>Industria</th>
+              <th>Objetivos</th>
+              <th>Posee capital</th>
+              <th>Profesor encargado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="proyecto in profesorCtrl.solicitudList | filter:{idProfesor: profesorCtrl.usuarioActivo}">
+              <td>{{proyecto.nombreProyecto}}</td>
+              <td>{{proyecto.nombreSolicitante}}</td>
+              <td>{{proyecto.nombreEncargado}}</td>
+              <td>{{proyecto.cedula}}</td>
+              <td>{{proyecto.industria}}</td>
+              <td>{{proyecto.objetivos}}</td>
+              <td>{{proyecto.capital}}</td>
+              <td>{{proyecto.profesorEncargado}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+
+</md-tab>
+  </md-content>
+
+   
+</section> 
+</md-tab>
+
+<md-tab label="Asignar profesor responsable a proyecto">
+<section>
+  <md-content layout-padding>
+    <div>
+      <form name="agregarConsejoForm" id="agregarConsejoForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Profesor</label>
+            <md-select required ng-model="profesorCtrl.profesorProyecto" name="profesorProyecto">
+            <md-option ng-value="profesor" ng-repeat="profesor in profesorCtrl.profesoresList | filter:{rol:'Profesor'}">{{profesor.nombre}}</md-option>
+            </md-select>
+            <div ng-messages="agregarConsejoForm.profesorProyecto.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un profesor
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+        
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Proyecto</label>
+            <md-select required ng-model="profesorCtrl.proyectoAsignar" name="proyectoAsignar">
+            <md-option ng-value="proyecto" ng-repeat="proyecto in profesorCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
+            </md-select>
+            <div ng-messages="agregarConsejoForm.proyectoAsignar.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un proyecto
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button id="btnIngresar" ng-disabled="!agregarConsejoForm.$valid" class="btn btn-success" aria-label="Agregar Profesor" ng-click="profesorCtrl.asignarProfesorProyecto()"><span class="menu-icon fa fa-check"></span> Asignar Profesor
+          <md-tooltip md-direction="right">Asigna el profesor responsable al proyecto.</md-tooltip>
+        </md-button>
+      </form>
+
+      <form>
+          <section class="col-lg-12">
+              <md-content layout-padding>
+                <div>
+                <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+                  <thead>
+                    <tr>
+                      <th>Nombre del proyecto</th>
+                      <th>Nombre del solicitante</th>
+                      <th>Nombre del encargado</th>
+                      <th>Profesor encargado</th>
+                      <th>Profesor responsable</th>
+                      <th>Estudiante asignado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="solicitud in profesorCtrl.solicitudList">
+                      <td>{{solicitud.nombreProyecto}}</td>
+                      <td>{{solicitud.nombreSolicitante}}</td>
+                      <td>{{solicitud.nombreEncargado}}</td>
+                      <td>{{solicitud.profesorEncargado}}</td>
+                      <td>{{solicitud.profesorResponsable}}</td>
+                      <td>{{solicitud.estudianteAsignado}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </md-content>
+          </section>
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
+
+
+<md-tab label="Asignar estudiante a proyecto">
+<section>
+  <md-content layout-padding>
+    <div>
+      <form name="asignarEstudianteForm" id="asignarEstudianteForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Estudiante</label>
+            <md-select required ng-model="profesorCtrl.estudianteProyecto" name="estudianteProyecto">
+            <md-option ng-value="estudiante" ng-repeat="estudiante in profesorCtrl.profesoresList | filter:{rol:'Estudiante' , estado: 'Activo'}">{{estudiante.nombre}}</md-option>
+            </md-select>
+            <div ng-messages="asignarEstudianteForm.estudianteProyecto.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un estudiante
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+        
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Proyecto</label>
+            <md-select required ng-model="profesorCtrl.proyectoAsignar" name="proyectoAsignar">
+            <md-option ng-value="proyecto" ng-repeat="proyecto in profesorCtrl.solicitudList">{{proyecto.nombreProyecto}}</md-option>
+            </md-select>
+            <div ng-messages="asignarEstudianteForm.proyectoAsignar.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un proyecto
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button id="btnIngresar" ng-disabled="!asignarEstudianteForm.$valid" class="btn btn-success" aria-label="Agregar Estudiante" ng-click="profesorCtrl.asignarEstudianteProyecto()"><span class="menu-icon fa fa-check"></span> Asignar Estudiante
+          <md-tooltip md-direction="right">Asigna el estudiante al proyecto.</md-tooltip>
+        </md-button>
+
+        <section class="col-lg-12">
+          <md-content layout-padding>
+            <div>
+            <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+              <thead>
+                <tr>
+                  <th>Nombre del estudiante</th>
+                  <th>Cedula</th>
+                  <th>Telefono</th>
+                  <th>Correo</th>
+                  <th>Carrera</th>
+                  <th>Curriculo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="estudiante in profesorCtrl.profesoresList | filter: {rol: 'Estudiante'}">
+                   <td>{{estudiante.nombre}}</td>
+                  <td>{{estudiante.cedula}}</td>
+                  <td>{{estudiante.telefono}}</td>
+                  <td>{{estudiante.correo}}</td>
+                  <td>{{estudiante.carrera}}</td>
+                  <td><a href="{{estudiante.resumen}}"><input type="button" value="Descargar" class="btn btn-primary"></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </md-content>
+      </section>
+
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
+  
+</section> 
+</md-tab>
+
+<md-tab label="Agregar comentarios al expediente Cliente">
+   <section>
+  <md-content layout-padding>
+    <div>
+      <form name="editarExpedienteClienteForm" id="editarExpedienteClienteForm">
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre del proyecto</label>
+            <md-select required ng-model="profesorCtrl.nombreProyectoExpediente" name="nombreProyectoExpediente" ng-change="profesorCtrl.buscarClienteExpediente()">
+            <md-option ng-value="cliente" ng-repeat="cliente in profesorCtrl.solicitudList">{{cliente.nombreProyecto}}</md-option>
+            </md-select>
+            <div ng-messages="editarExpedienteClienteForm.nombreProyectoExpediente.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe seleccionar un cliente
+            </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre del cliente</label>
+            <input ng-model="profesorCtrl.nombreClienteExpediente" name="nombreClienteExpediente" disabled>
+            <div ng-messages="editarExpedienteClienteForm.nombreClienteExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nombre de la persona encargada</label>
+            <input ng-model="profesorCtrl.nombreEncargadoExpediente" name="nombreEncargadoExpediente" disabled>
+            <div ng-messages="editarExpedienteClienteForm.nombreEncargadoExpediente.$error" role="alert" multiple>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Comentarios</label>
+            <textarea ng-model="profesorCtrl.comentarioExpediente" name="comentarioExpediente" maxlength="50" md-maxlength="100" minlength="15"></textarea>
+            <div ng-messages="editarExpedienteClienteForm.comentarioExpediente.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Debe anotar un comentario.</div>
+              <div ng-message="minlength" class="my-message">El comentario debe tener como minimo 15 caracteres.</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button id="btnIngresar" ng-disabled="!editarExpedienteClienteForm.$valid" class="btn btn-success" aria-label="Agregar Comentario" ng-click="profesorCtrl.agregarComentarioCliente()"><span class="menu-icon fa fa-comment-o"></span> Agregar comentario
+          <md-tooltip md-direction="right">Agregar comentarios al expediente.</md-tooltip>
+        </md-button>
+
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
+<md-tab label="Citas">
+<md-content layout-padding>
+  <section>
+    <md-content>
+      <div layout-padding>
+        <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
+          <h3>Ver citas a entrevista</h3>
+                  
+          <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+            <thead>
+              <tr>
+                <th>Cita con el estudiante</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Estado de la cita</th>
+                <th>Enviar Respuesta</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="cita in profesorCtrl.citaList | filter:{idProfesor: profesorCtrl.usuarioActivo}">
+                <td>{{cita.estudiante}}</td>
+                <td>{{cita.fecha}}</td>
+                <td>{{cita.hora}}</td>
+                <td>{{cita.estadoEstudiante}}</td>
+                <td><md-button class="btn btn-primary" ng-disabled="cita.estadoEstudiante=='Aceptada'" ng-click="estudianteCtrl.aceptaEntrevista(cita._id)">Aceptar cita</md-button></a></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </form>
+      </div>
+    </md-content>
+  </section>
+</md-tab>
+</md-content>
+</md-tab>
+</md-tabs>
+
+<div id="cuadradoContacto2">
+<div id="sectionContacto2">
+  <div class="col-lg-12">
+    
+    <div class="col-lg-6">
+    <h4>Datos de contacto</h4>
+    <p><span class="menu-icon fa fa-map-marker"></span>  Santa Marta - San Pedro de Montes Oca, del Cruce de la Escuela de Santa Marta 400 metros noreste carretera al Cristo de Sabanilla, San José, Costa Rica</p>
+    <a href="mailto:softwarehouse@ucenfotec.ac.cr"><span class="menu-icon fa fa-envelope-o"></span id="enlaceMailtoUrl">softwarehouse@ucenfotec.ac.cr</a>
+    <p><span class="menu-icon fa fa-phone"></span>  +506 2281-1555</p>
+    <p id="derechosReservados">Universidad CENFOTEC Derechos Reservados 2017</p>
+    </div>
+ 
+
+    <div class="col-lg-6">
+      <div id="masInfo">
+    
+    <a id="sitioWebElaborado"><span class="menu-icon fa fa-laptop"> Sitio web elaborado por: </span></a><a href="https://www.facebook.com/SoftCandyCR" target="_blank"><img src="images/logoSoft.png" alt="logoSoft" width="15%"></a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 
 </div>
+
+
 

@@ -165,7 +165,6 @@
           telefono : homeCtrl.numeroTelefonoEstudiante,
           genero : homeCtrl.generoEstudiante,
           carrera : homeCtrl.carreraEstudiante.nombre,
-          curso : homeCtrl.cursosAprobadosEstudiante.curso,
           resumen : homeCtrl.urlResumenEstudiante,
           estado : "Inactivo",
           rol: "Estudiante"
@@ -255,12 +254,15 @@
             error = false;
             if (rol == "Profesor") {
               location.href = '#/profesor';
+              document.cookie = id;
             }
             else if(rol == "Asistente") {
               location.href = '#/asistente';
+              document.cookie = id;
             }
             else if(rol == "Consejo") {
               location.href = '#/consejo';
+              document.cookie = id;
             }
             else if(rol == "Estudiante") {
               location.href = '#/estudiante';

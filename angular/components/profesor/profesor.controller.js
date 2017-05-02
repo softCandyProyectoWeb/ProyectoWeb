@@ -10,69 +10,30 @@
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
         // homeCtrl.solicitudList = homeService.getSolicitud();
 
-        profesorCtrl.solicitudList = homeService.getSolicitud();
-        profesorCtrl.profesoresList = usuarioService.getUsuario();
+
+        usuarioService.getUsuario()
+        .success(function(data){
+          profesorCtrl.profesoresList = data;
+
+          });
+
+        homeService.getSolicitud()
+        .success(function(data){
+          profesorCtrl.solicitudList = data;
+
+          });
+
+        usuarioService.getCita()
+        .success(function(data){
+          profesorCtrl.citaList = data;
+        })
+
+        profesorCtrl.usuarioActivo = document.cookie;
 
         
       }
       init();
 
-      profesorCtrl.buscaAgregarComentarioEstudiante = function(){
-        var listaPersona = profesorCtrl.usuariosList;
-        var nombreSelect = profesorCtrl.nombreEstudianteExpediente.nombre;
-        
-        for (var i = 0; i < listaPersona.length; i++) {
-            var nombreEstudiante = listaPersona[i].nombre;
-              if (nombreEstudiante == nombreSelect) {
-                profesorCtrl.cedulaEstudianteExpediente = listaPersona[i].cedula,
-                profesorCtrl.correoEstudianteExpediente = listaPersona[i].correo;
-                profesorCtrl.numeroTelefonoEstudianteExpediente = listaPersona[i].telefono;
-                profesorCtrl.estadoEstudianteExpediente = listaPersona[i].estado;
-          }
-        }
-      }
-
-      profesorCtrl.agregarComentarioEstudiante = function(){
-        var listaEstudiante = profesorCtrl.usuariosList,
-            nombreSelect = profesorCtrl.nombreEstudianteExpediente.nombre;
-            aEstudiante = [];
-
-          for (var i = 0; i < listaEstudiante.length; i++) {
-            var nombreEstudiante = listaEstudiante[i].nombre;
-
-            if (nombreEstudiante == nombreSelect) {
-              var nuevoEstudiante = {
-                  $$mdSelectId : listaEstudiante[i].$$mdSelectId,
-                  $$hashKey : listaEstudiante[i].$$hashKey,
-                  nombre : listaEstudiante[i].nombre,
-                  cedula : listaEstudiante[i].cedula,
-                  fechaNacimiento : listaEstudiante[i].fechaNacimiento,
-                  direccion : listaEstudiante[i].direccion,
-                  correo : listaEstudiante[i].correo,
-                  telefono : listaEstudiante[i].numeroTelefono,
-                  genero: listaEstudiante[i].genero,
-                  edad : listaEstudiante[i].edad,
-                  rol: listaEstudiante[i].rol,
-                  estado: listaEstudiante[i].estado,
-                  comentario: asistenteCtrl.comentarioEstudianteExpediente
-              }
-
-              aEstudiante.push(nuevoEstudiante);
-            }else{
-              aEstudiante.push(listaEstudiante[i]);
-            }
-          }
-
-            usuarioService.setLocalUsuario(aEstudiante);
-
-            init();
-            profesorCtrl.nombreEstudianteExpediente = null;
-            profesorCtrl.cedulaEstudianteExpediente = null;
-            profesorCtrl.correoEstudianteExpediente = null;
-            profesorCtrl.numeroTelefonoEstudianteExpediente = null;
-            profesorCtrl.estadoEstudianteExpediente = null;
-            profesorCtrl.comentarioEstudianteExpediente = null;
-      }
 
       profesorCtrl.buscarClienteExpediente = function(){
         var listaCliente = profesorCtrl.solicitudList,
@@ -91,44 +52,210 @@
       profesorCtrl.agregarComentarioCliente = function(){
         var listaCliente = profesorCtrl.solicitudList,
             nombreSelect = profesorCtrl.nombreProyectoExpediente.nombreProyecto;
-            aSolicitud = [];
 
           for (var i = 0; i < listaCliente.length; i++) {
             var nombreCliente = listaCliente[i].nombreProyecto;
 
             if (nombreCliente == nombreSelect) {
               var nuevaSolicitud = {
-                  $$mdSelectId : listaCliente[i].$$mdSelectId,
-                  $$hashKey : listaCliente[i].$$hashKey,
+                  _id : listaCliente[i]._id,
+                  nombreProyecto : listaCliente[i].nombreProyecto,
+                  nombreSolicitante : listaCliente[i].nombreSolicitante,
+                  nombreEncargado : listaCliente[i].nombreEncargado,
+                  cedula : listaCliente[i].cedula,
+                  resumen : listaCliente[i].resumen,
+                  industria : listaCliente[i].industria,
+                  objetivos : listaCliente[i].objetivos,
+                  capital : listaCliente[i].capital,
+                  comentario: profesorCtrl.comentarioExpediente,
+                  estado : listaCliente[i].estado,
+                  profesorEncargado : listaCliente[i].profesorEncargado,
+                  idProfesor : listaCliente[i].idProfesor,
+                  profesorResponsable : profesorCtrl.profesorProyecto.nombre,
+                  idProfesorResponsable : profesorCtrl.profesorProyecto._id
+              }
+            }
+          }
+
+            homeService.setLocalSolicitud(nuevaSolicitud)
+            .success(function(data){
+              console.log(data);
+
+              init();
+              profesorCtrl.comentarioExpediente = null;
+            })
+
+      }
+
+
+      profesorCtrl.asignarProfesorProyecto = function(){
+        var listaCliente = profesorCtrl.solicitudList,
+            nombreSelect = profesorCtrl.proyectoAsignar.nombreProyecto,
+            nombreProfesor = profesorCtrl.profesorProyecto.nombre;
+            var fechaActual = new Date();
+            var horaActual = new Date();
+            var error = false;
+
+          for (var i = 0; i < listaCliente.length; i++) {
+            var nombreCliente = listaCliente[i].nombreProyecto;
+
+            if (nombreCliente == nombreSelect) {
+              var nuevaSolicitud = {
+                  _id : listaCliente[i]._id,
+                  nombreProyecto : listaCliente[i].nombreProyecto,
+                  nombreSolicitante : listaCliente[i].nombreSolicitante,
+                  nombreEncargado : listaCliente[i].nombreEncargado,
+                  cedula : listaCliente[i].cedula,
+                  resumen : listaCliente[i].resumen,
+                  industria : listaCliente[i].industria,
+                  objetivos : listaCliente[i].objetivos,
+                  capital : listaCliente[i].capital,
+                  comentario: listaCliente[i].comentario,
+                  estado : listaCliente[i].estado,
+                  profesorEncargado : listaCliente[i].profesorEncargado,
+                  idProfesor : listaCliente[i].idProfesor,
+                  profesorResponsable : profesorCtrl.profesorProyecto.nombre,
+                  idProfesorResponsable : profesorCtrl.profesorProyecto._id
+              }
+            } 
+          }
+
+          for (var i = 0; i < listaCliente.length; i++) {
+            var idProfesorEncargado = listaCliente[i].idProfesor;
+
+            if (idProfesorEncargado == profesorCtrl.profesorProyecto._id) {
+              error = true;
+            }
+          }
+
+          if (error == false) {
+
+          homeService.setLocalSolicitud(nuevaSolicitud)
+            .success(function(data){
+              console.log(data);
+
+            var correoAsignacion = {
+              correo : "softcandy123@gmail.com",
+              fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+              hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+              asunto : 'Ha sido asignado a un proyecto',
+              correo : profesorCtrl.profesorProyecto.correo,
+              text : 'Ha sido asignado al siguiente proyecto: ' + nuevaSolicitud.nombreProyecto + 
+               '\nPor favor no responder a este correo.'
+            }
+
+            usuarioService.enviarCorreo(correoAsignacion)
+            .success(function(data){
+              console.log(data);
+            })
+
+            var nuevoRegistro = {
+            accion: "Asignar a profesor a proyecto",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: profesorCtrl.usuarioActivo
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
+
+              init();
+              profesorCtrl.profesorProyecto = null;
+              profesorCtrl.proyectoAsignar = null;
+            })
+
+          }else{
+            alert('El profesor escogido ya es el Encargado del proyecto\nNo se permite el mismo registro en ambos campos.')
+          }
+
+
+      }
+
+      profesorCtrl.asignarEstudianteProyecto = function(){
+        var listaCliente = profesorCtrl.solicitudList,
+            nombreSelect = profesorCtrl.proyectoAsignar.nombreProyecto;
+            var fechaActual = new Date();
+            var horaActual = new Date();
+            var error = false;
+
+          for (var i = 0; i < listaCliente.length; i++) {
+            var nombreCliente = listaCliente[i].nombreProyecto;
+
+            if (nombreCliente == nombreSelect) {
+              var nuevaSolicitud = {
+                  _id : listaCliente[i]._id,
                   nombreProyecto : listaCliente[i].nombreProyecto,
                   nombreSolicitante : listaCliente[i].nombreSolicitante,
                   nombreEncargado : listaCliente[i].nombreEncargado,
                   cedula : listaCliente[i].cedula,
                   industria : listaCliente[i].industria,
                   objetivos : listaCliente[i].objetivos,
+                  resumen : listaCliente[i].resumen,
                   capital : listaCliente[i].capital,
+                  comentario: listaCliente[i].comentario,
                   estado : listaCliente[i].estado,
                   profesorEncargado : listaCliente[i].profesorEncargado,
-                  comentario: profesorCtrl.comentarioExpediente
+                  idProfesor : listaCliente[i].idProfesor,
+                  profesorResponsable : listaCliente[i].idProfesorResponsable,
+                  idProfesorResponsable : listaCliente[i].idProfesorResponsable,
+                  estudianteAsignado: profesorCtrl.estudianteProyecto.nombre,
+                  idEstudiante: profesorCtrl.estudianteProyecto._id
               }
+            } 
+          }
 
-            aSolicitud.push(nuevaSolicitud);
-            }else{
-            aSolicitud.push(listaCliente[i]);
+          for (var i = 0; i < listaCliente.length; i++) {
+            var idEstudianteAsignado = listaCliente[i].idEstudiante;
+
+            if (idEstudianteAsignado == profesorCtrl.estudianteProyecto._id) {
+              error = true;
             }
           }
 
-            homeService.setLocalSolicitud(aSolicitud);
+          if (error == false) {
 
-            init();
-            profesorCtrl.nombreProyectoExpediente = null;
-            profesorCtrl.nombreClienteExpediente = null;
-            profesorCtrl.nombreEncargadoExpediente = null;
-            profesorCtrl.comentarioExpediente = null;
+          homeService.setLocalSolicitud(nuevaSolicitud)
+            .success(function(data){
+              console.log(data);
+
+            var correoAsignacion = {
+              correo : "softcandy123@gmail.com",
+              fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+              hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+              asunto : 'Ha sido asignado a un proyecto',
+              correo : profesorCtrl.estudianteProyecto.correo,
+              text : 'Ha sido asignado al siguiente proyecto: ' + nuevaSolicitud.nombreProyecto + 
+               '\nPor favor no responder a este correo.'
+            }
+
+            usuarioService.enviarCorreo(correoAsignacion)
+            .success(function(data){
+              console.log(data);
+            })
+
+            var nuevoRegistro = {
+            accion: "Asignar a estudiante a proyecto",
+            fecha: fechaActual.getUTCDate() + '/' + fechaActual.getMonth() + '/' + fechaActual.getFullYear(),
+            hora: horaActual.getHours() + ':' + horaActual.getMinutes(),
+            usuario: profesorCtrl.usuarioActivo
+            }
+
+            usuarioService.agregarBitacora(nuevoRegistro)
+            .success(function(data){
+              console.log(data);
+            })
+
+              init();
+              profesorCtrl.estudianteProyecto = null;
+              profesorCtrl.proyectoAsignar = null;
+            })
+
+          }else{
+            alert('El estudiante escogido ya esta dentro de este proyecto\nNo se hicieron cambios.')
+          }
       }
-
-
-
 
     }
      //se establece un objeto de angular normal

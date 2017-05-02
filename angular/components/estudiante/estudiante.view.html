@@ -40,17 +40,39 @@
     <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
       <div class="col-lg-12">
         
-        <md-tab label="Proyectos">
-          <section>
-            <md-content>
-              <div layout-padding>
-                <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
+  <md-tab label="Proyectos">
+      <section>
+        <md-content>
+          <div layout-padding>
+            <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
+              <h3>Ver proyectos asignados</h3>
+                      
+              <table id="tblInfo" class="col-lg-offset-1 col-lg-10">
+                <thead>
+                  <tr>
+                    <th>Nombre del proyecto</th>
+                    <th>Industria de la empresa</th>
+                    <th>Objetivos</th>
+                    <th>Profesor encargado</th>
+                    <th>Resumen ejecutivo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="proyecto in estudianteCtrl.clientList | filter:{idEstudiante: estudianteCtrl.estudianteActivo}">
+                    <td>{{proyecto.nombreProyecto}}</td>
+                    <td>{{proyecto.industria}}</td>
+                    <td>{{proyecto.objetivos}}</td>
+                    <td>{{proyecto.profesorEncargado}}</td>
+                    <td><a href="{{proyecto.resumen}}"><input type="button" value="Descargar" class="btn btn-primary"></a></td>
+                  </tr>
+                </tbody>
+              </table>
 
             </form>
           </div>
         </md-content>
       </section>
-    </md-tab>
+</md-tab>
   
 <md-tab label="Citas">
   <section>
@@ -87,18 +109,68 @@
   </section>
 </md-tab>
 
-      <md-tab label="Reporte de horas">
-          <section>
-            <md-content>
-              <div layout-padding>
-                <form name="mantenimientoCarreraForm" id="mantenimientoCarreraForm">
-            </form>
-          </div>
-        </md-content>
-      </section>
-    </md-tab>
+<md-tab label="Editar perfil">
+<section>
+  <md-content layout-padding>
+    <div>
+      <form name="editarPerfilEstudiante" id="editarPerfilEstudiante">
 
-  </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" ng-repeat="estudiante in estudianteCtrl.usuarioList | filter:{_id: estudianteCtrl.estudianteActivo}">
+            <label>Cédula de la persona</label>
+            <input disabled ng-model="estudianteCtrl.cedulaPersona" name="cedulaPersona" maxlength="9" ng-value="estudiante.cedula">
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm ng-repeat="estudiante in estudianteCtrl.usuarioList | filter:{_id: estudianteCtrl.estudianteActivo}">
+            <label>Nombre Completo</label>
+            <input disabled ng-model="estudianteCtrl.nombreEditar" name="nombreEditar" ng-value="estudiante.nombre">
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm ng-repeat="estudiante in estudianteCtrl.usuarioList | filter:{_id: estudianteCtrl.estudianteActivo}">
+            <label>Correo</label>
+            <input ng-model="estudianteCtrl.correoEditar" name="correoEditar" type="email" pattern="[A-Za-z]+@ucenfotec\.ac\.cr" ng-value="estudiante.correo">
+            <div ng-messages="editarPerfilEstudiante.correoEditar.$error" role="alert" multiple>
+              <div ng-message="email" class="my-message">El formato del correo electronico no es valido.</div>
+              <div ng-message="pattern" class="my-message">Solo se permiten correos de la Universidad Cenfotec.</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm ng-repeat="estudiante in estudianteCtrl.usuarioList | filter:{_id: estudianteCtrl.estudianteActivo}">
+            <label>Teléfono</label>
+            <input ng-model="estudianteCtrl.numeroTelefonoEditar" name="numeroTelefonoEditar" ype="text" maxlength="8" md-maxlength="8" pattern="^[2|6|7|8]{1}[0-9]{7}" ng-value="estudiante.telefono">
+            <div ng-messages="editarPerfilEstudiante.numeroTelefonoEditar.$error" role="alert" multiple>
+              <div ng-message="pattern" class="my-message">El formato del numero de telefono no es valido.</div>
+            </div>
+          </md-input-container>
+        </div>
+
+         <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm ng-repeat="estudiante in estudianteCtrl.usuarioList | filter:{_id: estudianteCtrl.estudianteActivo}">
+            <label>Dirección</label>
+            <input ng-model="estudianteCtrl.direccionEditar" name="direccionEditar" maxlength="50" md-maxlength="100" minlength="15" ng-value="estudiante.direccion">
+            <div ng-messages="editarPerfilEstudiante.direccionEditar.$error" role="alert" multiple>
+              <div ng-message="minlength" class="my-message">La dirección debe tener como minimo 15 caracteres.</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <md-button id="btnIngresar" ng-disabled="!editarPerfilEstudiante.$valid" class="btn btn-success" aria-label="Agregar Perfil" ng-click="estudianteCtrl.editarPerfil()"><span class="menu-icon fa fa-pencil-square-o"></span> Editar Usuario
+          <md-tooltip md-direction="right">Edita la informacion del usuario.</md-tooltip>
+        </md-button>
+
+      </form>
+    </div>
+  </md-content>
+</section>
+</md-tab>
+
+</div>
 </md-tabs>
 </div>
 

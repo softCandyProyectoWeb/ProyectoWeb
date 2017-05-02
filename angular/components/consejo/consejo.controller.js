@@ -8,7 +8,12 @@
       consejoCtrl.cloudObj = ImageService.getConfiguration();
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
-        consejoCtrl.solicitudList = homeService.getSolicitud();
+        
+        homeService.getSolicitud()
+          .success(function(data){
+            consejoCtrl.solicitudList = data;
+
+          });
         
       }
       init();

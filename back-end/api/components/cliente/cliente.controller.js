@@ -16,6 +16,11 @@ module.exports.save = function(req,res){ //exporta el controlador
             resumen:req.body.resumen,
             estado:req.body.estado,
             profesorEncargado:req.body.profesorEncargado,
+            idProfesor:req.body.idProfesor,
+            profesorResponsable :  req.body.profesorResponsable,
+            idProfesorResponsable : req.body.idProfesorResponsable,
+            estudianteAsignado: req.body.estudianteAsignado,
+            idEstudiante: req.body.idEstudiante,
             comentario: req.body.comentario
           });
 

@@ -14,6 +14,11 @@ var ClienteSchema = new mongoose.Schema({
   resumen : String,
   estado: String,
   profesorEncargado : String,
+  idProfesor:String,
+  profesorResponsable:String,
+  idProfesorResponsable:String,
+  estudianteAsignado: String,
+  idEstudiante: String,
   comentario: String
 });
 

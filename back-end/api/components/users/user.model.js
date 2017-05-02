@@ -15,7 +15,6 @@ var UserSchema = new mongoose.Schema({
   estado: String,
   foto: String,
   carrera:String,
-  curos: String,
   resumen: String,
   comentario:String
 });
