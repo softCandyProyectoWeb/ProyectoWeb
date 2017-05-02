@@ -239,6 +239,7 @@
               <th>Posee capital</th>
               <th>Profesor encargado</th>
               <th>Estado de la solicitud</th>
+              <th>Cambiar estado</th>
             </tr>
           </thead>
           <tbody>
@@ -252,6 +253,10 @@
               <td>{{solicitud.capital}}</td>
               <td>{{solicitud.profesorEncargado}}</td>
               <td>{{solicitud.estado}}</td>
+              <td><md-select ng-model="asistenteCtrl.cambiarEstadoProyecto" name="cambiarEstadoProyecto" ng-change="asistenteCtrl.cambiarEstados(solicitud._id)">
+            <md-option value="Aceptado">Aceptar</md-option>
+            <md-option value="Rechazado">Rechazar</md-option>
+            </md-select></td>
             </tr>
           </tbody>
         </table>

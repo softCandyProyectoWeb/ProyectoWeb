@@ -71,8 +71,8 @@
                   estado : listaCliente[i].estado,
                   profesorEncargado : listaCliente[i].profesorEncargado,
                   idProfesor : listaCliente[i].idProfesor,
-                  profesorResponsable : profesorCtrl.profesorProyecto.nombre,
-                  idProfesorResponsable : profesorCtrl.profesorProyecto._id
+                  profesorResponsable : listaCliente[i].profesorResponsable,
+                  idProfesorResponsable : listaCliente[i].idProfesorResponsable
               }
             }
           }
@@ -255,6 +255,37 @@
           }else{
             alert('El estudiante escogido ya esta dentro de este proyecto\nNo se hicieron cambios.')
           }
+      }
+
+      profesorCtrl.aceptaEntrevista = function(pCita){
+        var listaCita = profesorCtrl.citaList,
+            idCitaSelect = pCita;
+
+          for (var i = 0; i < listaCita.length; i++) {
+            var idCita = listaCita[i]._id;
+
+            if (idCita == idCitaSelect) {
+              var nuevaCita = {
+                  _id : listaCita[i]._id,
+                  profesor : listaCita[i].profesor,
+                  idProfesor : listaCita[i].idProfesor,
+                  estudiante : listaCita[i].estudiante,
+                  idEstudiante : listaCita[i].idEstudiante,
+                  fecha : listaCita[i].fecha,
+                  hora : listaCita[i].hora,
+                  estadoEstudiante : listaCita[i].estadoEstudiante,
+                  estadoProfesor : "Aceptada",
+              }
+            }
+          }
+
+            usuarioService.setLocalCita(nuevaCita)
+            .success(function(data){
+              console.log(data);
+
+                alert('Cita aceptada');
+                init();
+            })
       }
 
     }

@@ -217,7 +217,44 @@
                asistenteCtrl.fechaCita.getFullYear(),
                asistenteCtrl.fechaCita.getMonth() + 2,
                asistenteCtrl.fechaCita.getDate());
-         }  
+         }
+
+
+      asistenteCtrl.cambiarEstados = function(pId){
+        var listaCliente = asistenteCtrl.solicitudList,
+            idSolicitud = pId,
+            estadoNuevo = asistenteCtrl.cambiarEstadoProyecto;
+
+          for (var i = 0; i < listaCliente.length; i++) {
+            var idCliente = listaCliente[i]._id;
+
+            if (idCliente == idSolicitud) {
+              var nuevaSolicitud = {
+                  _id : listaCliente[i]._id,
+                  nombreProyecto : listaCliente[i].nombreProyecto,
+                  nombreSolicitante : listaCliente[i].nombreSolicitante,
+                  nombreEncargado : listaCliente[i].nombreEncargado,
+                  cedula : listaCliente[i].cedula,
+                  industria : listaCliente[i].industria,
+                  objetivos : listaCliente[i].objetivos,
+                  capital : listaCliente[i].capital,
+                  estado : estadoNuevo,
+                  profesorEncargado : listaCliente[i].profesorEncargado,
+                  comentario: asistenteCtrl.comentarioExpediente
+              }
+            }
+          }
+
+            homeService.setLocalSolicitud(nuevaSolicitud)
+            .success(function(data){
+              console.log(data);
+
+              alert('El proyecto ha sido: ' + nuevaSolicitud.estado)
+              init();
+
+            })
+
+      }  
 
 
       
